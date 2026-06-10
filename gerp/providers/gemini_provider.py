@@ -38,7 +38,9 @@ class GeminiProvider(BaseProvider):
                 tools=[types.Tool(google_search=types.GoogleSearch())],
             ),
         )
+        return self._parse(prompt, resp)
 
+    def _parse(self, prompt: str, resp) -> GERP:
         answer_text = getattr(resp, "text", "") or ""
         citations: list[Citation] = []
         issued_queries: list[str] = []

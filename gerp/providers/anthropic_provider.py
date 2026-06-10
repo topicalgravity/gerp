@@ -50,7 +50,9 @@ class AnthropicProvider(BaseProvider):
                 "max_uses": self.max_uses,
             }],
         )
+        return self._parse(prompt, resp)
 
+    def _parse(self, prompt: str, resp) -> GERP:
         # First pass: issued queries (server_tool_use) and the full result
         # pool (web_search_tool_result), pairing results to queries via
         # tool_use_id so each pool doc records its source query and rank.

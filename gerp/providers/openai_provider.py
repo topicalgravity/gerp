@@ -41,7 +41,9 @@ class OpenAIProvider(BaseProvider):
             tools=[{"type": "web_search"}],
             include=["web_search_call.action.sources"],
         )
+        return self._parse(prompt, resp)
 
+    def _parse(self, prompt: str, resp) -> GERP:
         answer_parts: list[str] = []
         citations: list[Citation] = []
         issued_queries: list[str] = []
