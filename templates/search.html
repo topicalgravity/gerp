@@ -114,6 +114,29 @@
       margin-top: 10px;
       text-align: center;
     }
+    .recent {
+      margin-top: 36px;
+      width: 522px;
+      font-size: 13px;
+    }
+    .recent .label {
+      color: #767676;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .recent a {
+      display: block;
+      color: #1a0dab;
+      text-decoration: none;
+      padding: 4px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .recent a:hover { text-decoration: underline; }
+    .recent .meta { color: #767676; font-size: 11px; }
     .footer {
       position: fixed;
       bottom: 0;
@@ -157,6 +180,18 @@
         <button type="button" class="btn" onclick="this.form.reset()">Clear</button>
       </div>
     </form>
+
+    {% if recent %}
+    <div class="recent">
+      <div class="label">Recent searches</div>
+      {% for r in recent %}
+      <a href="{{ url_for('show_run', run_id=r.id) }}">
+        {{ r.prompt }}
+        <span class="meta">&middot; {{ r.providers | join(', ') }} &middot; {{ r.created_at[:16].replace('T', ' ') }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 
   <div class="footer">

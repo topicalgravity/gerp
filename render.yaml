@@ -11,3 +11,7 @@ services:
         sync: false
       - key: OPENAI_API_KEY
         sync: false
+      # Shared secret: requests need ?key=<value> once (then cookied).
+      # Without this, anyone who finds the URL spends your API credits.
+      - key: GERP_PASSWORD
+        sync: false

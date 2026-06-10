@@ -78,3 +78,14 @@ class GERP:
         if not include_raw:
             d.pop("raw_response", None)
         return d
+
+    @classmethod
+    def from_dict(cls, d: dict[str, Any]) -> "GERP":
+        d = dict(d)
+        d["citations"] = [Citation(**c) for c in d.get("citations", [])]
+        d["considered_not_cited"] = [
+            ConsideredDoc(**c) for c in d.get("considered_not_cited", [])
+        ]
+        d["considered_method"] = ConsideredMethod(
+            d.get("considered_method", ConsideredMethod.NONE.value))
+        return cls(**d)
