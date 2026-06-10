@@ -231,6 +231,42 @@
       font-weight: bold;
     }
 
+    /* ── Working overlay ── */
+    .working-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.88);
+      z-index: 100;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .working-overlay.active { display: flex; }
+    .spinner {
+      width: 38px;
+      height: 38px;
+      border: 4px solid #e8eaed;
+      border-top-color: #4285F4;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .working-text { color: #5f6368; font-size: 14px; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 40px;
+      border-top: 1px solid #ebebeb;
+      background: #f2f2f2;
+      padding: 10px 24px;
+      font-size: 13px;
+      color: #767676;
+      display: flex;
+      justify-content: space-between;
+    }
+
     /* ── Error state ── */
     .provider-error {
       color: #d93025;
@@ -307,7 +343,7 @@
 
           {% if queries %}
           <div class="issued-queries">
-            <div class="label">Search queries issued</div>
+            <div class="label">Fan-out queries ({{ queries | length }})</div>
             <div class="query-pills">
               {% for q in queries %}
               <span class="query-pill">{{ q }}</span>
@@ -332,8 +368,8 @@
             <div class="no-results">No citations returned for this query.</div>
           {% endif %}
 
-          {% if data.considered_not_cited %}
           <div class="considered">
+            {% if data.considered_not_cited %}
             <div class="label">
               Considered but not cited ({{ data.considered_not_cited | length }})
               &nbsp;&middot;&nbsp; {{ data.considered_method.value }}
@@ -345,13 +381,23 @@
                 {{ doc.title or doc.domain or doc.url }}
               </a>
               <div class="result-meta">
-                {%- if doc.source_query %}query: &ldquo;{{ doc.source_query }}&rdquo;{% endif %}
+                {%- if doc.source_query %}fan-out query: &ldquo;{{ doc.source_query }}&rdquo;{% endif %}
                 {%- if doc.rank %} &middot; rank {{ doc.rank }}{% endif %}
               </div>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="label">Considered but not cited</div>
+            <div class="result-meta" style="color:#80868b; font-size:12px;">
+              {% if p == 'gemini' %}
+              Gemini doesn&rsquo;t expose its result pool &mdash; its considered-set
+              requires re-running the fan-out queries (not enabled yet).
+              {% else %}
+              Every source this engine consulted was cited in the answer.
+              {% endif %}
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
 
         {% endif %}
       </div>
@@ -359,7 +405,21 @@
     </div>
   </div>
 
+  <div class="working-overlay" id="working">
+    <div class="spinner"></div>
+    <div class="working-text">Running fan-out across the selected engines&hellip; typically 20&ndash;60 seconds</div>
+  </div>
+
+  <div class="footer">
+    <span>GERP &mdash; fan-out queries &amp; citations from Anthropic, Gemini &amp; OpenAI web search</span>
+    <span>&copy; 2026 Topical Gravity LLC</span>
+  </div>
+
   <script>
+    document.querySelectorAll('form[action="/search"]').forEach(f =>
+      f.addEventListener('submit', () =>
+        document.getElementById('working').classList.add('active')));
+
     function toggleAnswer(provider, btn) {
       const el = document.getElementById('answer-' + provider);
       el.classList.toggle('expanded');

@@ -3,7 +3,10 @@ services:
     name: gerp
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    # Web-search runs take 30-60s+; gunicorn's default 30s worker timeout
+    # kills them mid-request (502). Threads let one worker serve other
+    # requests while a search is in flight.
+    startCommand: gunicorn app:app --timeout 300 --workers 1 --threads 8
     envVars:
       - key: ANTHROPIC_API_KEY
         sync: false
