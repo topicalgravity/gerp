@@ -56,8 +56,8 @@ print(g.to_dict())
 | Provider   | Citations | Issued queries | Native considered-set | Considered strategy |
 |------------|-----------|----------------|-----------------------|---------------------|
 | Gemini     | yes (groundingSupports) | yes (webSearchQueries) | no  | rerun_queries |
-| Anthropic  | yes (richest spans)     | no                      | no  | reconstructed |
-| OpenAI     | yes (annotations + sources) | no                  | yes (sources field) | provider_delta |
+| Anthropic  | yes (richest spans)     | yes (server_tool_use input) | yes (web_search_tool_result pool) | provider_delta |
+| OpenAI     | yes (annotations + sources) | yes (action.queries) | yes (action.sources) | provider_delta |
 
 ## Adding the considered-set later
 
@@ -78,13 +78,16 @@ inferred.
 
 ## Notes / limitations
 
-- A true "considered set" is **inferred, not observed** for most providers. OpenAI
-  exposes a native `sources` field (all URLs consulted) making its considered-set
-  directly observed (`provider_delta`). Gemini uses `rerun_queries` against its
-  exposed `webSearchQueries`; Anthropic falls back to `reconstructed`.
-- Anthropic encrypts web-search result content snippets; the adapter reads
-  url/title/cited_text from citation objects on text blocks, not the encrypted
-  result blocks.
+- Anthropic and OpenAI both expose a directly observed considered-set
+  (`provider_delta`): Anthropic via the `web_search_tool_result` pool (url,
+  title, page_age are plaintext — only content snippets are encrypted),
+  OpenAI via `web_search_call.action.sources`. Gemini exposes its issued
+  `webSearchQueries` but not the result pool, so its considered-set requires
+  the `rerun_queries` strategy.
+- Gemini citation URLs are vertexaisearch.cloud.google.com redirects; the
+  adapter recovers the real source domain from the grounding chunk's
+  domain/title field and flags `redirect_url` in metadata.
+- OpenAI appends `?utm_source=openai` to all URLs; the adapter strips it.
 - Per-URL `metadata` is left empty here — that's where your Screaming Frog /
   GEO-readiness enrichment (schema type, publish date, internal links) plugs in.
 ```

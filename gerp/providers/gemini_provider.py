@@ -80,6 +80,16 @@ class GeminiProvider(BaseProvider):
                     title=getattr(web, "title", None),
                     cited_text=span_by_chunk.get(i),
                 )
+                # web.uri is a vertexaisearch.cloud.google.com redirect URL.
+                # The real source domain lives in web.domain (Vertex) or, on
+                # the Developer API, in web.title (which is the bare domain).
+                title = getattr(web, "title", None)
+                real_domain = getattr(web, "domain", None) or (
+                    title if title and "." in title and " " not in title else None
+                )
+                if real_domain:
+                    c.domain = real_domain
+                    meta["redirect_url"] = True
                 c.metadata = meta
                 citations.append(c)
 

@@ -7,7 +7,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from flask import Flask, render_template, request
 
 import gerp as g
-from gerp.providers.base import ProviderError
 
 app = Flask(__name__)
 
@@ -37,7 +36,7 @@ def search():
             p = futures[fut]
             try:
                 results[p] = fut.result()
-            except (ProviderError, Exception) as e:
+            except Exception as e:
                 results[p] = {"error": str(e)}
 
     # Preserve a consistent display order

@@ -136,6 +136,62 @@
       font-style: italic;
     }
 
+    /* ── AI answer box ── */
+    .answer-box {
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      background: #f8f9fa;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+    .answer-box .label {
+      color: #767676;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .answer-text {
+      color: #202124;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow: hidden;
+      max-height: 190px;
+      position: relative;
+    }
+    .answer-text.expanded { max-height: none; }
+    .answer-toggle {
+      display: block;
+      margin-top: 8px;
+      background: none;
+      border: none;
+      color: #1a73e8;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* ── Considered but not cited ── */
+    .considered {
+      margin-top: 28px;
+      border-top: 1px solid #ebebeb;
+      padding-top: 12px;
+    }
+    .considered .label {
+      color: #767676;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .considered .result-title { font-size: 15px; color: #5f6368; }
+    .considered .result { margin-bottom: 14px; }
+    .considered .result-meta {
+      color: #80868b;
+      font-size: 12px;
+    }
+
     /* ── Blue link result ── */
     .result {
       margin-bottom: 20px;
@@ -236,6 +292,14 @@
             {{ data.model }}
           </div>
 
+          {% if data.answer_text %}
+          <div class="answer-box">
+            <div class="label">AI answer</div>
+            <div class="answer-text" id="answer-{{ p }}">{{ data.answer_text }}</div>
+            <button class="answer-toggle" onclick="toggleAnswer('{{ p }}', this)">Show more</button>
+          </div>
+          {% endif %}
+
           {% if queries %}
           <div class="issued-queries">
             <div class="label">Search queries issued</div>
@@ -255,12 +319,33 @@
                 {{ cit.title or cit.domain or cit.url }}
               </a>
               <div class="result-snippet">
-                {{ cit.cited_text or '&mdash;' }}
+                {{ cit.cited_text or '—' }}
               </div>
             </div>
             {% endfor %}
           {% else %}
             <div class="no-results">No citations returned for this query.</div>
+          {% endif %}
+
+          {% if data.considered_not_cited %}
+          <div class="considered">
+            <div class="label">
+              Considered but not cited ({{ data.considered_not_cited | length }})
+              &nbsp;&middot;&nbsp; {{ data.considered_method.value }}
+            </div>
+            {% for doc in data.considered_not_cited %}
+            <div class="result">
+              <div class="result-url">{{ doc.url }}</div>
+              <a class="result-title" href="{{ doc.url }}" target="_blank" rel="noopener">
+                {{ doc.title or doc.domain or doc.url }}
+              </a>
+              <div class="result-meta">
+                {%- if doc.source_query %}query: &ldquo;{{ doc.source_query }}&rdquo;{% endif %}
+                {%- if doc.rank %} &middot; rank {{ doc.rank }}{% endif %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
           {% endif %}
 
         {% endif %}
@@ -270,6 +355,19 @@
   </div>
 
   <script>
+    function toggleAnswer(provider, btn) {
+      const el = document.getElementById('answer-' + provider);
+      el.classList.toggle('expanded');
+      btn.textContent = el.classList.contains('expanded') ? 'Show less' : 'Show more';
+    }
+    // Hide the toggle when the answer already fits.
+    document.querySelectorAll('.answer-text').forEach(el => {
+      if (el.scrollHeight <= el.clientHeight) {
+        const btn = el.parentElement.querySelector('.answer-toggle');
+        if (btn) btn.style.display = 'none';
+      }
+    });
+
     function showTab(provider, el) {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.provider-panel').forEach(p => p.classList.remove('active'));
