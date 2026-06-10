@@ -35,6 +35,9 @@ class Citation:
     cited_text: Optional[str] = None
     start_index: Optional[int] = None
     end_index: Optional[int] = None
+    # How many times the answer cited this URL (deduped citations keep the
+    # first span but count every occurrence — frequency matters for GEO).
+    count: int = 1
     # Metadata enrichment (filled by the scraper layer, GEO-readiness signals).
     metadata: dict[str, Any] = field(default_factory=dict)
 

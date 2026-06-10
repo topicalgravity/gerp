@@ -26,13 +26,15 @@ class TestBaseHelpers(unittest.TestCase):
         self.assertEqual(domain_of("https://sub.example.com/p"), "sub.example.com")
         self.assertIsNone(domain_of("not a url"))
 
-    def test_dedupe_keeps_first_span(self):
+    def test_dedupe_keeps_first_span_and_counts(self):
         cits = [Citation(url="https://a.com", cited_text="first"),
                 Citation(url="https://a.com", cited_text="second"),
                 Citation(url="https://b.com")]
         deduped = BaseProvider._dedupe(cits)
         self.assertEqual([c.url for c in deduped], ["https://a.com", "https://b.com"])
         self.assertEqual(deduped[0].cited_text, "first")
+        self.assertEqual(deduped[0].count, 2)
+        self.assertEqual(deduped[1].count, 1)
 
 
 class TestAnthropicParse(unittest.TestCase):

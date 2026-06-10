@@ -74,9 +74,11 @@ class BaseProvider(abc.ABC):
 
     @staticmethod
     def _dedupe(citations: list[Citation]) -> list[Citation]:
-        """Collapse duplicate URLs, keeping the first span seen."""
+        """Collapse duplicate URLs: keep the first span seen, count the rest."""
         seen: dict[str, Citation] = {}
         for c in citations:
-            if c.url not in seen:
+            if c.url in seen:
+                seen[c.url].count += 1
+            else:
                 seen[c.url] = c
         return list(seen.values())
