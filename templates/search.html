@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>GERP</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -21,8 +23,9 @@
       font-weight: normal;
       letter-spacing: -2px;
       margin-bottom: 24px;
-      font-family: Arial, sans-serif;
+      font-family: 'Google Sans', Arial, sans-serif;
       line-height: 1;
+      text-align: center;
     }
     .logo span:nth-child(1) { color: #4285F4; }
     .logo span:nth-child(2) { color: #EA4335; }
@@ -155,7 +158,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.96);
       z-index: 100;
       flex-direction: column;
       align-items: center;
@@ -169,10 +172,20 @@
       border: 4px solid #e8eaed;
       border-top-color: #4285F4;
       border-radius: 50%;
-      animation: spin 0.9s linear infinite;
+      animation: spin 0.9s linear infinite, spincolor 2.4s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .working-text { color: #5f6368; font-size: 14px; }
+    @keyframes spincolor {
+      0%, 100% { border-top-color: #4285F4; }  /* blue */
+      25%      { border-top-color: #EA4335; }  /* red */
+      50%      { border-top-color: #34A853; }  /* green */
+      75%      { border-top-color: #FBBC05; }  /* yellow */
+    }
+    .working-text {
+      color: #202124;
+      font-size: 14px;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
