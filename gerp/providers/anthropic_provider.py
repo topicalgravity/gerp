@@ -127,7 +127,9 @@ class AnthropicProvider(BaseProvider):
             issued_queries=issued_queries,
             raw_response=resp.model_dump() if hasattr(resp, "model_dump") else None,
         )
-        if considered:
+        # The pool was observed, so the delta is provider-native even when
+        # it's empty (i.e. every result was cited).
+        if pool:
             gerp.considered_not_cited = considered
             gerp.considered_method = ConsideredMethod.PROVIDER_DELTA
         return gerp

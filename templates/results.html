@@ -400,11 +400,12 @@
             {% else %}
             <div class="label">Considered but not cited</div>
             <div class="result-meta" style="color:#80868b; font-size:12px;">
-              {% if p == 'gemini' %}
-              Gemini doesn&rsquo;t expose its result pool &mdash; its considered-set
-              requires re-running the fan-out queries (not enabled yet).
+              {% if data.considered_method.value == 'none' %}
+              No considered-set for this run &mdash; this engine doesn&rsquo;t expose
+              its result pool, and fan-out re-run enrichment isn&rsquo;t enabled
+              (needs a SerpAPI key).
               {% else %}
-              Every source this engine consulted was cited in the answer.
+              Every source in this engine&rsquo;s result pool was cited in the answer.
               {% endif %}
             </div>
             {% endif %}

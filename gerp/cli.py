@@ -26,6 +26,9 @@ def main(argv=None) -> int:
     ap.add_argument("--model", default=None, help="Override default model")
     ap.add_argument("--api-key", default=None, help="Override env API key")
     ap.add_argument("--raw", action="store_true", help="Include raw_response")
+    ap.add_argument("--considered", action="store_true",
+                    help="Build a considered-set by re-running fan-out queries "
+                         "through SerpAPI (needs SERPAPI_API_KEY)")
     ap.add_argument("--indent", type=int, default=2)
     args = ap.parse_args(argv)
 
@@ -39,6 +42,12 @@ def main(argv=None) -> int:
     except ProviderError as e:
         print(json.dumps({"error": str(e)}), file=sys.stderr)
         return 2
+
+    if args.considered and gerp.issued_queries:
+        from .considered import enrich, SerpAPIBackend
+        from .schema import ConsideredMethod
+        if gerp.considered_method == ConsideredMethod.NONE:
+            gerp = enrich(gerp, backend=SerpAPIBackend())
 
     print(json.dumps(gerp.to_dict(include_raw=args.raw), indent=args.indent))
     return 0

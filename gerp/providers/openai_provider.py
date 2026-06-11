@@ -106,7 +106,9 @@ class OpenAIProvider(BaseProvider):
             citations=deduped,
             issued_queries=issued_queries,
         )
-        if considered:
+        # The sources pool was observed, so the delta is provider-native
+        # even when it's empty (i.e. every consulted source was cited).
+        if source_docs:
             gerp.considered_not_cited = considered
             gerp.considered_method = ConsideredMethod.PROVIDER_DELTA
         return gerp

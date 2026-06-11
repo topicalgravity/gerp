@@ -12,7 +12,8 @@ from pathlib import Path
 from flask import Flask, abort, redirect, render_template, request, url_for
 
 import gerp as g
-from gerp.schema import GERP
+from gerp.considered import enrich, SerpAPIBackend
+from gerp.schema import GERP, ConsideredMethod
 
 app = Flask(__name__)
 
@@ -112,6 +113,18 @@ def search():
                 results[p] = fut.result(timeout=180)
             except Exception as e:
                 results[p] = {"error": str(e)}
+
+    # Providers that never exposed their result pool (Gemini) get a
+    # considered-set by re-running their fan-out queries through SerpAPI.
+    if os.environ.get(SerpAPIBackend.env_key):
+        backend = SerpAPIBackend()
+        for r in results.values():
+            if (isinstance(r, GERP) and r.issued_queries
+                    and r.considered_method == ConsideredMethod.NONE):
+                try:
+                    enrich(r, backend=backend)
+                except Exception:
+                    pass  # enrichment is additive; never fail the run
 
     run_id = _new_run_id()
     _save_run(run_id, prompt, results)

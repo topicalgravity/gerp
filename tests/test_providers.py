@@ -167,5 +167,61 @@ class TestGeminiParse(unittest.TestCase):
         self.assertEqual(g.issued_queries, ["q1"])
 
 
+class FakeBackend:
+    def __init__(self, results_by_query):
+        self.results_by_query = results_by_query
+
+    def search(self, query, num=10):
+        return self.results_by_query.get(query, [])
+
+
+class TestEnrich(unittest.TestCase):
+    def _gerp(self):
+        from gerp.schema import GERP, SCHEMA_VERSION
+        return GERP(
+            schema_version=SCHEMA_VERSION, provider="gemini", model="m",
+            prompt="p", answer_text="a",
+            citations=[Citation(
+                url="https://vertexaisearch.cloud.google.com/redir/1",
+                domain="cited.com")],
+            issued_queries=["q1"],
+        )
+
+    def test_excludes_cited_domains_not_just_urls(self):
+        from gerp.considered import enrich
+        backend = FakeBackend({"q1": [
+            {"url": "https://cited.com/deep/page", "title": "Cited dom", "rank": 1},
+            {"url": "https://fresh.com/x", "title": "Fresh", "rank": 2},
+        ]})
+        g = enrich(self._gerp(), backend=backend)
+        self.assertEqual(g.considered_method, ConsideredMethod.RERUN_QUERIES)
+        self.assertEqual([d.url for d in g.considered_not_cited],
+                         ["https://fresh.com/x"])
+        doc = g.considered_not_cited[0]
+        self.assertEqual(doc.domain, "fresh.com")
+        self.assertEqual(doc.source_query, "q1")
+        self.assertEqual(doc.rank, 2)
+
+    def test_noop_without_backend_preserves_method(self):
+        from gerp.considered import enrich
+        g = self._gerp()
+        g.considered_method = ConsideredMethod.PROVIDER_DELTA
+        g = enrich(g, backend=None)
+        self.assertEqual(g.considered_method, ConsideredMethod.PROVIDER_DELTA)
+
+    def test_dedupes_across_queries(self):
+        from gerp.considered import enrich
+        g = self._gerp()
+        g.issued_queries = ["q1", "q2"]
+        backend = FakeBackend({
+            "q1": [{"url": "https://fresh.com/x", "title": "F", "rank": 1}],
+            "q2": [{"url": "https://fresh.com/x", "title": "F", "rank": 1},
+                   {"url": "https://other.com/y", "title": "O", "rank": 2}],
+        })
+        g = enrich(g, backend=backend)
+        self.assertEqual([d.url for d in g.considered_not_cited],
+                         ["https://fresh.com/x", "https://other.com/y"])
+
+
 if __name__ == "__main__":
     unittest.main()
