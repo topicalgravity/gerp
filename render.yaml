@@ -18,3 +18,6 @@ services:
       # Without this, anyone who finds the URL spends your API credits.
       - key: GERP_PASSWORD
         sync: false
+      # Enables the Gemini considered-set (fan-out rerun via SerpAPI).
+      - key: SERPAPI_API_KEY
+        sync: false
