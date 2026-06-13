@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }} - GERP</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #202124;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 140px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 52px;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+    .logo span:nth-child(1) { color: #4285F4; }
+    .logo span:nth-child(2) { color: #EA4335; }
+    .logo span:nth-child(3) { color: #FBBC05; }
+    .logo span:nth-child(4) { color: #4285F4; }
+    h1 { font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+    .detail {
+      color: #5f6368;
+      font-size: 14px;
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      background: #4285F4;
+      border: 1px solid #4285F4;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 14px;
+      padding: 9px 22px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn:hover { background: #3367d6; border-color: #3367d6; }
+    .key-form { margin-bottom: 24px; }
+    .key-form input[type=password] {
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 14px;
+      padding: 9px 12px;
+      width: 240px;
+      margin-right: 8px;
+    }
+    .key-form input[type=password]:focus { outline: none; border-color: #4285F4; }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ebebeb;
+      background: #f2f2f2;
+      padding: 10px 24px;
+      font-size: 13px;
+      color: #767676;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <a class="logo" href="/"><span>G</span><span>E</span><span>R</span><span>P</span></a>
+  <h1>{{ title }}</h1>
+  <div class="detail">{{ detail }}</div>
+
+  {% if show_key_form %}
+  <form class="key-form" action="/" method="get">
+    <input type="password" name="key" placeholder="Access key" autofocus>
+    <button type="submit" class="btn">Enter</button>
+  </form>
+  {% else %}
+  <a class="btn" href="/">Back to GERP search</a>
+  {% endif %}
+
+  <div class="footer">&copy; 2026 Topical Gravity LLC</div>
+</body>
+</html>

@@ -19,6 +19,11 @@ app = Flask(__name__)
 
 RUNS_DIR = Path(os.environ.get("GERP_RUNS_DIR", Path(__file__).parent / "runs"))
 
+# Hard cap per search request, comfortably under gunicorn's 300s worker
+# timeout: a hung provider becomes a per-provider error in its tab instead
+# of the whole request dying as an unstyled 502.
+PROVIDER_TIMEOUT = 150
+
 # Optional shared-secret protection for deployed instances: set GERP_PASSWORD
 # and every request must carry ?key=<password> (or a previously set cookie).
 PASSWORD = os.environ.get("GERP_PASSWORD")
@@ -39,6 +44,35 @@ def _set_password_cookie(resp):
     if PASSWORD and request.args.get("key") == PASSWORD:
         resp.set_cookie("gerp_key", PASSWORD, httponly=True)
     return resp
+
+
+@app.errorhandler(401)
+def _unauthorized(e):
+    return render_template(
+        "error.html", title="Access key required",
+        detail="This GERP instance is private. Enter the access key to continue "
+               "(it only needs to be entered once per browser).",
+        show_key_form=True), 401
+
+
+@app.errorhandler(404)
+def _not_found(e):
+    return render_template(
+        "error.html", title="Page not found",
+        detail="That run doesn't exist (results are kept on this server's disk "
+               "and may have been cleared by a redeploy) or the address is wrong.",
+        show_key_form=False), 404
+
+
+@app.errorhandler(500)
+def _server_error(e):
+    return render_template(
+        "error.html", title="Something went wrong",
+        detail="The search couldn't be completed. Your API credits for any "
+               "finished providers may have been spent, but nothing was saved. "
+               "Head back and try again — if it keeps happening, check the "
+               "provider API keys and status pages.",
+        show_key_form=False), 500
 
 
 def _new_run_id() -> str:
@@ -105,14 +139,25 @@ def search():
                                error="Select at least one provider.")
 
     results: dict = {}
-    with ThreadPoolExecutor(max_workers=len(selected)) as ex:
-        futures = {ex.submit(g.run, prompt, provider=p): p for p in selected}
-        for fut in as_completed(futures):
+    ex = ThreadPoolExecutor(max_workers=len(selected))
+    futures = {ex.submit(g.run, prompt, provider=p): p for p in selected}
+    try:
+        for fut in as_completed(futures, timeout=PROVIDER_TIMEOUT):
             p = futures[fut]
             try:
-                results[p] = fut.result(timeout=180)
+                results[p] = fut.result()
             except Exception as e:
                 results[p] = {"error": str(e)}
+    except TimeoutError:
+        pass
+    finally:
+        # Don't wait for hung threads; their providers get a timeout error.
+        ex.shutdown(wait=False, cancel_futures=True)
+    for p in selected:
+        if p not in results:
+            results[p] = {"error": f"No response after {PROVIDER_TIMEOUT}s "
+                                   "— the provider may be slow or down. "
+                                   "Try again, or deselect it."}
 
     # Providers that never exposed their result pool (Gemini) get a
     # considered-set by re-running their fan-out queries through SerpAPI.
@@ -127,7 +172,15 @@ def search():
                     pass  # enrichment is additive; never fail the run
 
     run_id = _new_run_id()
-    _save_run(run_id, prompt, results)
+    try:
+        _save_run(run_id, prompt, results)
+    except OSError:
+        # Disk unavailable: still show the results we paid for, just not
+        # as a shareable saved run.
+        ordered = {p: results[p] for p in sorted(g.PROVIDERS.keys())
+                   if p in results}
+        return render_template("results.html", prompt=prompt, results=ordered,
+                               providers=sorted(g.PROVIDERS.keys()))
     # Redirect-after-POST: refreshing the results page never re-spends
     # API credits, and the URL is shareable.
     return redirect(url_for("show_run", run_id=run_id))
