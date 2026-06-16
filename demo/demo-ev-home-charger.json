@@ -1,0 +1,721 @@
+{
+  "id": "demo-ev-home-charger",
+  "prompt": "what to look for when buying a home EV charger",
+  "created_at": "",
+  "results": {
+    "anthropic": {
+      "schema_version": "1.0",
+      "provider": "anthropic",
+      "model": "claude-opus-4-6",
+      "prompt": "what to look for when buying a home EV charger",
+      "answer_text": "# What to Look for When Buying a Home EV Charger\n\nBuying the right home EV charger involves more than picking the first one you see online. Here's a comprehensive breakdown of the key factors to consider:\n\n---\n\n## 1. \ud83d\udd0c Charging Level: Level 1 vs. Level 2\n\nLevel 1 uses a standard 120V outlet and usually adds a small amount of range each hour. Level 2 uses 208 to 240V service and can add a meaningful range overnight, which is why most high-mileage households focus here. Level 2 charges 4\u20136\u00d7 faster than Level 1 and reliably refills overnight; 32\u201348A (\u22487.7\u201311.5 kW) fits most homes and vehicles.\n\n**Bottom line:** Unless you drive very little, a **Level 2 charger** is the way to go for most people.\n\n---\n\n## 2. \u26a1 Your Home's Electrical Panel Capacity\n\nYour home's current electrical capacity is a major factor \u2014 you may need to upgrade one or more portions of your electrical system, so be ready for the effort and costs involved. The amount of amperage your home's electrical panel has determines how many things can be plugged in and draw current. For example, if your home is older and has a 60-amp fuse box, it may not have enough amperage to power home appliances while charging an EV, and you may need an upgrade.\n\nThe fastest charger you can buy isn't always the right one. Oversizing a charger without considering your panel can force an expensive service upgrade. A good electrician, or a smart charger with dynamic load management, can help you avoid that.\n\n---\n\n## 3. \ud83d\ude97 Match the Charger to Your Car's Onboard Charger Rate\n\nA 48-amp charger pushing 11.5 kW into a Chevrolet Bolt's 11.5 kW onboard charger is optimal. The same charger on a base Nissan Leaf with a 6.6 kW onboard charger delivers exactly 6.6 kW, regardless of what the EVSE is rated at.\n\nBuying a 50-amp charger for a car with a 7.2 kW onboard charger is not wrong \u2014 you have headroom if you switch vehicles \u2014 but the speed difference versus a 32-amp unit is zero for that specific car.\n\n---\n\n## 4. \ud83d\udd27 Hardwired vs. Plug-In Installation\n\nPlug-in (NEMA 14-50/6-50) is portable and usually capped at 40A; hardwired is preferred outdoors and for >40A (48\u201380A) with sealed, watertight connections. Choose hardwired if you want the most reliable long-term setup, especially for higher power (40\u201348A), outdoor installs, or homes with heavy electrical demand.\n\n---\n\n## 5. \ud83d\udd17 Connector Type: J1772 vs. NACS\n\nWith the ongoing transition in the industry, connector compatibility matters. Some chargers ship with a J1772 connector and an included NACS adapter, which means they work with Teslas and every other EV without buying a separate adapter. Prioritize proper connector support (J1772 or NACS) depending on your vehicle.\n\n---\n\n## 6. \ud83d\udcf1 Smart Features\n\nLook for Wi-Fi connectivity, app control, scheduled charging, energy monitoring, and multi-EV load management.\n\n- **Scheduling:** Scheduling is the most practical feature for most U.S. homes. Set charging to start in your lower-rate hours, then stop at a target state of charge.\n- **Energy Tracking:** Good session reporting helps you verify costs and spot abnormal energy use early.\n- **Load Management:** Use scheduling and load management to keep EV charging away from your home's peak demand.\n\nIf you don't care about smart features, simpler \"no-WiFi\" models charge when plugged in \u2014 no app, no scheduling, no cloud dependency. For someone who values mechanical durability above all else, this can be a great pick.\n\n---\n\n## 7. \ud83d\udccf Cable Length & Weather Rating\n\nA 23\u201325 ft cable is ideal in most garages; consider where your EV's charge port sits. If the unit will live outside, prioritize weather ratings (NEMA 4/IP65 or better) and a tough enclosure.\n\n---\n\n## 8. \u2705 Safety Certifications\n\nOutdoor receptacles need weatherproof enclosures and GFCI protection; buy UL/ETL-listed chargers and size breakers for continuous load (the 80% rule). Certifications including ETL, FCC, and Energy Star guarantee safety, quality, and energy efficiency.\n\n---\n\n## 9. \ud83d\udd2e Future-Proofing\n\nIf you expect to add a second EV, or you're eyeing future features like vehicle-to-home backup power, it's worth picking a charger and installation plan that can grow with you \u2014 higher-capacity wiring, conduit sized for additional cables, and smart load management from the start.\n\n---\n\n## 10. \ud83d\udcb0 Cost, Rebates & Incentives\n\nA dedicated 240V circuit (often 40\u201360A) is typical; many installs land in the $1,000\u2013$2,500 total range and stay well under $5,000 even with new circuits. Look up current federal, state, and local utility incentives for home EV charging and factor these into your budget before you purchase hardware. Utility program compatibility can matter in 2026 because managed charging incentives often require approved models.\n\n---\n\n## 11. \ud83c\udff7\ufe0f Brand Reliability & Support\n\nFavor brands with strong support, clear troubleshooting codes, and consistent firmware maintenance. For many households, a 40\u201350A Level 2 unit from a proven brand like ChargePoint, Tesla, Emporia, or Grizzl-E is the right choice.\n\n---\n\n### TL;DR\n\nThe right charger is determined by your electrical panel first, your car's onboard charger rate second, and the EVSE brand third. The best home EV charger isn't just the one with the biggest number on the box \u2014 it's the charger that fits your car, your panel, your driveway, and your budget without creating headaches down the road.",
+      "citations": [
+        {
+          "url": "https://energy.ecoflow.com/us/blog/best-home-ev-charger",
+          "title": "How to Choose the Best Home EV Charger of 2026",
+          "domain": "energy.ecoflow.com",
+          "cited_text": "Level 1 uses a standard 120 V outlet and usually adds a small amount of range each hour. Level 2 uses 208 to 240 V service and can add a meaningful ra...",
+          "start_index": null,
+          "end_index": null,
+          "count": 3,
+          "metadata": {
+            "page_age": "March 3, 2026"
+          }
+        },
+        {
+          "url": "https://proelectricva.com/blog/home-ev-charger-comparison-best-and-avoiding-the-worst/",
+          "title": "Home EV Charger Comparison: Best (and Avoiding the Worst) - Master Guide",
+          "domain": "proelectricva.com",
+          "cited_text": "Level 2 charges 4\u20136\u00d7 faster than Level 1 and reliably refills overnight; 32\u201348A (\u22487.7\u201311.5 kW) fits most homes/vehicles. ",
+          "start_index": null,
+          "end_index": null,
+          "count": 4,
+          "metadata": {
+            "page_age": "March 10, 2025"
+          }
+        },
+        {
+          "url": "https://www.cartalk.com/parts-services/best-home-ev-chargers",
+          "title": "Best Home EV Chargers in 2026 - Car Talk",
+          "domain": "cartalk.com",
+          "cited_text": "There are a few main factors to consider when shopping for a home EV charger: Your home\u2019s current electrical capacity: You may need to upgrade one or ...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "December 16, 2025"
+          }
+        },
+        {
+          "url": "https://www.consumerreports.org/cars/hybrids-evs/how-to-choose-the-best-home-wall-charger-for-your-electric-vehicle-a6908889697/",
+          "title": "How to Find the Best Home EV Charger via @ConsumerReports",
+          "domain": "consumerreports.org",
+          "cited_text": "The amount of amperage your home\u2019s electrical panel has determines how many things can be plugged in and draw current. \n\nFor example, if your home is ...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "May 3, 2026"
+          }
+        },
+        {
+          "url": "https://recharged.com/articles/best-home-ev-charger-2026",
+          "title": "Best Home EV Charger 2026: Top Level 2 Picks & Guide | Recharged",
+          "domain": "recharged.com",
+          "cited_text": "The fastest charger you can buy isn\u2019t always the right one. Oversizing a charger without considering your panel can force an expensive service upgrade...",
+          "start_index": null,
+          "end_index": null,
+          "count": 6,
+          "metadata": {
+            "page_age": "May 3, 2026"
+          }
+        },
+        {
+          "url": "https://driveauthority.com/best-home-ev-chargers-in-2026/",
+          "title": "Best Home EV Chargers in 2026: Our Top Picks After Testing Them All",
+          "domain": "driveauthority.com",
+          "cited_text": "A 48-amp charger pushing 11.5 kW into a Chevrolet Bolt\u2019s 11.5 kW onboard charger is optimal. The same charger on a base Nissan Leaf with a 6.6 kW onbo...",
+          "start_index": null,
+          "end_index": null,
+          "count": 3,
+          "metadata": {
+            "page_age": "3 weeks ago"
+          }
+        },
+        {
+          "url": "https://homebattery.ecoflow.com/us/blog/best-home-ev-charger",
+          "title": "How to Choose the Best Home EV Charger of 2026",
+          "domain": "homebattery.ecoflow.com",
+          "cited_text": "Choose hardwired if you want the most reliable long-term setup, especially for higher power (40\u201348A), outdoor installs, or homes with heavy electrical...",
+          "start_index": null,
+          "end_index": null,
+          "count": 4,
+          "metadata": {
+            "page_age": "March 3, 2026"
+          }
+        },
+        {
+          "url": "https://radcity.net/best-ev-home-chargers-2026/",
+          "title": "10 Best EV Home Chargers in 2026 (Level 2 Ranked)",
+          "domain": "radcity.net",
+          "cited_text": "The MaxiCharger ships with a J1772 connector and an included NACS adapter, which means it works with Teslas and every other EV without buying a separa...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "3 days ago"
+          }
+        },
+        {
+          "url": "https://ev-lectron.com/blogs/blog/best-home-ev-charger-2025-2026-complete-buying-installation-and-cost-guide",
+          "title": "Best Home EV Charger 2025 (2026): Complete Buying, Installation, and C \u2014 Lectron EV",
+          "domain": "ev-lectron.com",
+          "cited_text": "Smart, compatible, and certified chargers matter: In 2025\u20132026, prioritize Wi-Fi app control, scheduled off-peak charging, energy monitoring, load bal...",
+          "start_index": null,
+          "end_index": null,
+          "count": 2,
+          "metadata": {
+            "page_age": "January 14, 2026"
+          }
+        },
+        {
+          "url": "https://www.onegreenplanet.org/lifestyle/5-best-ev-home-chargers-for-eco-conscious-drivers-in-2026/",
+          "title": "5 Best EV Home Chargers for Eco-Conscious Drivers in 2026 \u2013 One Green Planet",
+          "domain": "onegreenplanet.org",
+          "cited_text": "The Classic model is the no-WiFi version \u2014 it charges when plugged in, period. No app, no scheduling, no cloud dependency. For someone who finds smart...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "April 29, 2026"
+          }
+        },
+        {
+          "url": "https://markets.financialcontent.com/ms.intelvalue/article/abnewswire-2024-12-6-na-g1-ac-ev-charging-station-home-etl-listed",
+          "title": "ETFOptimize | High-performance ETF-based Investment Strategies",
+          "domain": "markets.financialcontent.com",
+          "cited_text": "Backed by certifications including ETL, FCC, and Energy Star, the ev home charger guarantees safety, quality, and energy efficiency.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {}
+        }
+      ],
+      "considered_not_cited": [
+        {
+          "url": "https://www.allthethings.best/best-ev-home-chargers/",
+          "title": "Best EV Home Chargers for 2026",
+          "domain": "allthethings.best",
+          "source_query": "what to look for buying home EV charger 2026",
+          "rank": 6,
+          "metadata": {
+            "page_age": "4 days ago"
+          }
+        },
+        {
+          "url": "https://www.ulandpower.com/blog/best-electric-car-charger-for-home-2026/",
+          "title": "2026 Best Household Electric Car Charger for Your Home?",
+          "domain": "ulandpower.com",
+          "source_query": "what to look for buying home EV charger 2026",
+          "rank": 7,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.kbb.com/car-advice/buying-ev-what-to-consider",
+          "title": "buying ev what to consider",
+          "domain": "kbb.com",
+          "source_query": "what to look for buying home EV charger 2026",
+          "rank": 9,
+          "metadata": {}
+        },
+        {
+          "url": "https://cdn.shopify.com/s/files/1/1959/7639/files/HomeSmart_EV_Overview_Sheet_-_04.pdf?3518",
+          "title": "HomeSmart EV Overview Sheet   04",
+          "domain": "cdn.shopify.com",
+          "source_query": "best home EV charger features guide",
+          "rank": 6,
+          "metadata": {}
+        }
+      ],
+      "considered_method": "provider_delta",
+      "issued_queries": [
+        "what to look for buying home EV charger 2026",
+        "best home EV charger features guide"
+      ],
+      "created_at": "2026-06-15T21:41:05.415308+00:00"
+    },
+    "gemini": {
+      "schema_version": "1.0",
+      "provider": "gemini",
+      "model": "gemini-2.5-flash",
+      "prompt": "what to look for when buying a home EV charger",
+      "answer_text": "When buying a home EV charger, several crucial factors should be considered to ensure it meets your needs, vehicle's requirements, and home's electrical capacity.\n\nHere's what to look for:\n\n**1. Charging Speed (Charging Level)**\nThe primary consideration is the charging level, which dictates how quickly your EV will charge:\n*   **Level 1 Chargers:** These use a standard 120-volt (V) household outlet, typically providing 4-5 miles of range per hour of charging. Most EVs come with a Level 1 charger. They are budget-friendly and easy to install but are the slowest option, often taking days for a full charge. They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.\n*   **Level 2 Chargers:** These are the most common choice for home EV charging, using a 240V connection (similar to an electric dryer or oven). They can add 20-25 miles of range per hour, fully charging most EVs overnight in 4-10 hours. Level 2 chargers typically range from 16 to 80 amps, with 30-40 amps being common.\n*   **Level 3 (DC Fast Chargers):** These are high-voltage (400-800V) chargers found at public stations and are not suitable or practical for home installation due to their high cost and electrical requirements.\n\n**2. Vehicle Compatibility and Connector Type**\n*   **J1772:** This is the universal connector standard for most electric vehicles.\n*   **Tesla NACS (J3400):** Tesla vehicles use their proprietary North American Charging Standard connector. However, adapters are widely available to allow Teslas to use J1772 chargers, and vice-versa for non-Tesla EVs to use Tesla chargers.\n\n**3. Electrical Requirements and Home's Capacity**\n*   **Dedicated 240V Circuit:** Level 2 chargers require a dedicated 240-volt circuit.\n*   **Amperage:** The charger's amperage must be compatible with your home's electrical panel capacity. The National Electrical Code (NEC) requires the circuit to be rated for at least 125% of the charger's maximum continuous load. For example, a 32-amp charger requires a 40-amp circuit, and a 40-amp charger needs a 50-amp circuit.\n*   **Professional Installation:** Professional installation by a licensed electrician is typically required for Level 2 chargers to assess your electrical panel, ensure proper wiring, and obtain necessary permits. Older homes might require an electrical panel upgrade.\n\n**4. Hardwired vs. Plug-in Installation**\n*   **Hardwired:** The charger is permanently connected to your home's electrical system, often considered a safer option and can offer faster charging speeds.\n*   **Plug-in:** These chargers use a NEMA 6-50 or 14-50 outlet (similar to a dryer outlet), offering more flexibility if you need to relocate the charger occasionally. Chargers rated 48 amps or higher are usually required to be hardwired.\n\n**5. Tethered vs. Untethered Chargers**\n*   **Tethered:** These chargers come with a permanently attached cable. They offer convenience as the cable is always ready to use, but the cable length is fixed, and replacing a damaged cable can be more involved.\n*   **Untethered:** These chargers do not have a fixed cable, allowing you to use your own charging cable. This offers flexibility in cable length and connector type, which is beneficial if you have multiple EVs or if parking positions change. Untethered units are often smaller and can be initially cheaper, but you'll need to purchase a compatible cable separately.\n\n**6. Smart Features**\nModern EV chargers often include \"smart\" features that enhance convenience, cost savings, and energy management:\n*   **Wi-Fi/Bluetooth Connectivity and App Control:** Allows remote monitoring and control of charging, real-time status updates, and notifications.\n*   **Scheduling:** Enables you to program charging sessions to take advantage of off-peak electricity rates, saving money.\n*   **Energy Monitoring:** Tracks electricity usage, helping you understand and optimize charging costs.\n*   **Load Management:** A smart charger can monitor your home's electricity usage in real time and adjust charging to prevent overload and work efficiently with other home systems.\n*   **Integration with Solar:** Some smart chargers can integrate with home solar systems to charge your EV using excess solar energy.\n\n**7. Safety and Certifications**\n*   Look for chargers certified by nationally recognized testing laboratories such as UL or ETL. These certifications ensure the product has undergone rigorous safety testing.\n*   ENERGY STAR certification indicates the charger meets higher energy efficiency standards, potentially qualifying for local incentives.\n*   Safety features like Ground Fault Circuit Interrupters (GFCI), surge protection, and heat sensors are important.\n\n**8. Cable Length and Management**\n*   Ensure the charging cable is long enough to comfortably reach your EV's charging port from your parking spot. Cable lengths can range, and sometimes a longer cable can be crucial for flexible parking.\n*   Consider built-in cable management systems to keep the area tidy and prevent tripping hazards.\n\n**9. Location and Weatherproofing**\n*   If installing outdoors, choose a charger with an appropriate NEMA enclosure rating (e.g., NEMA 4X offers the highest protection against environmental hazards like rain and snow).\n*   Consider the proximity to your electrical panel, as longer conduit runs for wiring can increase installation costs.\n\nBy carefully evaluating these factors, you can select a home EV charger that provides efficient, safe, and convenient charging for your electric vehicle.",
+      "citations": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwOC2OwGPw3UuuncMqQXzEaz0PgNp1bh5wsxHk6P4iiaSOjOh-3hU8qowiJzIVSkx1tfmqz1Ylmid_SkaHE8KaCbFldJpjIz7OSaSWcIvWM0Vx7WfjgWI0wtlfQ1pPmcRoFQIce4v-jva9ubDK-OcfK-Itir0RLmnhw7Lcw82catTKZAf-RivGfrnlAoGb90y4Lsw-6jnUiEI4UXw=",
+          "title": "homedepot.com",
+          "domain": "homedepot.com",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFg-X9g_qSThb0-suArXVFLV8Stwt49WA2ZJoOWmSauc46BBZBg6aZ6eoBBFK3Vs-sB5hxtTqHoP7u7gFmh01hdSB-H81mwQHS-vWrYLbAPv8ORsFYs6QXxMFREvLsVDmY2X2d0jTLl1PwEfc9n-FyCcg52hPTqiCMYXaQNVXpMPaHPDgSZlLgvNCTVDuk0",
+          "title": "caranddriver.com",
+          "domain": "caranddriver.com",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbW-why6GOzAAxoExsFlz7GVGEiMB8-yjNEWIw9Ut0rOFi3ssF0VYTcepxNImOdbLNiZd4CdKIhHN2-qkcuWl_-82QOtKUqT0LCtIYLVd1xxP_eqLHOlfkqgKrbNLRfiR9iLnPPjQYcn2E_ajkyz8ctkAuBy1SZOWwVG07b_qj2JqlMY9acRNd",
+          "title": "elecology.com",
+          "domain": "elecology.com",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFrK2K9bXTBZZH8Sl2HtctJrG1kpjBDOVbgUqQZTtrFBSKf-MKIq9gerUlJcw72s_pTqDRhKURUD24stwyN8Ltd6tsfopnnushB8kxmbGYIvsuM2kM6k1UiH0NK_N_sw6t2vUFT76CUix0NN7q7OrPiElqi9ULWNeVmrRg0",
+          "title": "epa.gov",
+          "domain": "epa.gov",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGL2FvWSzNoENdZtVMKnWttEL8WY4C1ScKGefiIx6fzsw7perbiEhQI22V5xYYaAm8susyugeX7Z8J439yFk0hrqeNmIY0o5xOU43UlqJ3EVr0fpx5Dy6zScCkrwZT6XLg7w0kKSJ7eAfkUDkwLVNu7kYNi9Bu0gBiMdWJS8zFulA==",
+          "title": "prairielectric.com",
+          "domain": "prairielectric.com",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPdcC_kWBuro2D6MrMcAZ8VrzEudfzONh0CBgRKapFcJljNxNDBOAFqMlMzulvqQWzZth3m_dTpCYMz4uqZmSFpMDCuf1MIHETnbS6oJB7X4cZQDpiTmGjXDH5CHnavg5Ofuev5vvik8nWrg4GXE301Oh0Rc5zom8j3LYvw7uJRXG6vg==",
+          "title": "transportation.gov",
+          "domain": "transportation.gov",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGjtNhp7a7lFes_lsN0IhoVjiAN9Guzw_tyLyjMbejVzOstCoTQfNXRhRc_IkajAQSV7xLJb8ZflAOKIYSWd55ScF4e4YcPqb2fI0lCjfH2Lms3NiAdvY21fq4HqY_durxNaAQgMQPWAlBlMKGhYZdqQg==",
+          "title": "kbb.com",
+          "domain": "kbb.com",
+          "cited_text": "They are best suited for plug-in hybrids or low-mileage drivers who can charge overnight.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFf03sbgm01loMpSAb2ZBH2j0wDt8qV699ts3Mv33wtBIrrooon1-CAvgZzIYbK0wsS3EE0qJIWQuvW1q5z0VBmrmBVtWseu8EZWo3iF_05cQFHp1quJL4SS7_63Pq5OqZ5MvgimNTaaaDF7r2ZnMsFP-2un4umWjLTHL9RQW_tqB8TMbPyz0dpZFaNRk5y8B1xP9myTz2rUKDCyXiqUoaMFl_Y59XK-oohUdc=",
+          "title": "batterytender.com",
+          "domain": "batterytender.com",
+          "cited_text": "Level 2 chargers typically range from 16 to 80 amps, with 30-40 amps being common.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7mFY5UnMzuQjZ_GSOV1r8j6nQEUzGfsd5Bp7rqQXB5D9-6Q5lKI47v8Nj8vvK5SIG3JpoWjqrCrmQyq9b1Zet8ucPGNDksOKfCp3uIG1aQc5Jc4uyflizQrWTuBCggZqYTTYiDn5OfWdZGtYPwt8khGcVn-EXS_fYGVQ8vrAxxoIb5a4=",
+          "title": "kopperfield.com",
+          "domain": "kopperfield.com",
+          "cited_text": "Level 2 chargers typically range from 16 to 80 amps, with 30-40 amps being common.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHkN3aeSeZik579fQdyUcgRQrzM2_otip6rnRUqXEAfISLf8mfTD5422AWd_5IjxPfPexd5sNPHinR0TExtV20ok54KlyYbVqALMsw9y3JQNeehjEWrC-wUxAiefB6FV8a2gFfFENgnnLH1IRj31ezjV1Hcx4nKwk3_6g==",
+          "title": "chargepoint.com",
+          "domain": "chargepoint.com",
+          "cited_text": "Level 2 chargers typically range from 16 to 80 amps, with 30-40 amps being common.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjmPK4XlFWaLX1H4BVjyE4Zd-Whg-2B-afYiwA0gg5vXWwxAw_jlAOPbBxrvocaV4vES5LnilrJB75lXCaUsWdirt171q_7Yw3t0cl67H00VNMq7y3QmuQg6688UeAvwiH7GXhHzpbYIN16oVa_wrbvAndRwKhVF-ZQX9OuzG4Fgo5y9n43hJAZEyKkF-g3RcEkhtjmU9hWuIbFBKto6mFm99r54ghQVcSbzXIUrIDaRvfa4KE",
+          "title": "pge.com",
+          "domain": "pge.com",
+          "cited_text": "Level 2 chargers typically range from 16 to 80 amps, with 30-40 amps being common.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHUGpkcQkbQjfpNm7lJkyv7mOMQEmGwQjVttCKb26FywViEF_OJ39bQCQfe6v6NjSVfN56mXGK2UDOdOCnJvGTcxeRnp_SUsBbT9M3iPVjY8r13zR2QRltPbnLWC_L0moSWjcusa7kZ3yDnfmJOXW_9VTLHY2_2c1nnjJLJLSiioGH1V39SPBx2mc-d38thRLxcCE7fRCYYCPWsbIcW4I=",
+          "title": "exactelectric.com",
+          "domain": "exactelectric.com",
+          "cited_text": "Level 2 chargers typically range from 16 to 80 amps, with 30-40 amps being common.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHklAiuuSlXpsU2JJQNY-o-nMiH2p0QYI0WQuEMo-Y1JeguDPTpS36YyivLrwLOCffAOuhdF7aRPV3KqkaceB7aM5lmqHhiCXceuxnFgj_aakFuOzBijArNSr3vcwGVjaqa9Ux6g74T60vsF7rFI_74fXLFka2RTw8uQfpvSz4uiDXPg==",
+          "title": "skaggswalsh.com",
+          "domain": "skaggswalsh.com",
+          "cited_text": "Electrical Requirements and Home's Capacity**\n*   **Dedicated 240V Circuit:** Level 2 chargers require a dedicated 240-volt circuit.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGLLE3AqeH-_oVVLsVI8ZEXZUlQMXAa1Muw50TX0JPI76GN2UphxA4oCB-Gs5LlM11w1hRgmYmz2bjHYVtha2OSVRWR-dRM3u6FlKE0BrTd05YTq0tYxCpTOZtGruhePrVITi5INu92ZvrWj3rsUrTm52AsVSCdaxI0BvAiunBE2CREiy8dGI6ll6YV43OHkGHFMBdhhXeqZx7jcGwe3mwC04QaE0jaOA==",
+          "title": "blinkcharging.com",
+          "domain": "blinkcharging.com",
+          "cited_text": "Electrical Requirements and Home's Capacity**\n*   **Dedicated 240V Circuit:** Level 2 chargers require a dedicated 240-volt circuit.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQD5rZXeD2Qv9mpyumtcP1D1HEaiDhqpU7-asLefqMxnIBdtGoeuyXBplIYnMCU5WMZBCSVOFzLv-LYSkfczKXe7fcel3wFbsOw0wEe5iIlfEKxnu3h-SywFBMv1o-0l-Ub_KVQJTcFoOeyN7zUk_DC_ueJMeKDRzm7VWSa1FcHAFtbPEK7V-jCZw=",
+          "title": "flo.com",
+          "domain": "flo.com",
+          "cited_text": "For example, a 32-amp charger requires a 40-amp circuit, and a 40-amp charger needs a 50-amp circuit.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7qEnkB3kQmc5clsi3MC-CtO6Bq71tDXVCeMMfKfuNlnNxb20jAjMlSgYXOVe3h2HQJKviSzz8LLh_5RZyZzgYAtTDbNUEs61O7keoQ3ho7duZPJ4_tD6wjmEdP2eFabw_moib-U1vaPc1kthw4L_T4jSBUJvt8n9NMpCWJOAaHYFgKmknjHjJbw==",
+          "title": "enphase.com",
+          "domain": "enphase.com",
+          "cited_text": "*   **Plug-in:** These chargers use a NEMA 6-50 or 14-50 outlet (similar to a dryer outlet), offering more flexibility if you need to relocate the charger occasionally.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFGhd-zc8INODMhqnH9Tsz6wLfcYb99sSavXXLs7gK6rv3LxDHwCqTvNVs-wtsI_Tjs0Yq-6s7sZ56zALHnAezcRd76Tb0DLnThfjjg8k-lq9z_xYl-Sc-xkXz63tfNvoiDT83B7HMamCg0-3is9GAXedYmHybHsQTq",
+          "title": "skywell-uk.com",
+          "domain": "skywell-uk.com",
+          "cited_text": "They offer convenience as the cable is always ready to use, but the cable length is fixed, and replacing a damaged cable can be more involved.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH39welSXO-fpkATw8sK2citSKRvRE8V0YhF4lZk7ws_NUzEUACnPpiOMhlHP4lukzrT1SztlwK77kCJfUYD5uLUAj0UvQuiSLRqVgQM7XT_WS5EUdEHHzbC6pprTDDJNh-nK3MtjSu4Lmyfj_nNcMTTTzN40fCCwRENF8CRL5hMPtZHtddvNxjoxA=",
+          "title": "elecology.com",
+          "domain": "elecology.com",
+          "cited_text": "They offer convenience as the cable is always ready to use, but the cable length is fixed, and replacing a damaged cable can be more involved.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_QY5Zz-aqySB0cn61suaouhN2hKjEbDKbvEmvBp_U66xFsGxxNqGICBB42MLigASmf4gn9XgBuPWRJbfPS_r1HYvSZmZaiRxqYRWAJ8VS81NTD6SnL11X9TYiXlhNGZgc9wsnx_w3WRG5gKeTpdcDpU8Wn7lQA56663k3EkRAnPFvcys5cnmbDeDLvsd3",
+          "title": "myenergi.com",
+          "domain": "myenergi.com",
+          "cited_text": "They offer convenience as the cable is always ready to use, but the cable length is fixed, and replacing a damaged cable can be more involved.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHoXHOgJIwBBQFCCkbKu4R1RMeVgCvrGzQ-7OtovIM1vqn8hMP-6y9iZQ_NqdrH4J3wTGV7XKqbtyOOmX3qJ7Jgl6vuT7od9NXwoTiG4Dgu-6U9ZfupUGfJoha6TkoyWSmHmFswSE9knUINx-e0DOorObRaTpLDk_np",
+          "title": "go-e.com",
+          "domain": "go-e.com",
+          "cited_text": "They offer convenience as the cable is always ready to use, but the cable length is fixed, and replacing a damaged cable can be more involved.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_HEqToHy2tIw_3HGZLQa73j8tZLjPZjoGjIpCHXvZh1H-h0118GTTE5Srzh0NCcpA9N1W4wlSMSpyqAmDMf1V3qmNvO9uJyqKaDZcRtaR6JkLEwC3JqBBHr8Sr30-hsAZBL1khJbFlwMqEQKrtNO9uNACX-KKD8Tnr3ybn0OjOxkSewqTtA==",
+          "title": "cinch.co.uk",
+          "domain": "cinch.co.uk",
+          "cited_text": "Untethered units are often smaller and can be initially cheaper, but you'll need to purchase a compatible cable separately.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExZbkfJVPvhzLakhVsMZDS95yxVLqKmoHm_vLMKre1psqWQ4H9zacmEl7h9VbwmysHXmWIuokZqSOvR5aAwRZVrGX0AKC55PIhhjvflsoThCaQE7RckHJCWd3UUKeRobReNjZ_b8zpeRWxnYyOkxlKrMOpxm16dGkROCpjN2fKF_AwXZC0QyQ_uhOIJbJnlpzllWF6nBdJp5zkD2GTpBlVC2Xrjw==",
+          "title": "ev-lectron.com",
+          "domain": "ev-lectron.com",
+          "cited_text": "Smart Features**\nModern EV chargers often include \"smart\" features that enhance convenience, cost savings, and energy management:\n*   **Wi-Fi/Bluetooth Connectivity and App Control:** Allows remote monitoring and control of charging, real-time status updates, and notifications.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGS0k7PvM76SBTmna9H8JyelcTezOA-mu3TOooLe72TPkQDSMJ_eNWbJCJBP2JPPsgAyadZ4jpP8rRXdQvV3tMYlUr9g13yOgQnZBECL05lJd15wftfsZ5oz5p40y-WwKpjCW2EY1X8cT5K1qhTv9H1PkT43ad1omQps2ZgtMfK6QnQHjYKUNEZWNWkCkyyuVwl-A==",
+          "title": "enphase.com",
+          "domain": "enphase.com",
+          "cited_text": "Smart Features**\nModern EV chargers often include \"smart\" features that enhance convenience, cost savings, and energy management:\n*   **Wi-Fi/Bluetooth Connectivity and App Control:** Allows remote monitoring and control of charging, real-time status updates, and notifications.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDQdtUptoEpCf7rof4ooj6V5cp_tmDv3KQCP_UOhMNT6Bqh-q61UeSvgNLd39Nu8qHljigDmYNxS7_pmrRo-JLB4Fe1mOebR2Z0uNNwuU09Ng93v7q8mxcYIehh9uJte635ts=",
+          "title": "simpleswitch.io",
+          "domain": "simpleswitch.io",
+          "cited_text": "Smart Features**\nModern EV chargers often include \"smart\" features that enhance convenience, cost savings, and energy management:\n*   **Wi-Fi/Bluetooth Connectivity and App Control:** Allows remote monitoring and control of charging, real-time status updates, and notifications.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFN9G53PpH_XINWFzmrVm1wBEWPdJqI8ctXRKRijw57rFtE2FKorjMmNOcu8UCp7aNluh70_xxUqKtlI6wV6sj6MHSFVuG7Jn7X-0ACNPj7hVmfRArt97kRWJaPd4H4REP_3bgLsJzStwDPdOEP85zXIkXO2LCokQkz2-xYe6Kz8K7Q542PAwlpO38dXYUT",
+          "title": "ecopointcharger.com",
+          "domain": "ecopointcharger.com",
+          "cited_text": "Smart Features**\nModern EV chargers often include \"smart\" features that enhance convenience, cost savings, and energy management:\n*   **Wi-Fi/Bluetooth Connectivity and App Control:** Allows remote monitoring and control of charging, real-time status updates, and notifications.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        }
+      ],
+      "considered_not_cited": [
+        {
+          "url": "https://www.consumerreports.org/cars/hybrids-evs/how-to-choose-the-best-home-wall-charger-for-your-electric-vehicle-a6908889697/",
+          "title": "How to Find the Best Home EV Charger",
+          "domain": "consumerreports.org",
+          "source_query": "what to look for when buying a home EV charger",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.energysage.com/ev-charging/",
+          "title": "EV Chargers: Everything You Need To Know",
+          "domain": "energysage.com",
+          "source_query": "what to look for when buying a home EV charger",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.nationalgridus.com/electric-vehicle-hub/Charging-Basics/Home-Charging",
+          "title": "Home Charging",
+          "domain": "nationalgridus.com",
+          "source_query": "factors to consider home EV charger",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://tristate.coop/benefits-having-your-own-ev-charger-home",
+          "title": "The Benefits of Having Your Own EV Charger at Home",
+          "domain": "tristate.coop",
+          "source_query": "factors to consider home EV charger",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.linkedin.com/pulse/choose-your-home-ev-charger-wisely-4-critical-factors-consider-zmutc",
+          "title": "Choose your home EV Charger Wisely: The 4 critical factors",
+          "domain": "linkedin.com",
+          "source_query": "factors to consider home EV charger",
+          "rank": 7,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.reddit.com/r/electricvehicles/comments/137rf4t/so_what_are_the_basics_of_home_charging/",
+          "title": "So what are the basics of home charging? : r/electricvehicles",
+          "domain": "reddit.com",
+          "source_query": "types of home EV chargers",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.driveelectricvt.com/charging/types",
+          "title": "EV Charging Types",
+          "domain": "driveelectricvt.com",
+          "source_query": "types of home EV chargers",
+          "rank": 4,
+          "metadata": {}
+        },
+        {
+          "url": "https://smartchargeamerica.com/electric-car-chargers/home/?srsltid=AfmBOooJj55wIgaoYj0_643UBz8vNiDIXRItUWDwRa8oEfdQcGKXrV2G",
+          "title": "Home Electric Car Chargers - EV Charging Stations - EVSE",
+          "domain": "smartchargeamerica.com",
+          "source_query": "types of home EV chargers",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.evchargerreviews.net/best-ev-chargers-for-home-use/",
+          "title": "Best Level 2 Home EV Chargers Tested - EVchargerReviews",
+          "domain": "evchargerreviews.net",
+          "source_query": "types of home EV chargers",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://evchargingstations.com/best-ev-chargers-of-2024/",
+          "title": "The Best EV Chargers Of 2024",
+          "domain": "evchargingstations.com",
+          "source_query": "types of home EV chargers",
+          "rank": 9,
+          "metadata": {}
+        },
+        {
+          "url": "https://qmerit.com/blog/what-are-the-different-ev-charger-types-safe-ev-charging/",
+          "title": "What Are the Different EV Charger Types? Safe EV Charging",
+          "domain": "qmerit.com",
+          "source_query": "types of home EV chargers",
+          "rank": 10,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.emporiaenergy.com/blog/a-comprehensive-guide-to-level-2-ev-charger-installation/",
+          "title": "Level 2 EV Charger Installation: The Complete Guide",
+          "domain": "emporiaenergy.com",
+          "source_query": "level 2 EV charger installation requirements",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.lowes.com/l/install/ev-charging",
+          "title": "EV Charger Installation",
+          "domain": "lowes.com",
+          "source_query": "level 2 EV charger installation requirements",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.reddit.com/r/electricvehicles/comments/zokiqp/level_2_charger_installation/",
+          "title": "Level 2 charger installation : r/electricvehicles",
+          "domain": "reddit.com",
+          "source_query": "level 2 EV charger installation requirements",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.phillca.gov/DocumentCenter/View/20502/ELECTRIC-VEHICLE-CHARGER-HANDOUT",
+          "title": "ELECTRICAL VEHICLE (EV) CHARGER REQUIREMENTS",
+          "domain": "phillca.gov",
+          "source_query": "level 2 EV charger installation requirements",
+          "rank": 4,
+          "metadata": {}
+        },
+        {
+          "url": "https://qmerit.com/blog/how-many-amps-are-required-for-a-level-2-charging-station/",
+          "title": "How Many Amps Are Required for a Level 2 EV Charging ...",
+          "domain": "qmerit.com",
+          "source_query": "level 2 EV charger installation requirements",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.ladwp.com/residential-services/programs-and-rebates-residential/electric-vehicles/charger-installation",
+          "title": "Charger Installation - Los Angeles",
+          "domain": "ladwp.com",
+          "source_query": "level 2 EV charger installation requirements",
+          "rank": 9,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.virta.global/smart-ev-charging",
+          "title": "Smart EV Charging: What Is It And How Does It Work?",
+          "domain": "virta.global",
+          "source_query": "smart EV charger features",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://savant.com/power/ev-charger/",
+          "title": "EV Charger",
+          "domain": "savant.com",
+          "source_query": "smart EV charger features",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://driivz.com/blog/ev-smart-charging-benefits/",
+          "title": "Smart EV Charging: Your Essential Energy Management ...",
+          "domain": "driivz.com",
+          "source_query": "smart EV charger features",
+          "rank": 4,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.chargie.com/resources/what-is-the-difference-between-a-smart-ev-charger-and-dumb-ev-charger",
+          "title": "Smart EV Charger vs Dumb EV Charger: Differences Explained",
+          "domain": "chargie.com",
+          "source_query": "smart EV charger features",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.integraelectrical.co/blog/smart-ev-charger-features",
+          "title": "Smart EV Charger & Their Features",
+          "domain": "integraelectrical.co",
+          "source_query": "smart EV charger features",
+          "rank": 7,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.reddit.com/r/ElectricVehiclesUK/comments/1k3kwo0/tethered_or_untethered_home_charger/",
+          "title": "Tethered or untethered home charger? : r/ElectricVehiclesUK",
+          "domain": "reddit.com",
+          "source_query": "tethered vs untethered EV charger",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://podenergy.com/guides/tethered-vs-untethered-ev-charger-which-is-the-best?srsltid=AfmBOophQfUtV_D6J4CzClviDWSrPzMnYI44nGEWEPct-jDv6Xd8PvaA",
+          "title": "Tethered vs Untethered EV Charger: Which is the Best?",
+          "domain": "podenergy.com",
+          "source_query": "tethered vs untethered EV charger",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.pscenergy.com.au/blog/tethered-vs-untethered-ev-charging-cables-in-nsw/",
+          "title": "Tethered vs Untethered: EV Charging Cables in NSW",
+          "domain": "pscenergy.com.au",
+          "source_query": "tethered vs untethered EV charger",
+          "rank": 3,
+          "metadata": {}
+        }
+      ],
+      "considered_method": "rerun_queries",
+      "issued_queries": [
+        "what to look for when buying a home EV charger",
+        "factors to consider home EV charger",
+        "types of home EV chargers",
+        "level 2 EV charger installation requirements",
+        "smart EV charger features",
+        "tethered vs untethered EV charger"
+      ],
+      "created_at": "2026-06-15T21:41:17.561530+00:00"
+    },
+    "openai": {
+      "schema_version": "1.0",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "prompt": "what to look for when buying a home EV charger",
+      "answer_text": "Buying a home EV charger is an important investment, and choosing the right one depends on your vehicle, home setup, and intended use. Here are the key factors to consider:\n\n### 1. **Charging Speed (Power Output)**\n- **Level 1 (120V):** Slow (adds 3-5 miles per hour), plugs into a standard outlet.\n- **Level 2 (240V):** Much faster (adds 20-40+ miles per hour depending on the charger and vehicle). This is what most home chargers are. **Most people opt for Level 2 at home.**\n\n***Look for:*** A charger with at least 32A output (higher if your vehicle and home wiring support it, e.g., 40A or 48A, for faster charging).\n\n---\n\n### 2. **Connector Type**\n- **J1772:** Standard for North American EVs (except Tesla, which has an adapter).\n- **Tesla Plug:** For Tesla users (Tesla\u2019s own wall connector).\n\n***Look for:*** Compatibility with your car \u2014 generally J1772 or Tesla.\n\n---\n\n### 3. **Installation: Plug-in vs. Hardwired**\n- **Plug-in (NEMA 14-50 or 6-50):** Easier to move or replace, may require installing a suitable outlet.\n- **Hardwired:** More permanent and weatherproof, sometimes required for higher power outputs.\n\n***Look for:*** Whether you want flexibility (plug-in) or a permanent solution (hardwired).\n\n---\n\n### 4. **Smart Features**\n- **Wi-Fi/Bluetooth Connectivity**\n- **App Integration**\n- **Scheduling (charge when electricity is cheaper)**\n- **Energy Monitoring**\n- **Remote Start/Stop**\n\n***Look for:*** If you want to track energy use, control charging via app, integrate with solar, or schedule charging.\n\n---\n\n### 5. **Cable Length**\n- Cables range from 16 to 25 feet or more.\n***Look for:*** Enough length to comfortably reach your vehicle\u2019s charging port wherever you park.\n\n---\n\n### 6. **Outdoor Ratings**\n- UL Listed or certified for safety.\n- NEMA 3R/4/4X or higher for outdoor installation (weatherproof).\n\n***Look for:*** Weather-resistant model if mounting outdoors.\n\n---\n\n### 7. **Price and Incentives**\n- Prices range from $300 to $800+ (before installation).\n- Check for local/state utility rebates or federal incentives.\n\n---\n\n### 8. **Brand Reliability and Warranty**\n- Look for reputable brands (Emporia, JuiceBox, ChargePoint, Grizzl-E, Wallbox, Tesla).\n- Warranty (typically 3 years or more is good).\n\n---\n\n### 9. **Expandability and Compatibility**\n- Consider if you\u2019ll add more EVs in the future.\n- Some chargers allow load sharing with multiple units.\n\n---\n\n### 10. **Professional Installation**\n- Always hire a licensed electrician for setup.\n- Confirm your electrical panel supports required amperage.\n\n---\n\n**Popular Picks:**\n- **ChargePoint Home Flex**\n- **JuiceBox 40/48**\n- **Grizzl-E Classic**\n- **Wallbox Pulsar Plus**\n- **Tesla Wall Connector (for Tesla owners)**\n\n---\n\n#### **Summary Table**\n\n| Feature          | What to Look For                                                                |\n|------------------|--------------------------------------------------------------------------------|\n| Charging Speed   | Level 2 (240V), 32A+                                                           |\n| Connector Type   | J1772 (most), Tesla plug (Tesla only)                                          |\n| Installation     | Plug-in (flexible) or hardwired (permanent)                                    |\n| Smart Features   | App control, scheduling, monitoring                                            |\n| Cable Length     | 16-25+ ft (as needed)                                                          |\n| Weatherproofing  | Outdoor rating (NEMA 3R/4/4X)                                                  |\n| Price            | $300-$800+ (plus install); check for incentives                                |\n| Brand/Warranty   | Reputable brand, long warranty                                                 |\n\nIf you let me know your vehicle model, parking setup, or budget, I can recommend some tailored options!",
+      "citations": [],
+      "considered_not_cited": [],
+      "considered_method": "none",
+      "issued_queries": [],
+      "created_at": "2026-06-15T21:41:30.593005+00:00"
+    }
+  }
+}

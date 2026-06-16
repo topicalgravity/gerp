@@ -21,3 +21,9 @@ services:
       # Enables the Gemini considered-set (fan-out rerun via SerpAPI).
       - key: SERPAPI_API_KEY
         sync: false
+      # Cloudflare Turnstile (invisible bot check on the search form). Without
+      # the secret key set, verification is skipped — so keep BOTH set in prod.
+      - key: TURNSTILE_SITE_KEY
+        sync: false
+      - key: TURNSTILE_SECRET_KEY
+        sync: false

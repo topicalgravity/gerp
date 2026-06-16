@@ -111,6 +111,11 @@
       color: #fff;
       box-shadow: 0 1px 1px rgba(0,0,0,0.2);
     }
+    .turnstile-row {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
     .error {
       color: #d93025;
       font-size: 13px;
@@ -210,6 +215,12 @@
         {% endfor %}
       </div>
 
+      {% if turnstile_site_key %}
+      <div class="turnstile-row">
+        <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}"></div>
+      </div>
+      {% endif %}
+
       {% if error %}
       <div class="error">{{ error }}</div>
       {% endif %}
@@ -222,11 +233,11 @@
 
     {% if recent %}
     <div class="recent">
-      <div class="label">Recent searches</div>
+      <div class="label">Example searches</div>
       {% for r in recent %}
       <a href="{{ url_for('show_run', run_id=r.id) }}">
         {{ r.prompt }}
-        <span class="meta">&middot; {{ r.providers | join(', ') }} &middot; {{ r.created_at[:16].replace('T', ' ') }}</span>
+        <span class="meta">&middot; {{ r.providers | join(', ') }}{% if r.created_at %} &middot; {{ r.created_at[:16].replace('T', ' ') }}{% endif %}</span>
       </a>
       {% endfor %}
     </div>
@@ -243,6 +254,9 @@
     <span>&copy; 2026 Topical Gravity LLC</span>
   </div>
 
+  {% if turnstile_site_key %}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {% endif %}
   <script>
     document.querySelectorAll('form[action="/search"]').forEach(f =>
       f.addEventListener('submit', () =>

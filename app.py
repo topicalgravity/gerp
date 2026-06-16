@@ -5,11 +5,16 @@ from __future__ import annotations
 import json
 import os
 import secrets
+import urllib.parse
+import urllib.request
 import datetime as _dt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from flask import Flask, abort, redirect, render_template, request, url_for
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 import gerp as g
 from gerp.considered import enrich, SerpAPIBackend
@@ -17,7 +22,56 @@ from gerp.schema import GERP, ConsideredMethod
 
 app = Flask(__name__)
 
+# Render (and most PaaS) sit behind a proxy, so the client IP arrives in
+# X-Forwarded-For; without this, get_remote_address() and the per-IP rate
+# limiter would see the single proxy IP and lump every visitor together.
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+
 RUNS_DIR = Path(os.environ.get("GERP_RUNS_DIR", Path(__file__).parent / "runs"))
+
+# Curated, committed example runs shown on the home page. Real user searches
+# are NEVER listed — that would leak one visitor's queries to the next.
+DEMO_DIR = Path(__file__).parent / "demo"
+
+# Per-IP rate limit on /search as a backstop to Turnstile: caps how fast a
+# single IP can burn API credits even if it gets past the bot check. In-memory
+# storage is fine for one gunicorn worker; move to Redis if scaling out.
+limiter = Limiter(get_remote_address, app=app, storage_uri="memory://")
+
+# Cloudflare Turnstile (invisible bot check). Verification is skipped when the
+# secret key isn't set, so local dev works with no Cloudflare account.
+TURNSTILE_SITE_KEY = os.environ.get("TURNSTILE_SITE_KEY")
+TURNSTILE_SECRET_KEY = os.environ.get("TURNSTILE_SECRET_KEY")
+TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+
+
+@app.context_processor
+def _inject_turnstile():
+    # Lets every template render the widget without threading the key through
+    # each render_template() call.
+    return {"turnstile_site_key": TURNSTILE_SITE_KEY}
+
+
+def _verify_turnstile() -> bool:
+    """Validate the Turnstile token on the current request before spending API
+    credits. No secret configured ⇒ checking is disabled (returns True)."""
+    if not TURNSTILE_SECRET_KEY:
+        return True
+    token = request.form.get("cf-turnstile-response", "")
+    if not token:
+        return False
+    data = urllib.parse.urlencode({
+        "secret": TURNSTILE_SECRET_KEY,
+        "response": token,
+        "remoteip": get_remote_address(),
+    }).encode()
+    try:
+        with urllib.request.urlopen(TURNSTILE_VERIFY_URL, data=data, timeout=10) as resp:
+            return bool(json.loads(resp.read()).get("success"))
+    except Exception:
+        # Don't let a Cloudflare hiccup hard-fail the search; the rate limiter
+        # still bounds the downside.
+        return True
 
 # Hard cap per search request, comfortably under gunicorn's 300s worker
 # timeout: a hung provider becomes a per-provider error in its tab instead
@@ -64,6 +118,16 @@ def _not_found(e):
         show_key_form=False), 404
 
 
+@app.errorhandler(429)
+def _rate_limited(e):
+    return render_template(
+        "error.html", title="Too many searches",
+        detail="You've run a lot of searches in a short window. Give it a "
+               "minute and try again — this limit is just here to keep "
+               "automated traffic from running up the bill.",
+        show_key_form=False), 429
+
+
 @app.errorhandler(500)
 def _server_error(e):
     return render_template(
@@ -98,17 +162,23 @@ def _load_run(run_id: str) -> dict | None:
     # run_id comes from the URL; restrict to the generated id alphabet.
     if not all(ch.isalnum() or ch == "-" for ch in run_id):
         return None
-    path = RUNS_DIR / f"{run_id}.json"
-    if not path.is_file():
-        return None
-    return json.loads(path.read_text())
+    # A real saved run wins; fall back to the committed demo set so the
+    # example links on the home page resolve even after a redeploy wipes
+    # the ephemeral RUNS_DIR.
+    for base in (RUNS_DIR, DEMO_DIR):
+        path = base / f"{run_id}.json"
+        if path.is_file():
+            return json.loads(path.read_text())
+    return None
 
 
-def _recent_runs(limit: int = 10) -> list[dict]:
-    if not RUNS_DIR.is_dir():
+def _demo_runs(limit: int = 10) -> list[dict]:
+    """Curated example runs for the home page. Deliberately reads only the
+    committed demo/ directory — never real user searches in RUNS_DIR."""
+    if not DEMO_DIR.is_dir():
         return []
     runs = []
-    for path in sorted(RUNS_DIR.glob("*.json"), reverse=True)[:limit]:
+    for path in sorted(DEMO_DIR.glob("*.json")):
         try:
             d = json.loads(path.read_text())
             runs.append({"id": d["id"], "prompt": d["prompt"],
@@ -116,26 +186,32 @@ def _recent_runs(limit: int = 10) -> list[dict]:
                          "providers": sorted(d.get("results", {}))})
         except (json.JSONDecodeError, KeyError):
             continue
-    return runs
+    return runs[:limit]
 
 
 @app.route("/")
 def index():
     return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
-                           recent=_recent_runs())
+                           recent=_demo_runs())
 
 
 @app.route("/search", methods=["POST"])
+@limiter.limit("8 per minute")
+@limiter.limit("40 per hour")
 def search():
     prompt = request.form.get("prompt", "").strip()
     selected = request.form.getlist("providers")
 
+    if not _verify_turnstile():
+        return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
+                               recent=_demo_runs(),
+                               error="Couldn't verify you're human — please try again.")
     if not prompt:
         return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
-                               recent=_recent_runs(), error="Enter a prompt.")
+                               recent=_demo_runs(), error="Enter a prompt.")
     if not selected:
         return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
-                               recent=_recent_runs(),
+                               recent=_demo_runs(),
                                error="Select at least one provider.")
 
     results: dict = {}

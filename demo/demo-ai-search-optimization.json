@@ -1,0 +1,877 @@
+{
+  "id": "demo-ai-search-optimization",
+  "prompt": "how do you optimize a website to be cited by AI search engines",
+  "created_at": "",
+  "results": {
+    "anthropic": {
+      "schema_version": "1.0",
+      "provider": "anthropic",
+      "model": "claude-opus-4-6",
+      "prompt": "how do you optimize a website to be cited by AI search engines",
+      "answer_text": "# How to Optimize Your Website to Be Cited by AI Search Engines\n\nThis practice is increasingly known as **Generative Engine Optimization (GEO)** or **Answer Engine Optimization (AEO)**. GEO adapts digital content and online presence to improve visibility in AI-generated answers. Here's a comprehensive guide:\n\n---\n\n## 1. \ud83c\udfd7\ufe0f Structure Content for Machine Extraction\n\nEvery page should begin with a direct answer \u2014 a 40- to 60-word summary placed \"above the fold,\" directly under the H1 heading, that explicitly answers the page's primary query.\n\n- **Use question-based headings.** AI models extract passages, so each section of your page should be able to stand alone and answer a clear question. Instead of vague subheadings, use question-based headings.\n- **Lead sections with definitions.** Definition-first writing \u2014 where every major section opens with a single, self-contained sentence that defines the topic \u2014 makes it significantly more likely that sections will be selected as citation fragments by AI models like Gemini.\n- **Write modular, self-contained chunks.** Write in modular, self-contained chunks that address distinct subtopics or questions.\n\n---\n\n## 2. \ud83d\udcca Include Verifiable Evidence & Original Data\n\nCite authoritative sources and link to original research. Include original data, surveys, or analysis whenever possible, and reference industry reports, government data, and peer-reviewed studies.\n\nAI systems often reference specific data points and expert opinions. Content backed by evidence is more likely to be trusted and cited.\n\n---\n\n## 3. \ud83d\udd27 Implement Schema Markup (Structured Data)\n\nSchema markup helps search engines and LLMs interpret your content, increasing the likelihood of AI-generated citations. Structured data supports GEO by enabling AI systems to accurately interpret, attribute, and display content. Key schema types include FAQPage, Article, Organization, Person, and WebPage.\n\nPages with valid structured data \u2014 particularly FAQ, HowTo, and QAPage \u2014 appear 20 to 30% more often in AI-generated summaries than unstructured pages.\n\nPriority implementation:\n- If a page already ranks well in traditional search, adding schema to it has the highest probability of generating AI citations. Add Article (or Product) schema, Organization schema, and FAQ schema if the page answers specific questions.\n- Organization schema on your homepage ensures LLMs have accurate brand information. Product schema on pricing pages gets you into AI-generated comparisons.\n\n---\n\n## 4. \ud83d\udcdd Adopt an `llms.txt` File\n\nThe emerging llms.txt standard tells AI systems what your site is about at a high level. While not every AI crawler reads it yet, OpenAI, Anthropic, and several other AI companies have signaled intent to honor it, and adoption is growing quickly. Implementing it now costs almost nothing and positions you ahead of competitors.\n\nCreate and host an llms.txt file that defines content permissions, usage policies, and AI-crawlable areas of your site.\n\n---\n\n## 5. \ud83d\udd04 Keep Content Fresh\n\nAI systems have a strong recency bias. Content older than 3 months sees significantly fewer AI citations. Treat your content as a living document \u2014 review and refresh important pages at least once per quarter, update statistics, replace outdated examples, add recent developments, and make sure your \"last updated\" date reflects the most recent changes.\n\n---\n\n## 6. \ud83c\udf10 Build Multi-Channel Brand Presence\n\nAI search engines do not rely solely on your website. They pull data from across the web to build a picture of your brand's authority and trustworthiness. A strong multi-channel presence sends powerful signals that reinforce your credibility.\n\nUnlinked brand mentions matter too \u2014 the more your brand is mentioned across the web, the more AI systems associate your brand with your topic area.\n\nSecuring placement in authoritative lists is one of your best investments across the board, significantly impacting recommendations by all major AI search engines.\n\n---\n\n## 7. \ud83c\udfaf Focus on E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)\n\nE-E-A-T is the non-negotiable tie-breaker. A brand that excels at retrieval (great technical structure) but fails at generation (no trust) will be ingested by the AI but ultimately ignored. A brand that excels at generation (high trust) but fails at retrieval (messy structure) will simply be invisible to the AI. Success requires mastering both.\n\n---\n\n## 8. \ud83d\udd17 Maintain Strong Technical SEO Foundations\n\nEnsure your content is crawlable, as Google Search generative AI models use publicly accessible, crawlable content to learn patterns and provide relevant, grounded responses.\n\nInternal linking and site structure still help. Topic clusters help search engines and AI systems understand the depth of your expertise.\n\n---\n\n## 9. \ud83d\udcc8 Track New Metrics\n\nTrack new metrics like **AI Citation Share** (the frequency and accuracy of your brand's presence within AI search results across platforms like Perplexity, ChatGPT, and Google's AI Overviews) and **Referral Traffic from AI** (monitoring traffic sources from chatgpt.com or perplexity.ai).\n\nAlso monitor **Sentiment Accuracy** \u2014 whether the AI is describing your brand the way you want it to \u2014 and ensure your brand message is clear and accurate to reduce AI hallucinations.\n\n---\n\n## Key Mindset Shift\n\nThe AI model does not show your page; it synthesizes an answer and then cites sources. Your goal is not to rank in a list \u2014 it is to be quoted or referenced in a paragraph that the AI generates. That shift changes almost everything about how content should be structured.\n\nThe rise of AI-driven search is shifting the focus from keyword-centric content to comprehensive, informative articles that can serve as authoritative sources for these AI tools, prioritizing depth, accuracy, and relevance over traditional SEO tactics.",
+      "citations": [
+        {
+          "url": "https://searchengineland.com/how-to-optimize-content-for-ai-search-engines-a-step-by-step-guide-467272",
+          "title": "How to optimize content for AI search engines: A step-by-step guide",
+          "domain": "searchengineland.com",
+          "cited_text": "Generative engine optimization (GEO) adapts digital content and online presence to improve visibility in AI-generated answers.",
+          "start_index": null,
+          "end_index": null,
+          "count": 2,
+          "metadata": {
+            "page_age": "January 23, 2026"
+          }
+        },
+        {
+          "url": "https://elementor.com/blog/how-to-optimize-content-for-ai-search-engines/",
+          "title": "How to Optimize Content for AI Search Engines in 2026",
+          "domain": "elementor.com",
+          "cited_text": "Action: Every page must begin with a direct answer. \n\nA 40- to 60-word summary must be placed \u201cabove the fold,\u201d directly under the H1 heading, and bef...",
+          "start_index": null,
+          "end_index": null,
+          "count": 2,
+          "metadata": {
+            "page_age": "November 17, 2025"
+          }
+        },
+        {
+          "url": "https://www.brandcampdigital.com/post/ai-and-search-engine-optimization-how-to-optimize-websites-for-ai-search-in-2026",
+          "title": "AI And Search Engine Optimization: How To Optimize Websites For AI Search In 2026",
+          "domain": "brandcampdigital.com",
+          "cited_text": "AI models extract passages. \n\nEach section of your page should be able to stand alone and answer a clear question. Instead of vague subheadings, use q...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "March 10, 2026"
+          }
+        },
+        {
+          "url": "https://www.barchart.com/story/news/778240/ai-search-optimization-best-practices-every-brand-needs-in-2026",
+          "title": "ai search optimization best practices every brand needs in 2026",
+          "domain": "barchart.com",
+          "cited_text": "Best Practice 1: Lead Every Section with a Definition Sentence\nDefinition-first writing is a content structuring technique where every major section o...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.beebyclarkmeyler.com/what-we-think/guide-to-content-optimization-for-ai-search",
+          "title": "AI Search Content Optimization: The Complete Guide (2025)",
+          "domain": "beebyclarkmeyler.com",
+          "cited_text": "To capitalize on this, you should write in modular, self-contained chunks that address distinct subtopics or questions. ",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "June 26, 2025"
+          }
+        },
+        {
+          "url": "https://www.marketingaid.io/ai-search-optimization/",
+          "title": "AI Search Optimization: SEO for Perplexity, ChatGPT and more",
+          "domain": "marketingaid.io",
+          "cited_text": "Include statistics and quotes: AI systems often reference specific data points and expert opinions. ",
+          "start_index": null,
+          "end_index": null,
+          "count": 2,
+          "metadata": {
+            "page_age": "March 1, 2025"
+          }
+        },
+        {
+          "url": "https://www.walkersands.com/about/blog/how-can-schema-markup-support-llm-visibility/",
+          "title": "How Can Schema Markup Specifically Enhance LLM Visibility | Walker Sands",
+          "domain": "walkersands.com",
+          "cited_text": "Schema markup helps search engines and LLMs interpret your content, increasing the likelihood of AI-generated citations. \n\nStructured data supports GE...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "April 1, 2026"
+          }
+        },
+        {
+          "url": "https://ailabsaudit.com/blog/en/schema-markup-ai-visibility-guide",
+          "title": "Schema Markup for AI Search: 7 JSON-LD That Boost Citations",
+          "domain": "ailabsaudit.com",
+          "cited_text": "According to 2025 benchmarks from Semrush and Measured.com, pages with valid structured data \u2014 particularly FAQ, HowTo and QAPage \u2014 appear 20 to 30% m...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "1 month ago"
+          }
+        },
+        {
+          "url": "https://serps.io/blog/schema-markup-ai-structured-data",
+          "title": "Schema Markup for AI: Structured Data That Helps LLMs Understand You | SERPs.io",
+          "domain": "serps.io",
+          "cited_text": "If a page already ranks well in traditional search, adding schema to it has the highest probability of generating AI citations. ",
+          "start_index": null,
+          "end_index": null,
+          "count": 3,
+          "metadata": {
+            "page_age": "March 25, 2026"
+          }
+        },
+        {
+          "url": "https://discoverability.co/resources/schema-markup-guide/",
+          "title": "Schema Markup Guide: SEO and AI Search in 2026 | Discoverability",
+          "domain": "discoverability.co",
+          "cited_text": "The schema and llms.txt connection: The emerging llms.txt standard tells AI systems what your site is about at a high level.\n\n",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "April 22, 2026"
+          }
+        },
+        {
+          "url": "https://www.searchscaleai.com/blog/optimize-website-chatgpt-perplexity-google-ai-2026/",
+          "title": "How to Optimize Your Website for ChatGPT, Perplexity, and Google AI Search in 2026 | Search Scale AI Blog",
+          "domain": "searchscaleai.com",
+          "cited_text": "Notes on content that is or is not appropriate for AI training or citation \u00b7 The llms.txt standard is not enforced by any single platform yet, and not...",
+          "start_index": null,
+          "end_index": null,
+          "count": 2,
+          "metadata": {
+            "page_age": "April 11, 2026"
+          }
+        },
+        {
+          "url": "https://analytsolutions.com/blog/schema-markup-and-llms-txt-must-have-for-ai-visibility-in-2025/",
+          "title": "Schema Markup & LLMs.txt for AI SEO 2025 |Analyt Solutions",
+          "domain": "analytsolutions.com",
+          "cited_text": "Create and host an LLMs.txt File Define content permissions, usage policies, and AI-crawlable areas of your site. ",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "February 26, 2026"
+          }
+        },
+        {
+          "url": "https://llmrefs.com/learn/ai-seo",
+          "title": "AI SEO: How to Optimize for AI Search Engines (2026 Guide) - LLMrefs",
+          "domain": "llmrefs.com",
+          "cited_text": "AI systems have a strong recency bias. From our data at LLMrefs, we see that the moment content becomes over 3 months old, AI citations to that page d...",
+          "start_index": null,
+          "end_index": null,
+          "count": 3,
+          "metadata": {
+            "page_age": "March 25, 2026"
+          }
+        },
+        {
+          "url": "https://www.brainbuzzmarketing.com/7-ai-search-engine-optimization-strategies-that-work-in-2026/",
+          "title": "7 AI Search Engine Optimization Strategies That Work in 2026 - Brain Buzz Marketing",
+          "domain": "brainbuzzmarketing.com",
+          "cited_text": "AI search engines do not rely solely on your website. They pull data from across the web to build a picture of your brand\u2019s authority and trustworthin...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "3 days ago"
+          }
+        },
+        {
+          "url": "https://firstpagesage.com/seo-blog/ai-search-optimization-strategy-and-best-practices/",
+          "title": "AI Search Optimization: Strategy and Best Practices for 2026 \u2013 First Page Sage",
+          "domain": "firstpagesage.com",
+          "cited_text": "For example, securing placement in authoritative lists are your best investment across the board, significantly impacting recommendations by all the A...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "December 23, 2025"
+          }
+        },
+        {
+          "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "title": "Google's Guide to Optimizing for Generative AI Features on Google Search | Google Search Central | Documentation | Google for Developers",
+          "domain": "developers.google.com",
+          "cited_text": "To maximize your site&#x27;s visibility in generative AI search features, ensure your content is crawlable, as Google Search generative AI models use ...",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "page_age": "2 weeks ago"
+          }
+        },
+        {
+          "url": "https://roirevolution.com/blog/how-to-optimize-for-ai-search-engines/",
+          "title": "How to Optimize for AI Search Engines: The 2026 Guide to Generative Engine Optimization (GEO)",
+          "domain": "roirevolution.com",
+          "cited_text": "To truly understand how to optimize for AI search engines, you must track new metrics: AI Citation Share: The frequency and accuracy of your brand\u2019s p...",
+          "start_index": null,
+          "end_index": null,
+          "count": 2,
+          "metadata": {
+            "page_age": "February 13, 2026"
+          }
+        }
+      ],
+      "considered_not_cited": [
+        {
+          "url": "https://www.aleydasolis.com/en/ai-search/ai-search-optimization-checklist/",
+          "title": "The AI Search Optimization Checklist [Updated May 2026]",
+          "domain": "aleydasolis.com",
+          "source_query": "AI search optimization best practices",
+          "rank": 5,
+          "metadata": {
+            "page_age": "2 weeks ago"
+          }
+        },
+        {
+          "url": "https://www.averi.ai/blog/schema-markup-for-ai-citations-the-technical-implementation-guide",
+          "title": "Schema Markup for AI Citations: The Technical Implementation Guide",
+          "domain": "averi.ai",
+          "source_query": "schema markup structured data llms.txt AI citation optimization",
+          "rank": 1,
+          "metadata": {
+            "page_age": "December 30, 2025"
+          }
+        }
+      ],
+      "considered_method": "provider_delta",
+      "issued_queries": [
+        "optimize website for AI search engine citations 2026",
+        "AI search optimization best practices",
+        "schema markup structured data llms.txt AI citation optimization"
+      ],
+      "created_at": "2026-06-15T21:38:01.009369+00:00"
+    },
+    "gemini": {
+      "schema_version": "1.0",
+      "provider": "gemini",
+      "model": "gemini-2.5-flash",
+      "prompt": "how do you optimize a website to be cited by AI search engines",
+      "answer_text": "To optimize a website for citation by AI search engines, it's crucial to shift focus from traditional keyword-based SEO to a strategy that prioritizes semantic understanding, content clarity, and technical accessibility for AI models. AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.\n\nHere's a breakdown of how to optimize your website:\n\n**1. Technical AI SEO Foundations**\n\n*   **AI Crawler Accessibility:** Ensure AI bots like GPTBot and ClaudeBot can easily access and read your site without encountering blocks or errors. These crawlers can be less advanced than Googlebot, so clean architecture, error-free delivery, and machine-friendly markup are essential.\n*   **Site Speed and Performance:** Fast-loading and mobile-friendly websites are crucial. Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.\n*   **Crawlability and Indexation:** Adhere to crawling best practices to maximize your site's visibility. Google Search's generative AI models utilize publicly accessible, crawlable content to learn patterns and generate grounded responses.\n\n**2. Structured Data and Semantic Understanding**\n\n*   **Implement Schema Markup (JSON-LD):** Structured data is paramount for AI search. It translates your content into a machine-readable language, helping AI systems understand exactly what information is on your page, its meaning, and relationships between entities. Prioritize schema types like FAQPage, HowTo, Product, Service, Article, Organization, LocalBusiness, and Review. Pages with correct schema can see significantly more rich-result impressions.\n*   **Entity Presence & Contextual Authority:** Clearly define entities (people, places, things, concepts) within your content. This helps AI link your information to a global knowledge graph and understand the context, reducing ambiguity.\n*   **Consistent Data:** Maintain consistency across your structured data, website content, and other online profiles (e.g., Google Business Profile) to reinforce trust signals for AI.\n\n**3. Content Quality and Structure for AI Consumption**\n\n*   **Topical Authority and Depth:** Become an expert in your niche. AI models favor sources that consistently provide comprehensive and in-depth content around specific subjects. Create content clusters by linking related articles to demonstrate your site as an authoritative hub.\n*   **\"Answer-First\" Framework and Clarity:** AI search engines synthesize responses from various sources. Structure your content with clear, direct, and declarative answers to common user questions, often at the beginning of sections or pages. Use concise language and avoid jargon.\n*   **Modular Formatting:** Break down your content into easily digestible \"chunks\" or \"passages\" using clear headings (H1, H2, H3), bullet points, numbered lists, and tables. This makes it easier for AI to extract and synthesize specific information.\n*   **Natural Language and User Intent:** Write in a conversational style, anticipating user questions and providing comprehensive answers that address underlying needs. AI search excels at understanding nuanced and longer, conversational queries. Incorporate question-and-answer formats (like FAQs).\n*   **E-E-A-T (Experience, Expertise, Authoritativeness, and Trustworthiness):** AI systems heavily prioritize content that demonstrates high E-E-A-T. Back up claims with data, cite credible sources, include author bios with credentials, and regularly update information to maintain factual accuracy.\n*   **Non-Commodity Content:** Focus on creating unique, valuable, and expert-led content that goes beyond common knowledge. AI is adept at detecting thin or rehashed content.\n\n**4. Continuous Monitoring and Adaptation**\n\n*   **Monitor AI Visibility:** Track how frequently and accurately your brand is referenced in AI-generated responses for key industry terms. Manually test prompts in popular AI interfaces and monitor changes in zero-click metrics and referral traffic from AI platforms.\n*   **Stay Updated:** The AI search landscape is rapidly evolving. Continuously monitor AI search trends and adapt your strategies accordingly.\n\nBy implementing these strategies, you can significantly improve your website's chances of being understood, trusted, and cited by AI search engines, ensuring your brand remains visible in the evolving digital landscape.",
+      "citations": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWAFOir92_1oD7M6jLc0m6L6WsdiZGFwFPtFOwdI8NjoOGQlNI_R4tvXCDfB8UGmO2VrJOTvP-EXVaeIaDZ5gngkblT9Tjve0pnmnpmIeImRpfAcBBlU2HsEGczG2dGs-Bey-_9xiUxYPgVug=",
+          "title": "usegrowthos.com",
+          "domain": "usegrowthos.com",
+          "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH4EySv25ZnJ6m7LmtC1PaMdSJYQHDD6w7mLcyWuWMb5L7tpxL8YEUZVIpLmq16Hz1K09Bc5OfM8y5XY9cmIqduciOyVYciBEUfFWObPVFGHWotkKlhNbrWxjSCwdhWMFRqKX4=",
+          "title": "wpengine.com",
+          "domain": "wpengine.com",
+          "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHW1oIO5u0UO2xiuG3lMIbEfbDJ90xXSeYViIGQseHJgl0fupiSS5jgXCLgVo0jx7GnbKbUdNffYoHsVODo9Q46jbyGb6cFraBNfBOCx86vKXS0guyGKpOCuNS_5QR9v21IFJZ2gwAGzzZrQ8E8WtZu8dYAWyN3Tg==",
+          "title": "clickrank.ai",
+          "domain": "clickrank.ai",
+          "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfxv7gidlpwZEIgeicfFRyC2PuRJXM-Lg9cwi8jNzQcJD1qYxTdsvRtSIGoZsbjXrxJ68zMMZ_AzBWaxnk7JrOVhHR1OCu8OLvamNriNn1kWtOPoR472iNYPRy2nIsR9IHn3TlXK_nqwPkS9CkZbs=",
+          "title": "visibella.ai",
+          "domain": "visibella.ai",
+          "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHz84GNmo2C70uudewHdBPnnK1JOc-EbvrFulFVr7ET_C2XrWO5wt9EVhMPQf__-qS8xgmCoNH9GKqC5VbFPwCs_qlTfZnKLkmMsbJ7VRyOequTX1gC1Sv7O-aNJ-U4LB7pc5hK5pUPVxq",
+          "title": "onely.com",
+          "domain": "onely.com",
+          "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEce24BMCVKlROkxVHuTxP06nh0CnQ5ihOnqrcQIRSGFz8uhMfpp9wVoyDqKe9XIB3R8mSrFPb4rLyzHmUWMfj-FnohxKmqEXcRENYcD7KsExmHwg_6mUKJYZV2l59qbtYplm3FDqzRWglg4-zuks1pq7FWI2PGb0fofXrxSPnNZ4t3cN2_t3E=",
+          "title": "therankmasters.com",
+          "domain": "therankmasters.com",
+          "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZG_TrkWfKMpLkUuLAoLNp3gUNzO2aM9Bt9VOwCq1DdIuUiNWUj9YUNVkYXnK-B2L3RBgIASXiZxnzSAdoud2rkVvl5ylPU-_FcslVc2GUA03AUR4q61Oxu5At3VkTOyCUwQXVzKAPDcK56rCD-rqbMw==",
+          "title": "omnius.so",
+          "domain": "omnius.so",
+          "cited_text": "These crawlers can be less advanced than Googlebot, so clean architecture, error-free delivery, and machine-friendly markup are essential.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFT_Y8KI-fx5I5oEUN0JTq6pEHJY8--gcDGZn3LLNfIQmZALzrGivQaqrmZaubDFrVCqt0kQJ2lv-rBfsltAA05YaFvsKItfMIm3pJZtuwQMAXgwUEFxyv4fmGQ1zXL-5aq0enHS2Fms6o=",
+          "title": "finch.com",
+          "domain": "finch.com",
+          "cited_text": "Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFukhJurxWilJrV_TzIDIsVSAQdW8hZTAaiiGatmfHeRJvY1XGMLkpaYBIqZyU6GExw3jgjTffoR1Ad-e7hNynilAi7anWX6z-Zkk8XGytSI0wSKBUh2kK_l-36aZVtNUrxAeHzKilb8wQsiL6EZlNF",
+          "title": "searchengineland.com",
+          "domain": "searchengineland.com",
+          "cited_text": "Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfJ852P_kLwFdap2cbM9czNxGVLPiIt5eIT9HqfHcmKtHVoO8n0ETqUMe7d3tEwNGyI09SH84bnFdyVGGXJmvxvIxG6ro9KfN8HAhbnmQigqZbAHKkhF0BtafDl5TwD6g=",
+          "title": "respona.com",
+          "domain": "respona.com",
+          "cited_text": "Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVTm-vGXfvJu7GHYlH0r4CHDPR-IkYSoON42V_jEgFF-x_p_fRmZ0Dhx4phgJten5XaIi2qS4DCwGBKVDZnA-O7w4Kbn6MOoMndzHeiEEwd9Nhlagw-tECukuOdKRIY1t0iyAGbbptgfELCdLm6EiZpFyTGXVFw1MHEp1gJd6UFr48kdhWM30=",
+          "title": "google.com",
+          "domain": "google.com",
+          "cited_text": "Google Search's generative AI models utilize publicly accessible, crawlable content to learn patterns and generate grounded responses.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4GtD4dcycWoEAR0XYetOIGJc0wAIdc5PYR8ccAO-Km-piC8A_Q0h_AFoXEzt7KoysxPQaPzIZOS6Ce9_nPj_KOXlyWv-n8Gw7qyfuYi4xwB-tPDpx7jj6RM-19Pkkh7lwg2Q2AxphPJvHAsW-kXfG",
+          "title": "cassieclarkmarketing.com",
+          "domain": "cassieclarkmarketing.com",
+          "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHInCVoipCPNAHS8qTCya4vQvwq8W6a-IWbcff_gCv5MXxzZOK_KUa5CYL93pyE7mtU-1-SW2yBUxF0CdHhRWhvMqTaKSane5Q7GGYwMVGD1KWZgIyIzHJhqFqRdEQhK_5oEM9VtbflBEMtw89IjIwa1yUB",
+          "title": "wpengine.com",
+          "domain": "wpengine.com",
+          "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHS4udtM1jAtS-vB-7XkYk089tunnAxldUju_h4l49N8jvAB_vPr5r02-XacTHW10X1eyjBZYemCgm7f63rqLo7Thk_lkYGZ5zzL0KAp-nfinCTxg65FNMqEeqBVEcvBe3hVDPd3Htzb7H8E4ch5PfuiaZ8BtCo0g=",
+          "title": "brightedge.com",
+          "domain": "brightedge.com",
+          "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdYAwS2sJkgQV9PVQMyXt0jKz46wg4Jl2kt8TtEZ2fDqU_y39UGTUx0tw0WAeX5VT5rbzUY09U-6-BPqE3T5HlsTX8slwyqKM-p7NmZpj8uyBnkl-uhyKCQgf-kLJ2DCxF2h95oBde9XWOlouMDyDMjYI=",
+          "title": "insightland.org",
+          "domain": "insightland.org",
+          "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1O_IDQ0kXLCyk4Dp8bs7HrPVyK43jAzu_gyRv05pxWTalNFodrtsh6SDDd9yiUoPKRWuRhXN_LE4z_0GJGBBy1zt5Txs1kQzegYDP21t-fclmMuhQUdCUerCgoNVzs3UZ9hUR4Kbkugv_NhvtgsrUWDEIg0M2GbnZ_3bL6Qxt7BkEHJ5u7vwPwhhBoCo=",
+          "title": "xseek.io",
+          "domain": "xseek.io",
+          "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6jlhcOHsKEo1hJ0oOwD0oIWu5p6XNO_7H9NK-wREb9ddv_v2WGMgSuTmCrM3mRr7FRyQIR9ruEF8umVEFrc7w4jfX4_xrqYaGTjLT2HjwZvypc3BUUBJvVcqaxmejQOB8FX0M892QurXZ0TxMU97xcRt61hti",
+          "title": "rkwebsol.com",
+          "domain": "rkwebsol.com",
+          "cited_text": "This helps AI link your information to a global knowledge graph and understand the context, reducing ambiguity.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHABbLZNUH-HFgRpyZ2bUTL-af1UbwHY00ij35AeTfFFqUjySj2yjjWGW2NTOGJwezvKfO_NVkdeY0Kx-uA4dJd1oaRTfNEjrRhVdw7iA8oAOv7cRqpFd_zwZbFQedSxfOoXZy44SSVvIjFJDbtMkENzRoJFV0s47xmuISmUIxnC1a5SXyN",
+          "title": "20northmarketing.com",
+          "domain": "20northmarketing.com",
+          "cited_text": "This helps AI link your information to a global knowledge graph and understand the context, reducing ambiguity.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEi_QZXEhuLHvSBk2WzopcLPmetAK6ETwWefBjbPuD7VEcLh8QhUJTP0R_QaoOIIp_HZL_x48e1Mg0YdRQtvQGMv92IzBDimQyWLdf72MKUfyanYFR517e5ZIGS0f6FayDeSA8IVUdKMn5NrXicfM3",
+          "title": "rioseo.com",
+          "domain": "rioseo.com",
+          "cited_text": "*   **Consistent Data:** Maintain consistency across your structured data, website content, and other online profiles (e.g., Google Business Profile) to reinforce trust signals for AI.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEz9ycu_ZSphtGViZos5vk8qvI0adbRU6ZqzC4XfF1-yYszRSQKtKdRt8o-Z2m44Mt6ZA_p7x32mGW-4iCcRqRv2U77TYeS37GDvMzOjvFym8VgKyJI6x2jAdE_ueHJ2O9vKLKNTQyTCl2C4vFjVdKfRyT0KODGj8KTbB42FcPA7aTRkN4LyQ==",
+          "title": "dagmarmarketing.com",
+          "domain": "dagmarmarketing.com",
+          "cited_text": "Create content clusters by linking related articles to demonstrate your site as an authoritative hub.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9UYv_j88UVdtCdW_sWrUgAhWXmi4Mdhsyx9m08YQT9unK1vHhRYeuirQZEbeMA8z0j40tSDbTjG-3xK9DxQ2Q01D7pXFwiNYSzMPerH0fMsJr2GKC5AF3Y2Cvyjga4fUOnFCiNogp1eenpDR5UXX9MpH-Zk4YbJTA4VgfDr1A8mHnb5E4R3_4BcEux45GNxLUOCrPA9U=",
+          "title": "thegutenberg.com",
+          "domain": "thegutenberg.com",
+          "cited_text": "Create content clusters by linking related articles to demonstrate your site as an authoritative hub.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGG4DBrjBbx1kmGCeOt54U1tTZoPBq1FbG0dXkoWKGc3Ex63BF4-RdoP6JKvFI-jRoIijcFbeuHb0ONJJHgIw_ReTTZuv1PXEyATksSJ6EGPx5oKZMfSKKR5ZA0WYfL4vtuzqdH-xZCJ1O3ZIs=",
+          "title": "ipullrank.com",
+          "domain": "ipullrank.com",
+          "cited_text": "Create content clusters by linking related articles to demonstrate your site as an authoritative hub.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDNFNsOVdKLV5W6S-9nZXn6x7hkwc0tCE0OSsosAGTJqYIO_xGE7ZkP1ZajLOIp6wGQfNT9rvWC3doVjh9jKUjo4MyjI5WTI8G135ZQgpaijEn_ppd4nyGW5Emo7YANjbx",
+          "title": "verblio.com",
+          "domain": "verblio.com",
+          "cited_text": "Use concise language and avoid jargon.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFza404CJ1DDNIp-0X5KOkuZJta50wmbgQ1YUar1dFq_1itbWK8RBKQb7URy1hjjE8ZhGmaiRAOgHEWnqkqRuqEZfXsCXCX5XNWypYCSc4G-R1oA6CoMHw4lGYWWK8LKTc_gFf3nDW2-ooLe6ebL6DbtH3d7un5f0oCZqZQvfGB4Q==",
+          "title": "roirevolution.com",
+          "domain": "roirevolution.com",
+          "cited_text": "Use concise language and avoid jargon.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH01rO4676qysjfkef0TIqfC5Q1jiXVwsLYc_o1P6q83neOCLCoi5x-xkiXXpZHw4ATJFijhODCVX4hFIIgNEAFHnOACkI7XiUyQxEDlES07cv5_cMoYu80iwbcWlpOXjpQbG0J5zS6tTMoULSFEEisSr-MvxmExG1gLOji1gdMf4KUJdw=",
+          "title": "elementor.com",
+          "domain": "elementor.com",
+          "cited_text": "This makes it easier for AI to extract and synthesize specific information.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-DAE4gj_6rOhL_mkTWhoTQCHc7ShRmuT4pgV4ShYe8QijZhBoKv-lJxEOZF-NPQI6Qm_avqjhZ88Js88VhW4-jsaaPLJ4bct2kQPtffgFxDn9hiTqlJAklWCq0ZAmIFecBvmF6jr14s3WkIg=",
+          "title": "softtrix.com",
+          "domain": "softtrix.com",
+          "cited_text": "Back up claims with data, cite credible sources, include author bios with credentials, and regularly update information to maintain factual accuracy.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBwNGglknvjybZ4BLkfs_0qTYIsoNaHDJnZiBIEYNAyyvjqDM6hgeVJH117og5f9QB2O3307WTlvu64nZaGhJK3FM0pgCojrYQxmjQLTMG_9Pd5NUq9V8NlrF0QZzOHXA_YpPFA-oWj_HTbtEqmxiTwQkuWd6ny64ipQ==",
+          "title": "seoclarity.net",
+          "domain": "seoclarity.net",
+          "cited_text": "Manually test prompts in popular AI interfaces and monitor changes in zero-click metrics and referral traffic from AI platforms.",
+          "start_index": null,
+          "end_index": null,
+          "count": 1,
+          "metadata": {
+            "redirect_url": true
+          }
+        }
+      ],
+      "considered_not_cited": [
+        {
+          "url": "https://developers.google.com/search/docs/fundamentals/how-search-works",
+          "title": "In-Depth Guide to How Google Search Works",
+          "domain": "developers.google.com",
+          "source_query": "how AI search engines work for website indexing",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://nightwatch.io/blog/ai-search/",
+          "title": "What Is AI Search and How Is It Affecting SEO? - Nightwatch.io",
+          "domain": "nightwatch.io",
+          "source_query": "how AI search engines work for website indexing",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://you.com/resources/what-are-ai-search-engines-and-how-do-they-work",
+          "title": "What Are AI Search Engines and How Do They Work?",
+          "domain": "you.com",
+          "source_query": "how AI search engines work for website indexing",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.gisma.com/blog/how-ai-is-transforming-search-engines",
+          "title": "How Artificial Intelligence Is Used in Search Engines",
+          "domain": "gisma.com",
+          "source_query": "how AI search engines work for website indexing",
+          "rank": 4,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.lumar.io/learn/seo/search-engines/how-do-search-engines-work/",
+          "title": "How Do Search Engines Work? \u2013 Lumar Website Intelligence",
+          "domain": "lumar.io",
+          "source_query": "how AI search engines work for website indexing",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.digitalocean.com/resources/articles/ai-search-engines-for-research",
+          "title": "6 Best AI Search Engines in 2025",
+          "domain": "digitalocean.com",
+          "source_query": "how AI search engines work for website indexing",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search",
+          "title": "Top ways to ensure your content performs well in Google's ...",
+          "domain": "developers.google.com",
+          "source_query": "factors AI search engines prioritize for website ranking",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.reddit.com/r/DigitalMarketing/comments/1mkmgo8/how_do_i_rank_my_website_in_ai_search_engines/",
+          "title": "How do I rank my website in AI search engines",
+          "domain": "reddit.com",
+          "source_query": "factors AI search engines prioritize for website ranking",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://seocrawl.ai/blog/ai-overview-ranking-factors",
+          "title": "AI Overviews Ranking Factors: SEO Guide (2026) - SEOcrawl",
+          "domain": "seocrawl.ai",
+          "source_query": "factors AI search engines prioritize for website ranking",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://aismedia.com/how-to-rank-in-ai-search-engines/",
+          "title": "Get Your Business Ranked in AI Search Engines (2026 ...",
+          "domain": "aismedia.com",
+          "source_query": "factors AI search engines prioritize for website ranking",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "title": "Google's Guide to Optimizing for Generative AI Features on ...",
+          "domain": "developers.google.com",
+          "source_query": "optimizing website for AI search engine visibility",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://support.squarespace.com/hc/en-us/articles/38299115788813-Optimize-your-site-for-AI-powered-search-engines",
+          "title": "Optimize your site for AI-powered search engines",
+          "domain": "support.squarespace.com",
+          "source_query": "optimizing website for AI search engine visibility",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.reddit.com/r/copywriting/comments/1jyw62w/optimizing_your_website_content_for_ai_search/",
+          "title": "Optimizing Your Website Content for AI Search Engines",
+          "domain": "reddit.com",
+          "source_query": "optimizing website for AI search engine visibility",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.reforge.com/guides/optimizing-for-ai-search-and-discovery",
+          "title": "Optimizing for AI Search and Discovery",
+          "domain": "reforge.com",
+          "source_query": "optimizing website for AI search engine visibility",
+          "rank": 4,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=h00zcHdKUME",
+          "title": "What is AI Search Optimisation (and How To Do It)",
+          "domain": "youtube.com",
+          "source_query": "optimizing website for AI search engine visibility",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.salesforce.com/marketing/ai/seo-guide/",
+          "title": "AI for SEO: Your Guide for 2026",
+          "domain": "salesforce.com",
+          "source_query": "AI search engine best practices for content and SEO",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://communicationsguide.ucdavis.edu/departments/web/search-engine-optimization/ai-seo-content-tools",
+          "title": "How to Use AI Tools When Creating SEO Content | UC Davis",
+          "domain": "communicationsguide.ucdavis.edu",
+          "source_query": "AI search engine best practices for content and SEO",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+          "title": "Introduction to structured data markup in Google Search",
+          "domain": "developers.google.com",
+          "source_query": "structured data for AI search engines",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://medium.com/@vicki-larson/how-structured-data-schema-transforms-your-ai-search-visibility-in-2026-9e968313b2d7",
+          "title": "How Structured Data Schema Transforms Your AI Search ...",
+          "domain": "medium.com",
+          "source_query": "structured data for AI search engines",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.evertune.ai/resources/insights-on-ai/schema-vs-no-schema-does-structured-data-matter-for-ai-search",
+          "title": "Schema vs. No Schema: Does Structured Data Matter for AI ...",
+          "domain": "evertune.ai",
+          "source_query": "structured data for AI search engines",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.globalreach.com/global-reach-media/blog/2025/07/29/boost-ai-organic-visibility-with-smart-structured-data",
+          "title": "Structured Data Is Vital for AI Visibility in 2025",
+          "domain": "globalreach.com",
+          "source_query": "structured data for AI search engines",
+          "rank": 7,
+          "metadata": {}
+        },
+        {
+          "url": "https://researchfdi.com/future-of-seo-ai/",
+          "title": "The Future of SEO: How AI Is Already Changing Search ...",
+          "domain": "researchfdi.com",
+          "source_query": "technical SEO for AI search engines",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.semrush.com/academy/courses/techincal-seo-and-ai-search-essentials-with-semrush/",
+          "title": "Technical SEO and AI Search Essentials with Semrush",
+          "domain": "semrush.com",
+          "source_query": "technical SEO for AI search engines",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://whatagraph.com/blog/articles/ai-seo-tools",
+          "title": "We Tested the 12 Best (& Underrated) AI SEO Tools in 2026",
+          "domain": "whatagraph.com",
+          "source_query": "technical SEO for AI search engines",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://pureseo.com/blog/geo-vs-seo-ai-search-engines",
+          "title": "GEO vs. SEO: How to Optimise for AI Search Engines",
+          "domain": "pureseo.com",
+          "source_query": "technical SEO for AI search engines",
+          "rank": 7,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.squarespace.com/blog/ai-seo",
+          "title": "How Do AI Search Results Work?: How to Prepare for AI SEO",
+          "domain": "squarespace.com",
+          "source_query": "technical SEO for AI search engines",
+          "rank": 8,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.virtualpbx.com/blog/ai/best-ai-search-engine/",
+          "title": "Best AI Search Engine Tools: Which is Best for Software ...",
+          "domain": "virtualpbx.com",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 1,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.imd.org/blog/digital-transformation/ai-engines/",
+          "title": "Top 5 AI Search Engines and Why They're Successful",
+          "domain": "imd.org",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 2,
+          "metadata": {}
+        },
+        {
+          "url": "https://zapier.com/blog/best-ai-search-engine/",
+          "title": "The 4 best AI search engines",
+          "domain": "zapier.com",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 3,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.commercepundit.com/blog/best-ai-search-engines/",
+          "title": "10 Best AI Search Engines in 2026: Full Comparison Guide",
+          "domain": "commercepundit.com",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 4,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.pcmag.com/picks/the-best-ai-search-engines",
+          "title": "The Best AI Search Engines We've Tested for 2026",
+          "domain": "pcmag.com",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 5,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=SczdES81zns",
+          "title": "How I Ranked #1 on AI Search Engines (With Actual Proof)",
+          "domain": "youtube.com",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 6,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.goodfirms.co/resources/how-to-rank-higher-on-google-ai-search",
+          "title": "Ranking in the AI Search Era: An Actionable Framework for ...",
+          "domain": "goodfirms.co",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 7,
+          "metadata": {}
+        },
+        {
+          "url": "https://www.jotform.com/ai/ai-search-engines/",
+          "title": "The best AI search engine in 2026? I tested 6 of them",
+          "domain": "jotform.com",
+          "source_query": "user experience AI search engine ranking",
+          "rank": 8,
+          "metadata": {}
+        }
+      ],
+      "considered_method": "rerun_queries",
+      "issued_queries": [
+        "how AI search engines work for website indexing",
+        "factors AI search engines prioritize for website ranking",
+        "optimizing website for AI search engine visibility",
+        "AI search engine best practices for content and SEO",
+        "structured data for AI search engines",
+        "technical SEO for AI search engines",
+        "user experience AI search engine ranking"
+      ],
+      "created_at": "2026-06-15T21:38:11.095557+00:00"
+    },
+    "openai": {
+      "schema_version": "1.0",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "prompt": "how do you optimize a website to be cited by AI search engines",
+      "answer_text": "Optimizing a website to be **cited by AI search engines** (like Google\u2019s SGE, Microsoft Copilot/Bing, Perplexity, and ChatGPT\u2019s web-inspired answers) goes beyond traditional SEO. It requires focusing on both technical optimization and content strategies that align with how generative AI discovers, evaluates, and presents information. Here\u2019s a breakdown:\n\n---\n\n## **1. Technical Optimization**\n\n### **a. Structured Data**\n- Use [Schema.org](https://schema.org) markup (FAQ, Article, Product, etc.) to help AI understand your page context.\n- Mark up authorship, publication dates, and other attributes clearly.\n\n### **b. Crawlability & Indexability**\n- Ensure your robots.txt doesn't block important content.\n- Make XML sitemaps available and up to date.\n\n### **c. Fast, Mobile-Friendly Experience**\n- Prioritize Core Web Vitals (speed, responsiveness, visual stability), as AI models prefer reputable, user-friendly sites.\n- Use HTTPS and avoid intrusive ads.\n\n---\n\n## **2. Content Strategies**\n\n### **a. Direct, Authoritative Answers**\n- Write clear, concise, well-structured answers to common questions in your field.\n- Use headings, bullet points, and tables when relevant.\n\n### **b. E-E-A-T Principles (Experience, Expertise, Authoritativeness, Trustworthiness)**\n- Include author bios, credentials, and reputable sources.\n- Link to authoritative sources and original research, when possible.\n\n### **c. Unique Insights & Original Data**\n- AI prefers content that adds value\u2014such as unique opinions, case studies, statistics, or first-hand experience.\n\n### **d. Update Regularly**\n- Freshness matters. Keep posts, facts, and references up-to-date.\n\n---\n\n## **3. Visibility & Credibility**\n\n### **a. Build Backlinks and Mentions**\n- Get cited on reputable sites\u2014AI leverages these signals to gauge trust and authority.\n\n### **b. Social Proof**\n- Active engagement on social media and knowledge-sharing platforms increases authority.\n\n### **c. Encourage Community Engagement**\n- Comments, forums, or Q&A sections increase the depth and recency of your content.\n\n---\n\n## **4. Optimize for Featured Snippets & Knowledge Panels**\n- Summarize key points at the top of your articles (think: \u201cTL;DR\u201d or summary paragraphs).\n- Use FAQs, \u201cHow-to\u201d steps, and spotlight stats in a way that\u2019s easily extractable.\n\n---\n\n## **5. Monitor & Adapt**\n- Use tools like [Google Search Console](https://search.google.com/search-console/about), [Bing Webmaster Tools](https://www.bing.com/webmasters/), and third-party AI content monitoring tools (e.g., [Originality.ai](https://originality.ai/) or SEO platforms tracking AI citations).\n\n---\n\n## **Extra: Submit to AI Engines or API-Based Content**\n- If relevant, submit your approved content via feed or partnership to platforms like Bing, Google Publications, or niche AI services.\n\n---\n\n### **Example Structure:**\n\n```\n<h2>How Do You Reduce Website Bounce Rate?</h2>\n<p>To reduce bounce rate, ensure your site loads quickly, provides immediate value, and is easy to navigate. Key tactics include:</p>\n<ul>\n  <li>Improving page speed</li>\n  <li>Using clear calls to action</li>\n  <li>Streamlining site navigation</li>\n  <li>Creating engaging, relevant content above the fold</li>\n  <li>Providing related articles or next steps</li>\n</ul>\n<p>According to Google, sites with higher engagement are more likely to retain visitors (<a href=\"link\">source</a>).</p>\n```\n\n---\n\n### **Summary Table**\n\n| **Action**               | **Purpose**              |  \n|--------------------------|--------------------------|\n| Use structured data      | Clearer understanding by AI |\n| Write clear Q&As         | Preferential selection for responses |\n| Build authority & links  | Trust and credibility signals      |\n| Update content regularly | Favors fresh, reliable sources     |\n\n---\n\n**Would you like a checklist or example optimized article?**",
+      "citations": [],
+      "considered_not_cited": [],
+      "considered_method": "none",
+      "issued_queries": [],
+      "created_at": "2026-06-15T21:38:24.689094+00:00"
+    }
+  }
+}
