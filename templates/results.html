@@ -10,6 +10,40 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <title>{{ prompt }} - GERP</title>
+  <!-- Run pages are transient (cleared on redeploy) and reflect user queries -->
+  <meta name="robots" content="noindex,follow">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GERP">
+  <meta property="og:title" content="{{ prompt }} — GERP">
+  <meta property="og:description" content="How Anthropic, Gemini, and OpenAI web search answer and cite for: {{ prompt }}">
+  <meta property="og:url" content="{{ request.base_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1158">
+  <meta property="og:image:height" content="596">
+  <meta property="og:image:alt" content="GERP — Generative Engine Results Page">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ prompt }} — GERP">
+  <meta name="twitter:description" content="How Anthropic, Gemini, and OpenAI web search answer and cite for: {{ prompt }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "{{ request.base_url }}#webpage",
+      "url": "{{ request.base_url }}",
+      "name": {{ prompt | tojson }},
+      "isPartOf": { "@id": "{{ request.url_root }}#website" },
+      "about": { "@id": "{{ request.url_root }}#webapp" },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": "{{ og_image }}" },
+      "inLanguage": "en-US"
+    }
+  ]
+  </script>
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
   <style>

@@ -10,6 +10,20 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <title>{{ title }} - GERP</title>
+  <meta name="robots" content="noindex,follow">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GERP">
+  <meta property="og:title" content="{{ title }} — GERP">
+  <meta property="og:description" content="GERP — Generative Engine Results Page.">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1158">
+  <meta property="og:image:height" content="596">
+  <meta property="og:image:alt" content="GERP — Generative Engine Results Page">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ og_image }}">
+
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
   <style>

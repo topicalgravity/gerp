@@ -9,7 +9,74 @@
   })(window,document,'script','dataLayer','GTM-NZBN72XX');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
-  <title>GERP</title>
+  <title>GERP | Generative Engine Results Page | Topical Gravity</title>
+  <meta name="description" content="Run one prompt across Anthropic, Google Gemini, and OpenAI web search at once and compare each engine's AI answer, the fan-out queries it issued, and the sources it cited versus merely considered.">
+  <link rel="canonical" href="{{ request.base_url }}">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GERP">
+  <meta property="og:title" content="GERP — Generative Engine Results Page">
+  <meta property="og:description" content="Compare how Anthropic, Gemini, and OpenAI web search answer and cite for any prompt — side by side.">
+  <meta property="og:url" content="{{ request.base_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1158">
+  <meta property="og:image:height" content="596">
+  <meta property="og:image:alt" content="GERP — Generative Engine Results Page">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GERP — Generative Engine Results Page">
+  <meta name="twitter:description" content="Compare how Anthropic, Gemini, and OpenAI web search answer and cite for any prompt — side by side.">
+  <meta name="twitter:image" content="{{ og_image }}">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "{{ request.url_root }}#webapp",
+      "name": "GERP",
+      "alternateName": "Generative Engine Results Page",
+      "url": "{{ request.url_root }}",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any (web-based)",
+      "browserRequirements": "Requires JavaScript",
+      "description": "GERP (Generative Engine Results Page) runs a single prompt across Anthropic, Google Gemini, and OpenAI web search at once and shows each engine's AI answer, the fan-out queries it issued, the sources it cited, and the sources it considered but did not cite.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "3 free searches every 7 days"
+      },
+      "image": "{{ og_image }}",
+      "publisher": { "@id": "https://topicalgravity.com/#organization" },
+      "creator": { "@id": "https://topicalgravity.com/#ryan-dahlen" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "{{ request.url_root }}#website",
+      "url": "{{ request.url_root }}",
+      "name": "GERP",
+      "description": "Compare how Anthropic, Gemini, and OpenAI web search answer and cite for any prompt.",
+      "publisher": { "@id": "https://topicalgravity.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "{{ request.base_url }}#webpage",
+      "url": "{{ request.base_url }}",
+      "name": "GERP — Generative Engine Results Page",
+      "isPartOf": { "@id": "{{ request.url_root }}#website" },
+      "about": { "@id": "{{ request.url_root }}#webapp" },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": "{{ og_image }}" },
+      "inLanguage": "en-US"
+    }
+  ]
+  </script>
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
   <style>

@@ -55,6 +55,20 @@ def _inject_turnstile():
     return {"turnstile_site_key": TURNSTILE_SITE_KEY}
 
 
+# Absolute URL for the social-share (Open Graph / Twitter) image. Hosted on the
+# WordPress media library so it's served from the topicalgravity.com CDN; set
+# the env var (or edit the fallback) to the uploaded file's URL.
+OG_IMAGE = os.environ.get(
+    "GERP_OG_IMAGE",
+    "https://topicalgravity.com/wp-content/uploads/2026/06/gerp_og.png",
+)
+
+
+@app.context_processor
+def _inject_site_meta():
+    return {"og_image": OG_IMAGE}
+
+
 def _verify_turnstile() -> bool:
     """Validate the Turnstile token on the current request before spending API
     credits. No secret configured ⇒ checking is disabled (returns True)."""
