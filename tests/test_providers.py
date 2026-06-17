@@ -223,5 +223,69 @@ class TestEnrich(unittest.TestCase):
                          ["https://fresh.com/x", "https://other.com/y"])
 
 
+class TestResolveRedirects(unittest.TestCase):
+    def _gerp(self):
+        from gerp.schema import GERP, SCHEMA_VERSION, ConsideredDoc
+        wrap = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/abc"
+        return GERP(
+            schema_version=SCHEMA_VERSION, provider="gemini", model="m",
+            prompt="p", answer_text="a",
+            citations=[
+                Citation(url=wrap, domain="cited.com", metadata={"confidence": 0.9}),
+                Citation(url="https://direct.com/page", domain="direct.com"),
+            ],
+            considered_not_cited=[
+                ConsideredDoc(url=wrap + "2", domain="other.com"),
+            ],
+        )
+
+    def test_unwraps_redirects_and_preserves_originals(self):
+        from gerp import resolve
+        mapping = {
+            "https://vertexaisearch.cloud.google.com/grounding-api-redirect/abc":
+                "https://www.realsource.com/blog/post",
+            "https://vertexaisearch.cloud.google.com/grounding-api-redirect/abc2":
+                "https://second.com/x",
+        }
+        orig = resolve._resolve_one
+        resolve._resolve_one = lambda url, timeout: mapping.get(url)
+        try:
+            g = resolve.resolve_redirects(self._gerp())
+        finally:
+            resolve._resolve_one = orig
+
+        cit = g.citations[0]
+        self.assertEqual(cit.url, "https://www.realsource.com/blog/post")
+        self.assertEqual(cit.domain, "realsource.com")  # www stripped, recomputed
+        self.assertEqual(cit.metadata["confidence"], 0.9)  # existing meta kept
+        self.assertTrue(cit.metadata["redirect_url"])
+        self.assertEqual(
+            cit.metadata["grounding_url"],
+            "https://vertexaisearch.cloud.google.com/grounding-api-redirect/abc")
+        # Non-redirect citation is untouched.
+        self.assertEqual(g.citations[1].url, "https://direct.com/page")
+        # Considered docs are unwrapped too.
+        self.assertEqual(g.considered_not_cited[0].url, "https://second.com/x")
+
+    def test_failed_lookup_keeps_wrapper(self):
+        from gerp import resolve
+        orig = resolve._resolve_one
+        resolve._resolve_one = lambda url, timeout: None  # every lookup fails
+        try:
+            g = resolve.resolve_redirects(self._gerp())
+        finally:
+            resolve._resolve_one = orig
+        self.assertTrue(g.citations[0].url.startswith(
+            "https://vertexaisearch.cloud.google.com"))
+        self.assertNotIn("grounding_url", g.citations[0].metadata)
+
+    def test_is_redirect(self):
+        from gerp.resolve import _is_redirect
+        self.assertTrue(_is_redirect(
+            "https://vertexaisearch.cloud.google.com/grounding-api-redirect/x"))
+        self.assertFalse(_is_redirect("https://example.com/x"))
+        self.assertFalse(_is_redirect("not a url"))
+
+
 if __name__ == "__main__":
     unittest.main()

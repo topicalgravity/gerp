@@ -251,7 +251,7 @@
       "answer_text": "To optimize a website for citation by AI search engines, it's crucial to shift focus from traditional keyword-based SEO to a strategy that prioritizes semantic understanding, content clarity, and technical accessibility for AI models. AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.\n\nHere's a breakdown of how to optimize your website:\n\n**1. Technical AI SEO Foundations**\n\n*   **AI Crawler Accessibility:** Ensure AI bots like GPTBot and ClaudeBot can easily access and read your site without encountering blocks or errors. These crawlers can be less advanced than Googlebot, so clean architecture, error-free delivery, and machine-friendly markup are essential.\n*   **Site Speed and Performance:** Fast-loading and mobile-friendly websites are crucial. Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.\n*   **Crawlability and Indexation:** Adhere to crawling best practices to maximize your site's visibility. Google Search's generative AI models utilize publicly accessible, crawlable content to learn patterns and generate grounded responses.\n\n**2. Structured Data and Semantic Understanding**\n\n*   **Implement Schema Markup (JSON-LD):** Structured data is paramount for AI search. It translates your content into a machine-readable language, helping AI systems understand exactly what information is on your page, its meaning, and relationships between entities. Prioritize schema types like FAQPage, HowTo, Product, Service, Article, Organization, LocalBusiness, and Review. Pages with correct schema can see significantly more rich-result impressions.\n*   **Entity Presence & Contextual Authority:** Clearly define entities (people, places, things, concepts) within your content. This helps AI link your information to a global knowledge graph and understand the context, reducing ambiguity.\n*   **Consistent Data:** Maintain consistency across your structured data, website content, and other online profiles (e.g., Google Business Profile) to reinforce trust signals for AI.\n\n**3. Content Quality and Structure for AI Consumption**\n\n*   **Topical Authority and Depth:** Become an expert in your niche. AI models favor sources that consistently provide comprehensive and in-depth content around specific subjects. Create content clusters by linking related articles to demonstrate your site as an authoritative hub.\n*   **\"Answer-First\" Framework and Clarity:** AI search engines synthesize responses from various sources. Structure your content with clear, direct, and declarative answers to common user questions, often at the beginning of sections or pages. Use concise language and avoid jargon.\n*   **Modular Formatting:** Break down your content into easily digestible \"chunks\" or \"passages\" using clear headings (H1, H2, H3), bullet points, numbered lists, and tables. This makes it easier for AI to extract and synthesize specific information.\n*   **Natural Language and User Intent:** Write in a conversational style, anticipating user questions and providing comprehensive answers that address underlying needs. AI search excels at understanding nuanced and longer, conversational queries. Incorporate question-and-answer formats (like FAQs).\n*   **E-E-A-T (Experience, Expertise, Authoritativeness, and Trustworthiness):** AI systems heavily prioritize content that demonstrates high E-E-A-T. Back up claims with data, cite credible sources, include author bios with credentials, and regularly update information to maintain factual accuracy.\n*   **Non-Commodity Content:** Focus on creating unique, valuable, and expert-led content that goes beyond common knowledge. AI is adept at detecting thin or rehashed content.\n\n**4. Continuous Monitoring and Adaptation**\n\n*   **Monitor AI Visibility:** Track how frequently and accurately your brand is referenced in AI-generated responses for key industry terms. Manually test prompts in popular AI interfaces and monitor changes in zero-click metrics and referral traffic from AI platforms.\n*   **Stay Updated:** The AI search landscape is rapidly evolving. Continuously monitor AI search trends and adapt your strategies accordingly.\n\nBy implementing these strategies, you can significantly improve your website's chances of being understood, trusted, and cited by AI search engines, ensuring your brand remains visible in the evolving digital landscape.",
       "citations": [
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWAFOir92_1oD7M6jLc0m6L6WsdiZGFwFPtFOwdI8NjoOGQlNI_R4tvXCDfB8UGmO2VrJOTvP-EXVaeIaDZ5gngkblT9Tjve0pnmnpmIeImRpfAcBBlU2HsEGczG2dGs-Bey-_9xiUxYPgVug=",
+          "url": "https://www.usegrowthos.com/blog/technical-ai-seo",
           "title": "usegrowthos.com",
           "domain": "usegrowthos.com",
           "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
@@ -259,11 +259,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWAFOir92_1oD7M6jLc0m6L6WsdiZGFwFPtFOwdI8NjoOGQlNI_R4tvXCDfB8UGmO2VrJOTvP-EXVaeIaDZ5gngkblT9Tjve0pnmnpmIeImRpfAcBBlU2HsEGczG2dGs-Bey-_9xiUxYPgVug="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH4EySv25ZnJ6m7LmtC1PaMdSJYQHDD6w7mLcyWuWMb5L7tpxL8YEUZVIpLmq16Hz1K09Bc5OfM8y5XY9cmIqduciOyVYciBEUfFWObPVFGHWotkKlhNbrWxjSCwdhWMFRqKX4=",
+          "url": "https://wpengine.com/blog/ai-visibility/",
           "title": "wpengine.com",
           "domain": "wpengine.com",
           "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
@@ -271,11 +272,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH4EySv25ZnJ6m7LmtC1PaMdSJYQHDD6w7mLcyWuWMb5L7tpxL8YEUZVIpLmq16Hz1K09Bc5OfM8y5XY9cmIqduciOyVYciBEUfFWObPVFGHWotkKlhNbrWxjSCwdhWMFRqKX4="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHW1oIO5u0UO2xiuG3lMIbEfbDJ90xXSeYViIGQseHJgl0fupiSS5jgXCLgVo0jx7GnbKbUdNffYoHsVODo9Q46jbyGb6cFraBNfBOCx86vKXS0guyGKpOCuNS_5QR9v21IFJZ2gwAGzzZrQ8E8WtZu8dYAWyN3Tg==",
+          "url": "https://www.clickrank.ai/how-ai-search-engines-rank-content/",
           "title": "clickrank.ai",
           "domain": "clickrank.ai",
           "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
@@ -283,11 +285,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHW1oIO5u0UO2xiuG3lMIbEfbDJ90xXSeYViIGQseHJgl0fupiSS5jgXCLgVo0jx7GnbKbUdNffYoHsVODo9Q46jbyGb6cFraBNfBOCx86vKXS0guyGKpOCuNS_5QR9v21IFJZ2gwAGzzZrQ8E8WtZu8dYAWyN3Tg=="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfxv7gidlpwZEIgeicfFRyC2PuRJXM-Lg9cwi8jNzQcJD1qYxTdsvRtSIGoZsbjXrxJ68zMMZ_AzBWaxnk7JrOVhHR1OCu8OLvamNriNn1kWtOPoR472iNYPRy2nIsR9IHn3TlXK_nqwPkS9CkZbs=",
+          "url": "https://visibella.ai/blog/how-ai-search-engines-work",
           "title": "visibella.ai",
           "domain": "visibella.ai",
           "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
@@ -295,11 +298,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfxv7gidlpwZEIgeicfFRyC2PuRJXM-Lg9cwi8jNzQcJD1qYxTdsvRtSIGoZsbjXrxJ68zMMZ_AzBWaxnk7JrOVhHR1OCu8OLvamNriNn1kWtOPoR472iNYPRy2nIsR9IHn3TlXK_nqwPkS9CkZbs="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHz84GNmo2C70uudewHdBPnnK1JOc-EbvrFulFVr7ET_C2XrWO5wt9EVhMPQf__-qS8xgmCoNH9GKqC5VbFPwCs_qlTfZnKLkmMsbJ7VRyOequTX1gC1Sv7O-aNJ-U4LB7pc5hK5pUPVxq",
+          "url": "https://www.onely.com/blog/how-ai-search-works/",
           "title": "onely.com",
           "domain": "onely.com",
           "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
@@ -307,11 +311,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHz84GNmo2C70uudewHdBPnnK1JOc-EbvrFulFVr7ET_C2XrWO5wt9EVhMPQf__-qS8xgmCoNH9GKqC5VbFPwCs_qlTfZnKLkmMsbJ7VRyOequTX1gC1Sv7O-aNJ-U4LB7pc5hK5pUPVxq"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEce24BMCVKlROkxVHuTxP06nh0CnQ5ihOnqrcQIRSGFz8uhMfpp9wVoyDqKe9XIB3R8mSrFPb4rLyzHmUWMfj-FnohxKmqEXcRENYcD7KsExmHwg_6mUKJYZV2l59qbtYplm3FDqzRWglg4-zuks1pq7FWI2PGb0fofXrxSPnNZ4t3cN2_t3E=",
+          "url": "https://www.therankmasters.com/insights/ai-visibility/best-ai-search-engines",
           "title": "therankmasters.com",
           "domain": "therankmasters.com",
           "cited_text": "AI search engines like Google's AI Overviews (Gemini), ChatGPT, and Perplexity AI aim to provide direct, synthesized answers rather than just lists of links, making \"citability\" a key goal.",
@@ -319,11 +324,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEce24BMCVKlROkxVHuTxP06nh0CnQ5ihOnqrcQIRSGFz8uhMfpp9wVoyDqKe9XIB3R8mSrFPb4rLyzHmUWMfj-FnohxKmqEXcRENYcD7KsExmHwg_6mUKJYZV2l59qbtYplm3FDqzRWglg4-zuks1pq7FWI2PGb0fofXrxSPnNZ4t3cN2_t3E="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZG_TrkWfKMpLkUuLAoLNp3gUNzO2aM9Bt9VOwCq1DdIuUiNWUj9YUNVkYXnK-B2L3RBgIASXiZxnzSAdoud2rkVvl5ylPU-_FcslVc2GUA03AUR4q61Oxu5At3VkTOyCUwQXVzKAPDcK56rCD-rqbMw==",
+          "url": "https://www.omnius.so/blog/technical-seo-for-ai-search",
           "title": "omnius.so",
           "domain": "omnius.so",
           "cited_text": "These crawlers can be less advanced than Googlebot, so clean architecture, error-free delivery, and machine-friendly markup are essential.",
@@ -331,11 +337,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZG_TrkWfKMpLkUuLAoLNp3gUNzO2aM9Bt9VOwCq1DdIuUiNWUj9YUNVkYXnK-B2L3RBgIASXiZxnzSAdoud2rkVvl5ylPU-_FcslVc2GUA03AUR4q61Oxu5At3VkTOyCUwQXVzKAPDcK56rCD-rqbMw=="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFT_Y8KI-fx5I5oEUN0JTq6pEHJY8--gcDGZn3LLNfIQmZALzrGivQaqrmZaubDFrVCqt0kQJ2lv-rBfsltAA05YaFvsKItfMIm3pJZtuwQMAXgwUEFxyv4fmGQ1zXL-5aq0enHS2Fms6o=",
+          "url": "https://finch.com/blog/ai-seo-ranking-factors/",
           "title": "finch.com",
           "domain": "finch.com",
           "cited_text": "Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.",
@@ -343,11 +350,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFT_Y8KI-fx5I5oEUN0JTq6pEHJY8--gcDGZn3LLNfIQmZALzrGivQaqrmZaubDFrVCqt0kQJ2lv-rBfsltAA05YaFvsKItfMIm3pJZtuwQMAXgwUEFxyv4fmGQ1zXL-5aq0enHS2Fms6o="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFukhJurxWilJrV_TzIDIsVSAQdW8hZTAaiiGatmfHeRJvY1XGMLkpaYBIqZyU6GExw3jgjTffoR1Ad-e7hNynilAi7anWX6z-Zkk8XGytSI0wSKBUh2kK_l-36aZVtNUrxAeHzKilb8wQsiL6EZlNF",
+          "url": "https://searchengineland.com/technical-seo-geo-460898",
           "title": "searchengineland.com",
           "domain": "searchengineland.com",
           "cited_text": "Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.",
@@ -355,11 +363,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFukhJurxWilJrV_TzIDIsVSAQdW8hZTAaiiGatmfHeRJvY1XGMLkpaYBIqZyU6GExw3jgjTffoR1Ad-e7hNynilAi7anWX6z-Zkk8XGytSI0wSKBUh2kK_l-36aZVtNUrxAeHzKilb8wQsiL6EZlNF"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfJ852P_kLwFdap2cbM9czNxGVLPiIt5eIT9HqfHcmKtHVoO8n0ETqUMe7d3tEwNGyI09SH84bnFdyVGGXJmvxvIxG6ro9KfN8HAhbnmQigqZbAHKkhF0BtafDl5TwD6g=",
+          "url": "https://respona.com/blog/seo-factors/",
           "title": "respona.com",
           "domain": "respona.com",
           "cited_text": "Performance is often a qualifying factor for AI, and a positive user experience sends strong signals to AI algorithms.",
@@ -367,23 +376,25 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfJ852P_kLwFdap2cbM9czNxGVLPiIt5eIT9HqfHcmKtHVoO8n0ETqUMe7d3tEwNGyI09SH84bnFdyVGGXJmvxvIxG6ro9KfN8HAhbnmQigqZbAHKkhF0BtafDl5TwD6g="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVTm-vGXfvJu7GHYlH0r4CHDPR-IkYSoON42V_jEgFF-x_p_fRmZ0Dhx4phgJten5XaIi2qS4DCwGBKVDZnA-O7w4Kbn6MOoMndzHeiEEwd9Nhlagw-tECukuOdKRIY1t0iyAGbbptgfELCdLm6EiZpFyTGXVFw1MHEp1gJd6UFr48kdhWM30=",
+          "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
           "title": "google.com",
-          "domain": "google.com",
+          "domain": "developers.google.com",
           "cited_text": "Google Search's generative AI models utilize publicly accessible, crawlable content to learn patterns and generate grounded responses.",
           "start_index": null,
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVTm-vGXfvJu7GHYlH0r4CHDPR-IkYSoON42V_jEgFF-x_p_fRmZ0Dhx4phgJten5XaIi2qS4DCwGBKVDZnA-O7w4Kbn6MOoMndzHeiEEwd9Nhlagw-tECukuOdKRIY1t0iyAGbbptgfELCdLm6EiZpFyTGXVFw1MHEp1gJd6UFr48kdhWM30="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4GtD4dcycWoEAR0XYetOIGJc0wAIdc5PYR8ccAO-Km-piC8A_Q0h_AFoXEzt7KoysxPQaPzIZOS6Ce9_nPj_KOXlyWv-n8Gw7qyfuYi4xwB-tPDpx7jj6RM-19Pkkh7lwg2Q2AxphPJvHAsW-kXfG",
+          "url": "https://cassieclarkmarketing.com/structured-data-101/",
           "title": "cassieclarkmarketing.com",
           "domain": "cassieclarkmarketing.com",
           "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
@@ -391,11 +402,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4GtD4dcycWoEAR0XYetOIGJc0wAIdc5PYR8ccAO-Km-piC8A_Q0h_AFoXEzt7KoysxPQaPzIZOS6Ce9_nPj_KOXlyWv-n8Gw7qyfuYi4xwB-tPDpx7jj6RM-19Pkkh7lwg2Q2AxphPJvHAsW-kXfG"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHInCVoipCPNAHS8qTCya4vQvwq8W6a-IWbcff_gCv5MXxzZOK_KUa5CYL93pyE7mtU-1-SW2yBUxF0CdHhRWhvMqTaKSane5Q7GGYwMVGD1KWZgIyIzHJhqFqRdEQhK_5oEM9VtbflBEMtw89IjIwa1yUB",
+          "url": "https://wpengine.com/blog/structured-data-for-ai-search/",
           "title": "wpengine.com",
           "domain": "wpengine.com",
           "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
@@ -403,11 +415,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHInCVoipCPNAHS8qTCya4vQvwq8W6a-IWbcff_gCv5MXxzZOK_KUa5CYL93pyE7mtU-1-SW2yBUxF0CdHhRWhvMqTaKSane5Q7GGYwMVGD1KWZgIyIzHJhqFqRdEQhK_5oEM9VtbflBEMtw89IjIwa1yUB"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHS4udtM1jAtS-vB-7XkYk089tunnAxldUju_h4l49N8jvAB_vPr5r02-XacTHW10X1eyjBZYemCgm7f63rqLo7Thk_lkYGZ5zzL0KAp-nfinCTxg65FNMqEeqBVEcvBe3hVDPd3Htzb7H8E4ch5PfuiaZ8BtCo0g=",
+          "url": "https://www.brightedge.com/blog/structured-data-ai-search-era",
           "title": "brightedge.com",
           "domain": "brightedge.com",
           "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
@@ -415,11 +428,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHS4udtM1jAtS-vB-7XkYk089tunnAxldUju_h4l49N8jvAB_vPr5r02-XacTHW10X1eyjBZYemCgm7f63rqLo7Thk_lkYGZ5zzL0KAp-nfinCTxg65FNMqEeqBVEcvBe3hVDPd3Htzb7H8E4ch5PfuiaZ8BtCo0g="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdYAwS2sJkgQV9PVQMyXt0jKz46wg4Jl2kt8TtEZ2fDqU_y39UGTUx0tw0WAeX5VT5rbzUY09U-6-BPqE3T5HlsTX8slwyqKM-p7NmZpj8uyBnkl-uhyKCQgf-kLJ2DCxF2h95oBde9XWOlouMDyDMjYI=",
+          "url": "https://insightland.org/blog/structured-data-ai-search/",
           "title": "insightland.org",
           "domain": "insightland.org",
           "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
@@ -427,11 +441,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdYAwS2sJkgQV9PVQMyXt0jKz46wg4Jl2kt8TtEZ2fDqU_y39UGTUx0tw0WAeX5VT5rbzUY09U-6-BPqE3T5HlsTX8slwyqKM-p7NmZpj8uyBnkl-uhyKCQgf-kLJ2DCxF2h95oBde9XWOlouMDyDMjYI="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1O_IDQ0kXLCyk4Dp8bs7HrPVyK43jAzu_gyRv05pxWTalNFodrtsh6SDDd9yiUoPKRWuRhXN_LE4z_0GJGBBy1zt5Txs1kQzegYDP21t-fclmMuhQUdCUerCgoNVzs3UZ9hUR4Kbkugv_NhvtgsrUWDEIg0M2GbnZ_3bL6Qxt7BkEHJ5u7vwPwhhBoCo=",
+          "url": "https://www.xseek.io/learnings/how-does-structured-data-boost-ai-search-visibility",
           "title": "xseek.io",
           "domain": "xseek.io",
           "cited_text": "Pages with correct schema can see significantly more rich-result impressions.",
@@ -439,11 +454,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1O_IDQ0kXLCyk4Dp8bs7HrPVyK43jAzu_gyRv05pxWTalNFodrtsh6SDDd9yiUoPKRWuRhXN_LE4z_0GJGBBy1zt5Txs1kQzegYDP21t-fclmMuhQUdCUerCgoNVzs3UZ9hUR4Kbkugv_NhvtgsrUWDEIg0M2GbnZ_3bL6Qxt7BkEHJ5u7vwPwhhBoCo="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6jlhcOHsKEo1hJ0oOwD0oIWu5p6XNO_7H9NK-wREb9ddv_v2WGMgSuTmCrM3mRr7FRyQIR9ruEF8umVEFrc7w4jfX4_xrqYaGTjLT2HjwZvypc3BUUBJvVcqaxmejQOB8FX0M892QurXZ0TxMU97xcRt61hti",
+          "url": "https://rkwebsol.com/ranking-factors-for-ai-search-engines/",
           "title": "rkwebsol.com",
           "domain": "rkwebsol.com",
           "cited_text": "This helps AI link your information to a global knowledge graph and understand the context, reducing ambiguity.",
@@ -451,11 +467,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6jlhcOHsKEo1hJ0oOwD0oIWu5p6XNO_7H9NK-wREb9ddv_v2WGMgSuTmCrM3mRr7FRyQIR9ruEF8umVEFrc7w4jfX4_xrqYaGTjLT2HjwZvypc3BUUBJvVcqaxmejQOB8FX0M892QurXZ0TxMU97xcRt61hti"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHABbLZNUH-HFgRpyZ2bUTL-af1UbwHY00ij35AeTfFFqUjySj2yjjWGW2NTOGJwezvKfO_NVkdeY0Kx-uA4dJd1oaRTfNEjrRhVdw7iA8oAOv7cRqpFd_zwZbFQedSxfOoXZy44SSVvIjFJDbtMkENzRoJFV0s47xmuISmUIxnC1a5SXyN",
+          "url": "https://www.20northmarketing.com/blog/best-practices-for-ai-visibility-seo",
           "title": "20northmarketing.com",
           "domain": "20northmarketing.com",
           "cited_text": "This helps AI link your information to a global knowledge graph and understand the context, reducing ambiguity.",
@@ -463,11 +480,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHABbLZNUH-HFgRpyZ2bUTL-af1UbwHY00ij35AeTfFFqUjySj2yjjWGW2NTOGJwezvKfO_NVkdeY0Kx-uA4dJd1oaRTfNEjrRhVdw7iA8oAOv7cRqpFd_zwZbFQedSxfOoXZy44SSVvIjFJDbtMkENzRoJFV0s47xmuISmUIxnC1a5SXyN"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEi_QZXEhuLHvSBk2WzopcLPmetAK6ETwWefBjbPuD7VEcLh8QhUJTP0R_QaoOIIp_HZL_x48e1Mg0YdRQtvQGMv92IzBDimQyWLdf72MKUfyanYFR517e5ZIGS0f6FayDeSA8IVUdKMn5NrXicfM3",
+          "url": "https://www.rioseo.com/blog/optimizing-for-ai-search/",
           "title": "rioseo.com",
           "domain": "rioseo.com",
           "cited_text": "*   **Consistent Data:** Maintain consistency across your structured data, website content, and other online profiles (e.g., Google Business Profile) to reinforce trust signals for AI.",
@@ -475,11 +493,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEi_QZXEhuLHvSBk2WzopcLPmetAK6ETwWefBjbPuD7VEcLh8QhUJTP0R_QaoOIIp_HZL_x48e1Mg0YdRQtvQGMv92IzBDimQyWLdf72MKUfyanYFR517e5ZIGS0f6FayDeSA8IVUdKMn5NrXicfM3"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEz9ycu_ZSphtGViZos5vk8qvI0adbRU6ZqzC4XfF1-yYszRSQKtKdRt8o-Z2m44Mt6ZA_p7x32mGW-4iCcRqRv2U77TYeS37GDvMzOjvFym8VgKyJI6x2jAdE_ueHJ2O9vKLKNTQyTCl2C4vFjVdKfRyT0KODGj8KTbB42FcPA7aTRkN4LyQ==",
+          "url": "https://dagmarmarketing.com/blog/how-to-optimize-website-for-ai-seo-search/",
           "title": "dagmarmarketing.com",
           "domain": "dagmarmarketing.com",
           "cited_text": "Create content clusters by linking related articles to demonstrate your site as an authoritative hub.",
@@ -487,11 +506,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEz9ycu_ZSphtGViZos5vk8qvI0adbRU6ZqzC4XfF1-yYszRSQKtKdRt8o-Z2m44Mt6ZA_p7x32mGW-4iCcRqRv2U77TYeS37GDvMzOjvFym8VgKyJI6x2jAdE_ueHJ2O9vKLKNTQyTCl2C4vFjVdKfRyT0KODGj8KTbB42FcPA7aTRkN4LyQ=="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9UYv_j88UVdtCdW_sWrUgAhWXmi4Mdhsyx9m08YQT9unK1vHhRYeuirQZEbeMA8z0j40tSDbTjG-3xK9DxQ2Q01D7pXFwiNYSzMPerH0fMsJr2GKC5AF3Y2Cvyjga4fUOnFCiNogp1eenpDR5UXX9MpH-Zk4YbJTA4VgfDr1A8mHnb5E4R3_4BcEux45GNxLUOCrPA9U=",
+          "url": "https://www.thegutenberg.com/blog/what-businesses-need-to-know-about-ai-seo-best-practices/",
           "title": "thegutenberg.com",
           "domain": "thegutenberg.com",
           "cited_text": "Create content clusters by linking related articles to demonstrate your site as an authoritative hub.",
@@ -499,11 +519,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9UYv_j88UVdtCdW_sWrUgAhWXmi4Mdhsyx9m08YQT9unK1vHhRYeuirQZEbeMA8z0j40tSDbTjG-3xK9DxQ2Q01D7pXFwiNYSzMPerH0fMsJr2GKC5AF3Y2Cvyjga4fUOnFCiNogp1eenpDR5UXX9MpH-Zk4YbJTA4VgfDr1A8mHnb5E4R3_4BcEux45GNxLUOCrPA9U="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGG4DBrjBbx1kmGCeOt54U1tTZoPBq1FbG0dXkoWKGc3Ex63BF4-RdoP6JKvFI-jRoIijcFbeuHb0ONJJHgIw_ReTTZuv1PXEyATksSJ6EGPx5oKZMfSKKR5ZA0WYfL4vtuzqdH-xZCJ1O3ZIs=",
+          "url": "https://ipullrank.com/technical-seo-for-ai-search",
           "title": "ipullrank.com",
           "domain": "ipullrank.com",
           "cited_text": "Create content clusters by linking related articles to demonstrate your site as an authoritative hub.",
@@ -511,11 +532,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGG4DBrjBbx1kmGCeOt54U1tTZoPBq1FbG0dXkoWKGc3Ex63BF4-RdoP6JKvFI-jRoIijcFbeuHb0ONJJHgIw_ReTTZuv1PXEyATksSJ6EGPx5oKZMfSKKR5ZA0WYfL4vtuzqdH-xZCJ1O3ZIs="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDNFNsOVdKLV5W6S-9nZXn6x7hkwc0tCE0OSsosAGTJqYIO_xGE7ZkP1ZajLOIp6wGQfNT9rvWC3doVjh9jKUjo4MyjI5WTI8G135ZQgpaijEn_ppd4nyGW5Emo7YANjbx",
+          "url": "https://www.verblio.com/blog/ai-search",
           "title": "verblio.com",
           "domain": "verblio.com",
           "cited_text": "Use concise language and avoid jargon.",
@@ -523,11 +545,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDNFNsOVdKLV5W6S-9nZXn6x7hkwc0tCE0OSsosAGTJqYIO_xGE7ZkP1ZajLOIp6wGQfNT9rvWC3doVjh9jKUjo4MyjI5WTI8G135ZQgpaijEn_ppd4nyGW5Emo7YANjbx"
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFza404CJ1DDNIp-0X5KOkuZJta50wmbgQ1YUar1dFq_1itbWK8RBKQb7URy1hjjE8ZhGmaiRAOgHEWnqkqRuqEZfXsCXCX5XNWypYCSc4G-R1oA6CoMHw4lGYWWK8LKTc_gFf3nDW2-ooLe6ebL6DbtH3d7un5f0oCZqZQvfGB4Q==",
+          "url": "https://roirevolution.com/blog/how-to-optimize-for-ai-search-engines/",
           "title": "roirevolution.com",
           "domain": "roirevolution.com",
           "cited_text": "Use concise language and avoid jargon.",
@@ -535,11 +558,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFza404CJ1DDNIp-0X5KOkuZJta50wmbgQ1YUar1dFq_1itbWK8RBKQb7URy1hjjE8ZhGmaiRAOgHEWnqkqRuqEZfXsCXCX5XNWypYCSc4G-R1oA6CoMHw4lGYWWK8LKTc_gFf3nDW2-ooLe6ebL6DbtH3d7un5f0oCZqZQvfGB4Q=="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH01rO4676qysjfkef0TIqfC5Q1jiXVwsLYc_o1P6q83neOCLCoi5x-xkiXXpZHw4ATJFijhODCVX4hFIIgNEAFHnOACkI7XiUyQxEDlES07cv5_cMoYu80iwbcWlpOXjpQbG0J5zS6tTMoULSFEEisSr-MvxmExG1gLOji1gdMf4KUJdw=",
+          "url": "https://elementor.com/blog/how-to-optimize-content-for-ai-search-engines/",
           "title": "elementor.com",
           "domain": "elementor.com",
           "cited_text": "This makes it easier for AI to extract and synthesize specific information.",
@@ -547,11 +571,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH01rO4676qysjfkef0TIqfC5Q1jiXVwsLYc_o1P6q83neOCLCoi5x-xkiXXpZHw4ATJFijhODCVX4hFIIgNEAFHnOACkI7XiUyQxEDlES07cv5_cMoYu80iwbcWlpOXjpQbG0J5zS6tTMoULSFEEisSr-MvxmExG1gLOji1gdMf4KUJdw="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-DAE4gj_6rOhL_mkTWhoTQCHc7ShRmuT4pgV4ShYe8QijZhBoKv-lJxEOZF-NPQI6Qm_avqjhZ88Js88VhW4-jsaaPLJ4bct2kQPtffgFxDn9hiTqlJAklWCq0ZAmIFecBvmF6jr14s3WkIg=",
+          "url": "https://www.softtrix.com/blog/ai-ranking-factors/",
           "title": "softtrix.com",
           "domain": "softtrix.com",
           "cited_text": "Back up claims with data, cite credible sources, include author bios with credentials, and regularly update information to maintain factual accuracy.",
@@ -559,11 +584,12 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-DAE4gj_6rOhL_mkTWhoTQCHc7ShRmuT4pgV4ShYe8QijZhBoKv-lJxEOZF-NPQI6Qm_avqjhZ88Js88VhW4-jsaaPLJ4bct2kQPtffgFxDn9hiTqlJAklWCq0ZAmIFecBvmF6jr14s3WkIg="
           }
         },
         {
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBwNGglknvjybZ4BLkfs_0qTYIsoNaHDJnZiBIEYNAyyvjqDM6hgeVJH117og5f9QB2O3307WTlvu64nZaGhJK3FM0pgCojrYQxmjQLTMG_9Pd5NUq9V8NlrF0QZzOHXA_YpPFA-oWj_HTbtEqmxiTwQkuWd6ny64ipQ==",
+          "url": "https://www.seoclarity.net/blog/understanding-ai-search-engines",
           "title": "seoclarity.net",
           "domain": "seoclarity.net",
           "cited_text": "Manually test prompts in popular AI interfaces and monitor changes in zero-click metrics and referral traffic from AI platforms.",
@@ -571,7 +597,8 @@
           "end_index": null,
           "count": 1,
           "metadata": {
-            "redirect_url": true
+            "redirect_url": true,
+            "grounding_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBwNGglknvjybZ4BLkfs_0qTYIsoNaHDJnZiBIEYNAyyvjqDM6hgeVJH117og5f9QB2O3307WTlvu64nZaGhJK3FM0pgCojrYQxmjQLTMG_9Pd5NUq9V8NlrF0QZzOHXA_YpPFA-oWj_HTbtEqmxiTwQkuWd6ny64ipQ=="
           }
         }
       ],

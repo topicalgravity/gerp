@@ -21,6 +21,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 import gerp as g
 from gerp.considered import enrich, SerpAPIBackend
+from gerp.resolve import resolve_redirects
 from gerp.schema import GERP, ConsideredMethod
 
 app = Flask(__name__)
@@ -342,6 +343,15 @@ def search():
                     enrich(r, backend=backend)
                 except Exception:
                     pass  # enrichment is additive; never fail the run
+
+    # Unwrap Gemini's vertexaisearch redirect URLs to the real source links.
+    # Additive and fail-safe; runs concurrently per result with a timeout.
+    for r in results.values():
+        if isinstance(r, GERP):
+            try:
+                resolve_redirects(r)
+            except Exception:
+                pass
 
     run_id = _new_run_id()
     try:
