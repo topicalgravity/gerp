@@ -241,7 +241,10 @@
     }
 
     @media (max-width: 600px) {
-      .wrap { padding-top: 72px; }
+      /* Sticky footer: body is a column that fills the viewport and the
+         content area grows, pushing the footer to the bottom. */
+      body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+      .wrap { flex: 1 0 auto; padding-top: 72px; }
       .logo { font-size: 52px; letter-spacing: -1px; }
       .providers { flex-wrap: wrap; row-gap: 8px; }
       .footer {
@@ -265,6 +268,7 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
+      padding: 0 24px;
     }
     .working-overlay.active { display: flex; }
     .spinner {
@@ -286,6 +290,8 @@
       color: #202124;
       font-size: 14px;
       font-weight: 500;
+      text-align: center;
+      max-width: 360px;
     }
   </style>
 </head>

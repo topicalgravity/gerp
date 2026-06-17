@@ -294,6 +294,7 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
+      padding: 0 24px;
     }
     .working-overlay.active { display: flex; }
     .spinner {
@@ -315,6 +316,8 @@
       color: #202124;
       font-size: 14px;
       font-weight: 500;
+      text-align: center;
+      max-width: 360px;
     }
 
     /* ── Footer ── */
@@ -474,9 +477,8 @@
             <div class="label">Considered but not cited</div>
             <div class="result-meta" style="color:#80868b; font-size:12px;">
               {% if data.considered_method.value == 'none' %}
-              No considered-set for this run &mdash; this engine doesn&rsquo;t expose
-              its result pool, and fan-out re-run enrichment isn&rsquo;t enabled
-              (needs a SerpAPI key).
+              This engine doesn&rsquo;t expose the full set of sources it
+              considered, so only the sources it cited are shown above.
               {% else %}
               Every source in this engine&rsquo;s result pool was cited in the answer.
               {% endif %}
