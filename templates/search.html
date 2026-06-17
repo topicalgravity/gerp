@@ -9,6 +9,7 @@
   })(window,document,'script','dataLayer','GTM-NZBN72XX');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GERP | Generative Engine Results Page | Topical Gravity</title>
   <meta name="description" content="Run one prompt across Anthropic, Google Gemini, and OpenAI web search at once and compare each engine's AI answer, the fan-out queries it issued, and the sources it cited versus merely considered.">
   <link rel="canonical" href="{{ request.base_url }}">
@@ -90,7 +91,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 160px;
+      padding: 160px 16px 80px;
     }
     .logo {
       font-size: 76px;
@@ -115,7 +116,7 @@
       margin-top: 2px;
       font-weight: normal;
     }
-    form { width: 522px; }
+    form { width: 522px; max-width: 100%; }
     .search-box {
       display: flex;
       border: 1px solid #d9d9d9;
@@ -204,7 +205,8 @@
     }
     .recent {
       margin-top: 36px;
-      width: 522px;
+      width: 100%;
+      max-width: 522px;
       font-size: 13px;
     }
     .recent .label {
@@ -236,6 +238,20 @@
       color: #767676;
       display: flex;
       justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding-top: 72px; }
+      .logo { font-size: 52px; letter-spacing: -1px; }
+      .providers { flex-wrap: wrap; row-gap: 8px; }
+      .footer {
+        position: static;
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+        padding: 12px 16px;
+        font-size: 11px;
+      }
     }
 
     /* ── Working overlay ── */

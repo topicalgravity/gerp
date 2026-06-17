@@ -9,6 +9,7 @@
   })(window,document,'script','dataLayer','GTM-NZBN72XX');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ prompt }} - GERP</title>
   <!-- Run pages are transient (cleared on redeploy) and reflect user queries -->
   <meta name="robots" content="noindex,follow">
@@ -118,7 +119,7 @@
     .tabs {
       display: flex;
       gap: 0;
-      padding: 0 158px;
+      padding: 0 clamp(16px, 12vw, 158px);
       border-bottom: 1px solid #ebebeb;
       margin-top: 0;
     }
@@ -140,7 +141,7 @@
     /* ── Results layout ── */
     .results-wrap {
       display: flex;
-      padding: 0 158px;
+      padding: 0 clamp(16px, 12vw, 158px);
     }
     .results-col {
       max-width: 600px;
@@ -326,6 +327,19 @@
       color: #767676;
       display: flex;
       justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+      .header { gap: 12px; padding: 8px 12px; }
+      .header-logo { font-size: 22px; }
+      .tabs { padding: 0 12px; }
+      .tab { padding: 10px 12px; }
+      .footer {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+        font-size: 11px;
+      }
     }
 
     /* ── Error state ── */
