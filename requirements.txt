@@ -1,5 +1,6 @@
 flask
 flask-limiter
+itsdangerous
 gunicorn
 anthropic
 google-genai

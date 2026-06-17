@@ -65,6 +65,13 @@
       font-size: 14px;
       padding: 0 4px;
     }
+    .free-indicator {
+      margin-left: auto;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: #777;
+      white-space: nowrap;
+    }
 
     /* ── Provider tabs ── */
     .tabs {
@@ -313,6 +320,11 @@
         <button type="submit">&#128269;</button>
       </form>
     </div>
+    {% if not is_owner and free_used >= 1 %}
+    <div class="free-indicator">
+      {{ free_remaining }} free search{{ 'es' if free_remaining != 1 else '' }} left
+    </div>
+    {% endif %}
   </div>
 
   <!-- Provider tabs -->

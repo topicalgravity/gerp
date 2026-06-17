@@ -116,6 +116,12 @@
       display: flex;
       justify-content: center;
     }
+    .free-remaining {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+    }
     .error {
       color: #d93025;
       font-size: 13px;
@@ -229,6 +235,16 @@
         <button type="submit" class="btn btn-primary">GERP Search</button>
         <button type="button" class="btn" onclick="this.form.reset()">Clear</button>
       </div>
+
+      {% if not is_owner and free_used >= 1 %}
+      <div class="free-remaining">
+        {% if free_remaining > 0 %}
+          {{ free_remaining }} free search{{ 'es' if free_remaining != 1 else '' }} remaining
+        {% else %}
+          You've used all {{ free_limit }} free searches
+        {% endif %}
+      </div>
+      {% endif %}
     </form>
 
     {% if recent %}

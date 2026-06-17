@@ -14,9 +14,14 @@ services:
         sync: false
       - key: OPENAI_API_KEY
         sync: false
-      # Shared secret: requests need ?key=<value> once (then cookied).
-      # Without this, anyone who finds the URL spends your API credits.
+      # Owner bypass: visit once with ?key=<value> to be exempt from the free
+      # quota (unlimited searches). The app is otherwise public.
       - key: GERP_PASSWORD
+        sync: false
+      # Signs the free-search quota cookie. Set a stable random value so the
+      # count survives restarts; if it changes, every visitor's free count
+      # resets (harmless, just more generous).
+      - key: GERP_SECRET_KEY
         sync: false
       # Enables the Gemini considered-set (fan-out rerun via SerpAPI).
       - key: SERPAPI_API_KEY

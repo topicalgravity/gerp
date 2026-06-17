@@ -5,15 +5,18 @@ from __future__ import annotations
 import json
 import os
 import secrets
+import time
 import urllib.parse
 import urllib.request
 import datetime as _dt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from flask import Flask, abort, redirect, render_template, request, url_for
+from flask import (Flask, abort, make_response, redirect, render_template,
+                   request, url_for)
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from itsdangerous import BadSignature, URLSafeSerializer
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 import gerp as g
@@ -78,19 +81,83 @@ def _verify_turnstile() -> bool:
 # of the whole request dying as an unstyled 502.
 PROVIDER_TIMEOUT = 150
 
-# Optional shared-secret protection for deployed instances: set GERP_PASSWORD
-# and every request must carry ?key=<password> (or a previously set cookie).
+# ── Owner bypass + free-search quota ─────────────────────────────────────
+# The app is public. Anonymous visitors get FREE_LIMIT searches, counted in a
+# tamper-proof signed cookie with an in-memory per-IP tally as a soft
+# cross-check. GERP_PASSWORD is no longer a gate — it's the owner's unlimited
+# bypass: visit once with ?key=<password> and you're exempt from the quota.
 PASSWORD = os.environ.get("GERP_PASSWORD")
+FREE_LIMIT = 3
+# The quota is a rolling window: a visitor gets FREE_LIMIT searches, and the
+# count resets FREE_WINDOW after the window's *first* search (not the latest),
+# so 7 days after someone starts using GERP they get a fresh allowance.
+FREE_WINDOW = 7 * 24 * 3600
+
+# Signing key for the quota cookie. Set GERP_SECRET_KEY in prod so the count
+# survives restarts; the generated fallback just means everyone's free count
+# resets on each deploy (acceptable — the quota is soft identity by design).
+_SECRET = os.environ.get("GERP_SECRET_KEY") or secrets.token_hex(32)
+app.secret_key = _SECRET
+_quota_signer = URLSafeSerializer(_SECRET, salt="gerp-free-quota")
+FREE_COOKIE = "gerp_free"
+
+# Per-IP fallback tally: catches a visitor clearing the cookie within one
+# window. Maps ip -> (count, window_start_epoch). In-memory and best-effort —
+# persistent counting waits for the Stage 3 SQLite-on-a-disk work.
+_ip_free_used: dict[str, tuple[int, float]] = {}
 
 
-@app.before_request
-def _check_password():
+def _is_owner() -> bool:
     if not PASSWORD:
-        return None
+        return False
     supplied = request.args.get("key") or request.cookies.get("gerp_key")
-    if secrets.compare_digest(supplied or "", PASSWORD):
-        return None
-    abort(401)
+    return secrets.compare_digest(supplied or "", PASSWORD)
+
+
+def _window_active(ts: float) -> bool:
+    return (time.time() - ts) < FREE_WINDOW
+
+
+def _cookie_state() -> tuple[int, float]:
+    """(used, window_start) from the signed cookie. A missing, tampered, or
+    expired-window cookie reads as a fresh (0, now)."""
+    raw = request.cookies.get(FREE_COOKIE)
+    if raw:
+        try:
+            n, ts = _quota_signer.loads(raw)
+            n, ts = int(n), float(ts)
+            if n >= 0 and _window_active(ts):
+                return n, ts
+        except (BadSignature, ValueError, TypeError):
+            pass
+    return 0, time.time()
+
+
+def _ip_state() -> tuple[int, float]:
+    rec = _ip_free_used.get(get_remote_address())
+    if rec and _window_active(rec[1]):
+        return rec
+    return 0, time.time()
+
+
+def _free_used() -> int:
+    """Free searches spent in the current window: the larger of the signed
+    cookie and the per-IP tally, so clearing the cookie doesn't reset it."""
+    return max(_cookie_state()[0], _ip_state()[0])
+
+
+def _bump_free(resp, prior_used: int) -> None:
+    """Record one more free search on both the cookie and the IP tally,
+    preserving the window's start so the reset clock isn't pushed back."""
+    cookie_n, cookie_ts = _cookie_state()
+    ip_n, ip_ts = _ip_state()
+    # Anchor the window at the earliest active start we have; if neither is
+    # active this is a fresh window starting now.
+    ts = min(cookie_ts, ip_ts) if (cookie_n or ip_n) else time.time()
+    new = prior_used + 1
+    resp.set_cookie(FREE_COOKIE, _quota_signer.dumps([new, ts]),
+                    max_age=FREE_WINDOW, httponly=True, samesite="Lax")
+    _ip_free_used[get_remote_address()] = (max(ip_n, new), ts)
 
 
 @app.after_request
@@ -100,13 +167,15 @@ def _set_password_cookie(resp):
     return resp
 
 
-@app.errorhandler(401)
-def _unauthorized(e):
-    return render_template(
-        "error.html", title="Access key required",
-        detail="This GERP instance is private. Enter the access key to continue "
-               "(it only needs to be entered once per browser).",
-        show_key_form=True), 401
+@app.context_processor
+def _inject_quota():
+    """Expose quota state to every template (home counter, results indicator)."""
+    if _is_owner():
+        return {"is_owner": True, "free_used": 0,
+                "free_remaining": None, "free_limit": FREE_LIMIT}
+    used = _free_used()
+    return {"is_owner": False, "free_used": used,
+            "free_remaining": max(0, FREE_LIMIT - used), "free_limit": FREE_LIMIT}
 
 
 @app.errorhandler(404)
@@ -206,6 +275,19 @@ def search():
         return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
                                recent=_demo_runs(),
                                error="Couldn't verify you're human — please try again.")
+
+    # Free-search quota (owners with a valid key are exempt). Checked before
+    # any provider call so an out-of-quota visitor never spends credits.
+    owner = _is_owner()
+    used = 0 if owner else _free_used()
+    if not owner and used >= FREE_LIMIT:
+        return render_template(
+            "error.html", title=f"You've used your {FREE_LIMIT} free searches",
+            detail="Thanks for trying GERP! Paid access for more searches is "
+                   "coming soon. Check back shortly — and in the meantime your "
+                   "earlier results are still reachable by their links.",
+            show_key_form=False), 402
+
     if not prompt:
         return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
                                recent=_demo_runs(), error="Enter a prompt.")
@@ -250,16 +332,23 @@ def search():
     run_id = _new_run_id()
     try:
         _save_run(run_id, prompt, results)
+        # Redirect-after-POST: refreshing the results page never re-spends
+        # API credits, and the URL is shareable.
+        resp = redirect(url_for("show_run", run_id=run_id))
     except OSError:
         # Disk unavailable: still show the results we paid for, just not
         # as a shareable saved run.
         ordered = {p: results[p] for p in sorted(g.PROVIDERS.keys())
                    if p in results}
-        return render_template("results.html", prompt=prompt, results=ordered,
-                               providers=sorted(g.PROVIDERS.keys()))
-    # Redirect-after-POST: refreshing the results page never re-spends
-    # API credits, and the URL is shareable.
-    return redirect(url_for("show_run", run_id=run_id))
+        resp = make_response(render_template(
+            "results.html", prompt=prompt, results=ordered,
+            providers=sorted(g.PROVIDERS.keys())))
+
+    # Count this search against the free quota (after it succeeded, so failed
+    # validations above never burn a free search).
+    if not owner:
+        _bump_free(resp, used)
+    return resp
 
 
 @app.route("/r/<run_id>")
