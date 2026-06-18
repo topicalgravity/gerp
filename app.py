@@ -283,6 +283,11 @@ def _demo_runs(limit: int = 10) -> list[dict]:
     return runs[:limit]
 
 
+@app.route("/favicon.ico")
+def favicon():
+    return redirect(url_for("static", filename="favicon.ico"), 301)
+
+
 @app.route("/")
 def index():
     return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
