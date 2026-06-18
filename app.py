@@ -26,11 +26,12 @@ from gerp.schema import GERP, ConsideredMethod
 
 app = Flask(__name__)
 
-# The app is served via Cloudflare → Render LB → gunicorn (two proxy hops).
-# ProxyFix with x_for=2 makes Werkzeug unwrap both hops from X-Forwarded-For.
-# We also check CF-Connecting-IP first (Cloudflare's authoritative client-IP
-# header), which is more reliable than counting XFF hops.
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2, x_proto=1, x_host=1)
+# Render LB sits in front of gunicorn and sets X-Forwarded-For to the
+# connecting client IP (Cloudflare's edge IP when behind Cloudflare, or the
+# real client IP for direct traffic). x_for=1 unwraps that single hop.
+# CF-Connecting-IP (see _real_ip) is the authoritative source when Cloudflare
+# is in the chain and is used directly instead of relying on XFF counting.
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
 
 
 def _real_ip() -> str:
