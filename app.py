@@ -26,10 +26,19 @@ from gerp.schema import GERP, ConsideredMethod
 
 app = Flask(__name__)
 
-# Render (and most PaaS) sit behind a proxy, so the client IP arrives in
-# X-Forwarded-For; without this, get_remote_address() and the per-IP rate
-# limiter would see the single proxy IP and lump every visitor together.
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+# The app is served via Cloudflare → Render LB → gunicorn (two proxy hops).
+# ProxyFix with x_for=2 makes Werkzeug unwrap both hops from X-Forwarded-For.
+# We also check CF-Connecting-IP first (Cloudflare's authoritative client-IP
+# header), which is more reliable than counting XFF hops.
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2, x_proto=1, x_host=1)
+
+
+def _real_ip() -> str:
+    """Real client IP: CF-Connecting-IP is set by Cloudflare and is always
+    the actual visitor's IP. Fall back to the ProxyFix-adjusted remote addr
+    for local dev or direct-to-Render traffic."""
+    return request.headers.get("CF-Connecting-IP") or get_remote_address()
+
 
 RUNS_DIR = Path(os.environ.get("GERP_RUNS_DIR", Path(__file__).parent / "runs"))
 
@@ -40,7 +49,7 @@ DEMO_DIR = Path(__file__).parent / "demo"
 # Per-IP rate limit on /search as a backstop to Turnstile: caps how fast a
 # single IP can burn API credits even if it gets past the bot check. In-memory
 # storage is fine for one gunicorn worker; move to Redis if scaling out.
-limiter = Limiter(get_remote_address, app=app, storage_uri="memory://")
+limiter = Limiter(_real_ip, app=app, storage_uri="memory://")
 
 # Cloudflare Turnstile (invisible bot check). Verification is skipped when the
 # secret key isn't set, so local dev works with no Cloudflare account.
@@ -81,7 +90,7 @@ def _verify_turnstile() -> bool:
     data = urllib.parse.urlencode({
         "secret": TURNSTILE_SECRET_KEY,
         "response": token,
-        "remoteip": get_remote_address(),
+        "remoteip": _real_ip(),
     }).encode()
     try:
         with urllib.request.urlopen(TURNSTILE_VERIFY_URL, data=data, timeout=10) as resp:
@@ -149,7 +158,7 @@ def _cookie_state() -> tuple[int, float]:
 
 
 def _ip_state() -> tuple[int, float]:
-    rec = _ip_free_used.get(get_remote_address())
+    rec = _ip_free_used.get(_real_ip())
     if rec and _window_active(rec[1]):
         return rec
     return 0, time.time()
@@ -172,7 +181,7 @@ def _bump_free(resp, prior_used: int) -> None:
     new = prior_used + 1
     resp.set_cookie(FREE_COOKIE, _quota_signer.dumps([new, ts]),
                     max_age=FREE_WINDOW, httponly=True, samesite="Lax")
-    _ip_free_used[get_remote_address()] = (max(ip_n, new), ts)
+    _ip_free_used[_real_ip()] = (max(ip_n, new), ts)
 
 
 @app.after_request
