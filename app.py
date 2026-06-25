@@ -82,8 +82,9 @@ def _inject_site_meta():
 
 def _verify_turnstile() -> bool:
     """Validate the Turnstile token on the current request before spending API
-    credits. No secret configured ⇒ checking is disabled (returns True)."""
-    if not TURNSTILE_SECRET_KEY:
+    credits. Checking is disabled unless BOTH keys are set — if only one is
+    configured the widget won't render and every submission would fail."""
+    if not TURNSTILE_SECRET_KEY or not TURNSTILE_SITE_KEY:
         return True
     token = request.form.get("cf-turnstile-response", "")
     if not token:
