@@ -96,7 +96,10 @@ def _verify_turnstile() -> bool:
     }).encode()
     try:
         with urllib.request.urlopen(TURNSTILE_VERIFY_URL, data=data, timeout=10) as resp:
-            return bool(json.loads(resp.read()).get("success"))
+            result = json.loads(resp.read())
+        if not result.get("success"):
+            app.logger.warning("Turnstile rejected: %s", result.get("error-codes"))
+        return bool(result.get("success"))
     except Exception:
         # Don't let a Cloudflare hiccup hard-fail the search; the rate limiter
         # still bounds the downside.

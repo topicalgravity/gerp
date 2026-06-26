@@ -375,8 +375,20 @@
   {% endif %}
   <script>
     document.querySelectorAll('form[action="/search"]').forEach(f =>
-      f.addEventListener('submit', () =>
-        document.getElementById('working').classList.add('active')));
+      f.addEventListener('submit', function(e) {
+        {% if turnstile_site_key %}
+        const token = this.querySelector('[name="cf-turnstile-response"]');
+        if (!token || !token.value) {
+          e.preventDefault();
+          const err = this.querySelector('.error-msg') || document.createElement('p');
+          err.className = 'error-msg';
+          err.textContent = 'Security check loading — please try again in a moment.';
+          this.prepend(err);
+          return;
+        }
+        {% endif %}
+        document.getElementById('working').classList.add('active');
+      }));
   </script>
 </body>
 </html>
