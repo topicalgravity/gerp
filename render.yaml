@@ -2,12 +2,27 @@ services:
   - type: web
     name: gerp
     runtime: python
+    # Persistent disks require a paid instance; the disk holds the SQLite
+    # store (account requests/approvals) and saved runs, so both survive
+    # deploys. Note: a disk-attached service can't scale past one instance
+    # and loses zero-downtime deploys (brief blip per deploy — acceptable).
+    plan: starter
     buildCommand: pip install -r requirements.txt
     # Web-search runs take 30-60s+; gunicorn's default 30s worker timeout
     # kills them mid-request (502). Threads let one worker serve other
     # requests while a search is in flight.
-    startCommand: gunicorn app:app --timeout 300 --workers 1 --threads 8
+    startCommand: gunicorn app:app --timeout 420 --workers 1 --threads 8
+    disk:
+      name: gerp-data
+      mountPath: /var/data
+      sizeGB: 1
     envVars:
+      # SQLite store lives on the persistent disk.
+      - key: GERP_DATA_DIR
+        value: /var/data
+      # Saved runs on the disk too — shared run links survive redeploys.
+      - key: GERP_RUNS_DIR
+        value: /var/data/runs
       - key: ANTHROPIC_API_KEY
         sync: false
       - key: GEMINI_API_KEY
@@ -31,4 +46,25 @@ services:
       - key: TURNSTILE_SITE_KEY
         sync: false
       - key: TURNSTILE_SECRET_KEY
+        sync: false
+      # Magic-link sign-in email via the Resend HTTP API. Without RESEND_API_KEY
+      # the link is logged to stdout instead of sent — so set it in prod. The
+      # from-address domain must be verified in Resend (SPF/DKIM DNS records).
+      - key: RESEND_API_KEY
+        sync: false
+      - key: GERP_FROM_EMAIL
+        sync: false
+      # Where "Request an account" submissions are emailed. Env-only on
+      # purpose: the owner's address never appears in templates or page source.
+      - key: GERP_ACCOUNT_REQUEST_TO
+        sync: false
+      # Bootstrap/override approvals (comma-separated, case-insensitive).
+      # Day-to-day approvals happen via the one-click link in the request
+      # email (stored in SQLite on the disk); this env list is a manual
+      # override. Keep at least the owner's email here: with NO env list AND
+      # an empty store, sign-in is open (fresh-checkout dev escape hatch).
+      - key: GERP_APPROVED_EMAILS
+        sync: false
+      # Emails exempt from the frontier quota (comma-separated).
+      - key: GERP_FRONTIER_ALLOWLIST
         sync: false

@@ -30,13 +30,23 @@ class GeminiProvider(BaseProvider):
         except ImportError as e:
             raise ProviderError("pip install google-genai") from e
 
+        cfg_kwargs = {"tools": [types.Tool(google_search=types.GoogleSearch())]}
+        # Optional tier seam: the frontier tier can dial reasoning depth via a
+        # thinking_level kwarg (Gemini 3.x). The registry leaves it unset today
+        # (3.x defaults to a high thinking level), so this is inert unless a
+        # tier opts in; guarded so it degrades gracefully on older SDKs.
+        level = kwargs.get("thinking_level")
+        if level and hasattr(types, "ThinkingConfig"):
+            try:
+                cfg_kwargs["thinking_config"] = types.ThinkingConfig(thinking_level=level)
+            except (TypeError, ValueError):
+                pass
+
         client = genai.Client(api_key=self.api_key)
         resp = client.models.generate_content(
             model=self.model,
             contents=prompt,
-            config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search=types.GoogleSearch())],
-            ),
+            config=types.GenerateContentConfig(**cfg_kwargs),
         )
         return self._parse(prompt, resp)
 

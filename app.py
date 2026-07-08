@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import os
 import secrets
-import time
 import urllib.parse
 import urllib.request
 import datetime as _dt
@@ -13,18 +12,22 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from flask import (Flask, abort, make_response, redirect, render_template,
-                   request, url_for)
+                   request, session, url_for)
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from itsdangerous import BadSignature, URLSafeSerializer
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 import gerp as g
 from gerp.considered import enrich, SerpAPIBackend
 from gerp.resolve import resolve_redirects
 from gerp.schema import GERP, ConsideredMethod
+from gerp.tiers import resolve_tier, tier_config, model_label
+from quota import Quota
 
 app = Flask(__name__)
+
+# Friendly model label ("Opus 4.8") for the results-page chip.
+app.jinja_env.filters["model_label"] = model_label
 
 # Render LB sits in front of gunicorn and sets X-Forwarded-For to the
 # connecting client IP (Cloudflare's edge IP when behind Cloudflare, or the
@@ -105,10 +108,13 @@ def _verify_turnstile() -> bool:
         # still bounds the downside.
         return True
 
-# Hard cap per search request, comfortably under gunicorn's 300s worker
-# timeout: a hung provider becomes a per-provider error in its tab instead
-# of the whole request dying as an unstyled 502.
+# Hard cap per search request, comfortably under gunicorn's worker timeout: a
+# hung provider becomes a per-provider error in its tab instead of the whole
+# request dying as an unstyled 502. Frontier (reasoning) models are much
+# slower, so they get a longer cap — gunicorn's --timeout in render.yaml is
+# raised to stay comfortably above FRONTIER_TIMEOUT.
 PROVIDER_TIMEOUT = 150
+FRONTIER_TIMEOUT = 240
 
 # ── Owner bypass + free-search quota ─────────────────────────────────────
 # The app is public. Anonymous visitors get FREE_LIMIT searches, counted in a
@@ -117,23 +123,32 @@ PROVIDER_TIMEOUT = 150
 # bypass: visit once with ?key=<password> and you're exempt from the quota.
 PASSWORD = os.environ.get("GERP_PASSWORD")
 FREE_LIMIT = 3
-# The quota is a rolling window: a visitor gets FREE_LIMIT searches, and the
-# count resets FREE_WINDOW after the window's *first* search (not the latest),
-# so 7 days after someone starts using GERP they get a fresh allowance.
+# Signed-in users get a frontier allowance too — frontier searches run ~$1+
+# each, so they're quota'd (not free-for-all) until Stripe lands in Stage 3.
+FRONTIER_LIMIT = 3
+# The quota is a rolling window: a visitor gets `limit` searches, and the count
+# resets WINDOW after the window's *first* search (not the latest), so 7 days
+# after someone starts using GERP they get a fresh allowance.
 FREE_WINDOW = 7 * 24 * 3600
 
-# Signing key for the quota cookie. Set GERP_SECRET_KEY in prod so the count
-# survives restarts; the generated fallback just means everyone's free count
-# resets on each deploy (acceptable — the quota is soft identity by design).
+# Signing key for the quota cookies. Set GERP_SECRET_KEY in prod so the counts
+# survive restarts; the generated fallback just means everyone's counts reset
+# on each deploy (acceptable — the quota is soft identity by design).
 _SECRET = os.environ.get("GERP_SECRET_KEY") or secrets.token_hex(32)
 app.secret_key = _SECRET
-_quota_signer = URLSafeSerializer(_SECRET, salt="gerp-free-quota")
-FREE_COOKIE = "gerp_free"
 
-# Per-IP fallback tally: catches a visitor clearing the cookie within one
-# window. Maps ip -> (count, window_start_epoch). In-memory and best-effort —
-# persistent counting waits for the Stage 3 SQLite-on-a-disk work.
-_ip_free_used: dict[str, tuple[int, float]] = {}
+# Two rolling-window quotas sharing one implementation (quota.py): the anonymous
+# free tier keyed by client IP, and the signed-in frontier tier keyed by email.
+_free_quota = Quota(_SECRET, "gerp-free-quota", "gerp_free", FREE_LIMIT, FREE_WINDOW)
+_frontier_quota = Quota(_SECRET, "gerp-frontier-quota", "gerp_frontier",
+                        FRONTIER_LIMIT, FREE_WINDOW)
+
+# Emails with unlimited frontier access (Ryan + testers), comma-separated.
+FRONTIER_ALLOWLIST = {
+    e.strip().lower()
+    for e in os.environ.get("GERP_FRONTIER_ALLOWLIST", "").split(",")
+    if e.strip()
+}
 
 
 def _is_owner() -> bool:
@@ -143,50 +158,34 @@ def _is_owner() -> bool:
     return secrets.compare_digest(supplied or "", PASSWORD)
 
 
-def _window_active(ts: float) -> bool:
-    return (time.time() - ts) < FREE_WINDOW
+def _current_email() -> str | None:
+    return session.get("email")
 
 
-def _cookie_state() -> tuple[int, float]:
-    """(used, window_start) from the signed cookie. A missing, tampered, or
-    expired-window cookie reads as a fresh (0, now)."""
-    raw = request.cookies.get(FREE_COOKIE)
-    if raw:
-        try:
-            n, ts = _quota_signer.loads(raw)
-            n, ts = int(n), float(ts)
-            if n >= 0 and _window_active(ts):
-                return n, ts
-        except (BadSignature, ValueError, TypeError):
-            pass
-    return 0, time.time()
+def _frontier_entitled() -> bool:
+    """Who may run the frontier tier at all: the owner, or any signed-in user."""
+    return _is_owner() or bool(_current_email())
 
 
-def _ip_state() -> tuple[int, float]:
-    rec = _ip_free_used.get(_real_ip())
-    if rec and _window_active(rec[1]):
-        return rec
-    return 0, time.time()
+def _frontier_unlimited() -> bool:
+    """Who bypasses the frontier quota: the owner and allowlisted emails."""
+    return _is_owner() or (_current_email() or "").lower() in FRONTIER_ALLOWLIST
 
 
 def _free_used() -> int:
-    """Free searches spent in the current window: the larger of the signed
-    cookie and the per-IP tally, so clearing the cookie doesn't reset it."""
-    return max(_cookie_state()[0], _ip_state()[0])
+    return _free_quota.used(request, _real_ip())
 
 
 def _bump_free(resp, prior_used: int) -> None:
-    """Record one more free search on both the cookie and the IP tally,
-    preserving the window's start so the reset clock isn't pushed back."""
-    cookie_n, cookie_ts = _cookie_state()
-    ip_n, ip_ts = _ip_state()
-    # Anchor the window at the earliest active start we have; if neither is
-    # active this is a fresh window starting now.
-    ts = min(cookie_ts, ip_ts) if (cookie_n or ip_n) else time.time()
-    new = prior_used + 1
-    resp.set_cookie(FREE_COOKIE, _quota_signer.dumps([new, ts]),
-                    max_age=FREE_WINDOW, httponly=True, samesite="Lax")
-    _ip_free_used[_real_ip()] = (max(ip_n, new), ts)
+    _free_quota.bump(resp, request, _real_ip(), prior_used)
+
+
+def _frontier_used() -> int:
+    return _frontier_quota.used(request, (_current_email() or "").lower())
+
+
+def _bump_frontier(resp, prior_used: int) -> None:
+    _frontier_quota.bump(resp, request, (_current_email() or "").lower(), prior_used)
 
 
 @app.after_request
@@ -198,13 +197,27 @@ def _set_password_cookie(resp):
 
 @app.context_processor
 def _inject_quota():
-    """Expose quota state to every template (home counter, results indicator)."""
-    if _is_owner():
-        return {"is_owner": True, "free_used": 0,
-                "free_remaining": None, "free_limit": FREE_LIMIT}
-    used = _free_used()
-    return {"is_owner": False, "free_used": used,
-            "free_remaining": max(0, FREE_LIMIT - used), "free_limit": FREE_LIMIT}
+    """Expose quota state to every template (home counter, results indicator,
+    frontier remaining line, and whether the frontier tier is usable)."""
+    owner = _is_owner()
+    ctx = {"is_owner": owner,
+           "frontier_entitled": _frontier_entitled(),
+           "frontier_unlimited": _frontier_unlimited(),
+           "frontier_limit": FRONTIER_LIMIT}
+    if owner:
+        ctx.update(free_used=0, free_remaining=None, free_limit=FREE_LIMIT)
+    else:
+        used = _free_used()
+        ctx.update(free_used=used, free_remaining=max(0, FREE_LIMIT - used),
+                   free_limit=FREE_LIMIT)
+    # Frontier remaining line for signed-in, non-unlimited users.
+    if _current_email() and not ctx["frontier_unlimited"]:
+        f_used = _frontier_used()
+        ctx.update(frontier_used=f_used,
+                   frontier_remaining=max(0, FRONTIER_LIMIT - f_used))
+    else:
+        ctx.update(frontier_used=0, frontier_remaining=None)
+    return ctx
 
 
 @app.errorhandler(404)
@@ -242,12 +255,13 @@ def _new_run_id() -> str:
     return f"{ts}-{secrets.token_hex(3)}"
 
 
-def _save_run(run_id: str, prompt: str, results: dict) -> None:
+def _save_run(run_id: str, prompt: str, results: dict, tier: str = "standard") -> None:
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
         "id": run_id,
         "prompt": prompt,
         "created_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+        "tier": tier,
         "results": {
             p: (r.to_dict() if isinstance(r, GERP) else r)
             for p, r in results.items()
@@ -310,17 +324,44 @@ def search():
                                recent=_demo_runs(),
                                error="Couldn't verify you're human — please try again.")
 
-    # Free-search quota (owners with a valid key are exempt). Checked before
-    # any provider call so an out-of-quota visitor never spends credits.
     owner = _is_owner()
-    used = 0 if owner else _free_used()
-    if not owner and used >= FREE_LIMIT:
-        return render_template(
-            "error.html", title=f"You've used your {FREE_LIMIT} free searches",
-            detail="Thanks for trying GERP! Paid access for more searches is "
-                   "coming soon. Check back shortly — and in the meantime your "
-                   "earlier results are still reachable by their links.",
-            show_key_form=False), 402
+
+    # Which model tier to run. A stale/hostile form value resolves to standard.
+    # Frontier is entitled to the owner and any signed-in user; anyone else is
+    # silently downgraded so a stale form never errors.
+    tier = resolve_tier(request.form.get("tier"))
+    if tier == "frontier" and not _frontier_entitled():
+        tier = "standard"
+
+    # Quota check before any provider call, so an out-of-quota request never
+    # spends credits. Frontier runs draw from the per-email frontier quota
+    # (unless owner/allowlisted); standard runs draw from the anonymous free
+    # quota (unless owner). Track the prior count so the post-run bump preserves
+    # the window start.
+    used = 0            # free-tier searches spent this window
+    f_used = 0          # frontier searches spent this window
+    if tier == "frontier":
+        if not _frontier_unlimited():
+            f_used = _frontier_used()
+            if f_used >= FRONTIER_LIMIT:
+                return render_template(
+                    "error.html",
+                    title=f"You've used your {FRONTIER_LIMIT} frontier searches",
+                    detail="Frontier models (GPT-5.5 Thinking, Gemini 3.5, Opus "
+                           "4.8) are metered while GERP is free. More searches "
+                           "are coming soon — in the meantime you can still run "
+                           "the Standard tier, and your earlier results stay "
+                           "reachable by their links.",
+                    show_key_form=False), 402
+    elif not owner:
+        used = _free_used()
+        if used >= FREE_LIMIT:
+            return render_template(
+                "error.html", title=f"You've used your {FREE_LIMIT} free searches",
+                detail="Thanks for trying GERP! Paid access for more searches is "
+                       "coming soon. Check back shortly — and in the meantime your "
+                       "earlier results are still reachable by their links.",
+                show_key_form=False), 402
 
     if not prompt:
         return render_template("search.html", providers=sorted(g.PROVIDERS.keys()),
@@ -330,11 +371,19 @@ def search():
                                recent=_demo_runs(),
                                error="Select at least one provider.")
 
+    # Frontier (reasoning) models take much longer, so they get a longer cap.
+    timeout = FRONTIER_TIMEOUT if tier == "frontier" else PROVIDER_TIMEOUT
+
+    def _submit(pool, provider):
+        cfg = tier_config(tier, provider)
+        return pool.submit(g.run, prompt, provider=provider,
+                           model=cfg.get("model"), **cfg.get("kwargs", {}))
+
     results: dict = {}
     ex = ThreadPoolExecutor(max_workers=len(selected))
-    futures = {ex.submit(g.run, prompt, provider=p): p for p in selected}
+    futures = {_submit(ex, p): p for p in selected}
     try:
-        for fut in as_completed(futures, timeout=PROVIDER_TIMEOUT):
+        for fut in as_completed(futures, timeout=timeout):
             p = futures[fut]
             try:
                 results[p] = fut.result()
@@ -347,7 +396,7 @@ def search():
         ex.shutdown(wait=False, cancel_futures=True)
     for p in selected:
         if p not in results:
-            results[p] = {"error": f"No response after {PROVIDER_TIMEOUT}s "
+            results[p] = {"error": f"No response after {timeout}s "
                                    "— the provider may be slow or down. "
                                    "Try again, or deselect it."}
 
@@ -374,7 +423,7 @@ def search():
 
     run_id = _new_run_id()
     try:
-        _save_run(run_id, prompt, results)
+        _save_run(run_id, prompt, results, tier=tier)
         # Redirect-after-POST: refreshing the results page never re-spends
         # API credits, and the URL is shareable.
         resp = redirect(url_for("show_run", run_id=run_id))
@@ -385,11 +434,14 @@ def search():
                    if p in results}
         resp = make_response(render_template(
             "results.html", prompt=prompt, results=ordered,
-            providers=sorted(g.PROVIDERS.keys())))
+            providers=sorted(g.PROVIDERS.keys()), tier=tier))
 
-    # Count this search against the free quota (after it succeeded, so failed
-    # validations above never burn a free search).
-    if not owner:
+    # Count this search against the right quota (after it succeeded, so failed
+    # validations above never burn a search).
+    if tier == "frontier":
+        if not _frontier_unlimited():
+            _bump_frontier(resp, f_used)
+    elif not owner:
         _bump_free(resp, used)
     return resp
 
@@ -408,7 +460,19 @@ def show_run(run_id: str):
         ordered[p] = data if "error" in data else GERP.from_dict(data)
 
     return render_template("results.html", prompt=run["prompt"], results=ordered,
-                           providers=sorted(g.PROVIDERS.keys()))
+                           providers=sorted(g.PROVIDERS.keys()),
+                           tier=run.get("tier", "standard"))
+
+
+# Register the GERP magic-link auth routes (POST /auth/request, /auth/verify,
+# /logout), the 30-day session lifetime, and the user_email context processor.
+# Passed the limiter + Turnstile check so auth reuses the same machinery.
+from auth import init_auth  # noqa: E402 - imported here to avoid a circular import
+import store  # noqa: E402
+
+# Fail fast if the data dir (persistent disk in prod) isn't writable.
+store.init_db()
+init_auth(app, limiter, _verify_turnstile)
 
 
 if __name__ == "__main__":

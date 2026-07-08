@@ -28,10 +28,16 @@ class AnthropicProvider(BaseProvider):
     default_model = "claude-opus-4-6"
     env_key = "ANTHROPIC_API_KEY"
 
+    # Default web-search server-tool type. The frontier tier (Opus 4.8)
+    # overrides this with web_search_20260209 via the tier registry; older
+    # models keep the basic type. Settable on the constructor and per-call.
+    default_tool_type = "web_search_20250305"
+
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None,
-                 max_uses: int = 5):
+                 max_uses: int = 5, tool_type: Optional[str] = None):
         super().__init__(api_key, model)
         self.max_uses = max_uses
+        self.tool_type = tool_type or self.default_tool_type
 
     def run(self, prompt: str, **kwargs) -> GERP:
         try:
@@ -39,13 +45,17 @@ class AnthropicProvider(BaseProvider):
         except ImportError as e:
             raise ProviderError("pip install anthropic") from e
 
+        # A per-tier tool_type kwarg (forwarded by gerp.run) wins over the
+        # instance default, so the frontier tier gets the dynamic-filtering tool.
+        tool_type = kwargs.get("tool_type", self.tool_type)
+
         client = anthropic.Anthropic(api_key=self.api_key)
         resp = client.messages.create(
             model=self.model,
             max_tokens=kwargs.get("max_tokens", 2048),
             messages=[{"role": "user", "content": prompt}],
             tools=[{
-                "type": "web_search_20250305",
+                "type": tool_type,
                 "name": "web_search",
                 "max_uses": self.max_uses,
             }],

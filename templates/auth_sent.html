@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NZBN72XX');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check your email - GERP</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #202124;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 140px 16px 0;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 52px;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+    .logo span:nth-child(1) { color: #4285F4; }
+    .logo span:nth-child(2) { color: #EA4335; }
+    .logo span:nth-child(3) { color: #FBBC05; }
+    .logo span:nth-child(4) { color: #4285F4; }
+    h1 { font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+    .detail {
+      color: #5f6368;
+      font-size: 14px;
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .detail strong { color: #202124; }
+    .btn {
+      display: inline-block;
+      background: #4285F4;
+      border: 1px solid #4285F4;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 14px;
+      padding: 9px 22px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn:hover { background: #3367d6; border-color: #3367d6; }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ebebeb;
+      background: #f2f2f2;
+      padding: 10px 24px;
+      font-size: 13px;
+      color: #767676;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZBN72XX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <a class="logo" href="/"><span>G</span><span>E</span><span>R</span><span>P</span></a>
+  <h1>Check your email</h1>
+  <div class="detail">
+    If <strong>{{ email or 'that address' }}</strong> has a GERP account, a
+    sign-in link is on its way. It's good for 15 minutes &mdash; no password
+    needed.<br><br>
+    Don't have an account yet?
+    <a href="{{ url_for('auth.request_account') }}"
+       style="color:#1a73e8;text-decoration:none;">Request one</a>.
+  </div>
+  <a class="btn" href="/">Back to GERP search</a>
+
+  <div class="footer">&copy; 2026 Topical Gravity LLC</div>
+</body>
+</html>

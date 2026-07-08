@@ -34,12 +34,18 @@ class OpenAIProvider(BaseProvider):
         except ImportError as e:
             raise ProviderError("pip install openai") from e
 
+        # Forward any tier-specific Responses API params (e.g. the frontier
+        # tier's reasoning={"effort": "high"} for gpt-5.5). Standard-tier
+        # models pass nothing extra. Parsing (_parse) is unaffected.
+        passthrough = {k: kwargs[k] for k in ("reasoning",) if k in kwargs}
+
         client = OpenAI(api_key=self.api_key)
         resp = client.responses.create(
             model=self.model,
             input=prompt,
             tools=[{"type": "web_search"}],
             include=["web_search_call.action.sources"],
+            **passthrough,
         )
         return self._parse(prompt, resp)
 

@@ -114,6 +114,15 @@
       color: #777;
       white-space: nowrap;
     }
+    /* Muted model-name chip in the stats bar (reuses the quiet-grey look). */
+    .model-chip { color: #5f6368; }
+    /* Frontier marker: a small ✦ shown next to the prompt on frontier runs. */
+    .frontier-star {
+      color: #a142f4;
+      font-size: 15px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
 
     /* ── Provider tabs ── */
     .tabs {
@@ -371,6 +380,9 @@
     <a href="/" class="header-logo">
       <span>G</span><span>E</span><span>R</span><span>P</span>
     </a>
+    {% if tier == 'frontier' %}
+    <span class="frontier-star" title="Frontier models">&#10022;</span>
+    {% endif %}
     <div class="header-search">
       <form action="/search" method="post">
         {% for p in providers %}
@@ -382,7 +394,11 @@
         <button type="submit">&#128269;</button>
       </form>
     </div>
-    {% if not is_owner and free_used >= 1 %}
+    {% if user_email and frontier_remaining is not none %}
+    <div class="free-indicator">
+      &#10022; {{ frontier_remaining }} frontier search{{ 'es' if frontier_remaining != 1 else '' }} left
+    </div>
+    {% elif not is_owner and free_used >= 1 %}
     <div class="free-indicator">
       {{ free_remaining }} free search{{ 'es' if free_remaining != 1 else '' }} left
     </div>
@@ -417,7 +433,7 @@
           <div class="stats">
             About {{ cits | length }} result{{ 's' if cits | length != 1 else '' }}
             &nbsp;&middot;&nbsp;
-            {{ data.model }}
+            <span class="model-chip">{{ data.model | model_label }}</span>
           </div>
 
           {% if data.answer_text %}

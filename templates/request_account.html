@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NZBN72XX');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request a GERP account - GERP</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #202124;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 110px 16px 60px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 52px;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+    .logo span:nth-child(1) { color: #4285F4; }
+    .logo span:nth-child(2) { color: #EA4335; }
+    .logo span:nth-child(3) { color: #FBBC05; }
+    .logo span:nth-child(4) { color: #4285F4; }
+    h1 { font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+    .detail {
+      color: #5f6368;
+      font-size: 14px;
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .detail strong { color: #202124; }
+    form { width: 340px; max-width: 100%; text-align: left; }
+    .field-row { display: flex; gap: 10px; }
+    .field-row > input { min-width: 0; flex: 1; }
+    input[type=text], input[type=email] {
+      width: 100%;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 14px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      color: #202124;
+    }
+    input[type=text]:focus, input[type=email]:focus {
+      outline: none;
+      border-color: #4285F4;
+    }
+    .turnstile-row { display: flex; justify-content: center; margin-bottom: 14px; }
+    .error {
+      color: #d93025;
+      font-size: 13px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      background: #4285F4;
+      border: 1px solid #4285F4;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 14px;
+      padding: 10px 22px;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover { background: #3367d6; border-color: #3367d6; }
+    .btn-link {
+      display: inline-block;
+      background: #4285F4;
+      border: 1px solid #4285F4;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 14px;
+      padding: 9px 22px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-link:hover { background: #3367d6; border-color: #3367d6; }
+    .back {
+      display: block;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #1a73e8;
+      text-decoration: none;
+      text-align: center;
+    }
+    .back:hover { text-decoration: underline; }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ebebeb;
+      background: #f2f2f2;
+      padding: 10px 24px;
+      font-size: 13px;
+      color: #767676;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZBN72XX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <a class="logo" href="/"><span>G</span><span>E</span><span>R</span><span>P</span></a>
+
+  {% if sent %}
+  <h1>Request received</h1>
+  <div class="detail">
+    Thanks! We&rsquo;ve got your request for <strong>{{ email }}</strong>.
+    We review every request by hand &mdash; once yours is approved, you&rsquo;ll
+    get an email and can sign in with just your address. No password needed.
+  </div>
+  <a class="btn-link" href="/">Back to GERP search</a>
+  {% else %}
+  <h1>Request a GERP account</h1>
+  <div class="detail">
+    GERP accounts unlock the Frontier models. Tell us who you are and
+    we&rsquo;ll review your request &mdash; approved accounts sign in with an
+    email link, no password needed.
+  </div>
+
+  <form action="{{ url_for('auth.request_account') }}" method="post">
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <div class="field-row">
+      <input type="text" name="first_name" placeholder="First name" required
+             autocomplete="given-name"
+             value="{{ form.first_name if form else '' }}">
+      <input type="text" name="last_name" placeholder="Last name" required
+             autocomplete="family-name"
+             value="{{ form.last_name if form else '' }}">
+    </div>
+    <input type="email" name="email" placeholder="Work email" required
+           autocomplete="email" value="{{ form.email if form else '' }}">
+    <input type="text" name="company" placeholder="Company" required
+           autocomplete="organization"
+           value="{{ form.company if form else '' }}">
+    {% if turnstile_site_key %}
+    <div class="turnstile-row">
+      <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}"></div>
+    </div>
+    {% endif %}
+    <button type="submit" class="btn">Request account</button>
+    <a class="back" href="/">Back to GERP search</a>
+  </form>
+  {% endif %}
+
+  <div class="footer">&copy; 2026 Topical Gravity LLC</div>
+
+  {% if turnstile_site_key %}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {% endif %}
+</body>
+</html>
