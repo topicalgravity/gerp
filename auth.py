@@ -28,6 +28,7 @@ import html
 import json
 import os
 import time
+import urllib.error
 import urllib.request
 from datetime import timedelta
 
@@ -114,6 +115,16 @@ def _send_email(to: str, subject: str, body_html: str,
     )
     try:
         urllib.request.urlopen(req, timeout=10).read()
+    except urllib.error.HTTPError as e:
+        # Resend puts the actual reason (unverified domain, key scoped to a
+        # different domain, bad from-address, ...) in the response body — log
+        # it, or a bare "403 Forbidden" is undiagnosable.
+        try:
+            detail = e.read().decode(errors="replace")[:300]
+        except Exception:  # noqa: BLE001
+            detail = ""
+        print(f"[gerp-auth] Resend send failed for {to}: {e} {detail}",
+              flush=True)
     except Exception as e:  # noqa: BLE001 - never leak a send failure to the user
         print(f"[gerp-auth] Resend send failed for {to}: {e}", flush=True)
 
