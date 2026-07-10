@@ -111,7 +111,11 @@ def _send_email(to: str, subject: str, body_html: str,
     req = urllib.request.Request(
         RESEND_ENDPOINT, data=json.dumps(fields).encode(), method="POST",
         headers={"Authorization": f"Bearer {RESEND_API_KEY}",
-                 "Content-Type": "application/json"},
+                 "Content-Type": "application/json",
+                 # Cloudflare fronts api.resend.com and blocks the default
+                 # Python-urllib user agent (403, error code 1010) before the
+                 # request ever reaches Resend. Any honest UA passes.
+                 "User-Agent": "gerp/1.0 (+https://gerp.topicalgravity.com)"},
     )
     try:
         urllib.request.urlopen(req, timeout=10).read()
