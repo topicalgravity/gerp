@@ -227,8 +227,6 @@
     .tier-pill:disabled { color: #bdc1c6; cursor: default; background: #fff; }
     .tier-star { color: #a142f4; }
     .tier-sub { font-size: 11px; color: #9aa0a6; text-align: center; }
-    .tier-sub .signin-hint { color: #1a73e8; cursor: pointer; text-decoration: none; }
-    .tier-sub .signin-hint:hover { text-decoration: underline; }
     .error {
       color: #d93025;
       font-size: 13px;
@@ -428,14 +426,8 @@
     }
     .signin-panel .btn-primary:hover { background: #3367d6; border-color: #3367d6; }
     .signin-panel .panel-turnstile { display: flex; justify-content: center; margin-bottom: 14px; }
-    .signin-panel .panel-request {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #5f6368;
-      text-align: center;
-    }
-    .signin-panel .panel-request a { color: #1a73e8; text-decoration: none; }
-    .signin-panel .panel-request a:hover { text-decoration: underline; }
+    .signin-panel .sub a { color: #1a73e8; text-decoration: none; }
+    .signin-panel .sub a:hover { text-decoration: underline; }
     .signin-close {
       position: absolute;
       top: 12px;
@@ -515,8 +507,10 @@
       <button class="signin-close" onclick="closeSignin()" aria-label="Close">&times;</button>
       <div class="panel-logo"><span>G</span><span>E</span><span>R</span><span>P</span></div>
       <h2>Your GERP account</h2>
-      <div class="sub">Enter your email and we&rsquo;ll send you a sign-in link.
-        No password needed.</div>
+      <div class="sub">Enter your email and if you have a GERP account
+        we&rsquo;ll send you a sign-in link. No password needed.
+        Don&rsquo;t have an account yet?
+        <a href="{{ url_for('auth.request_account') }}">Request one!</a></div>
       <form action="{{ url_for('auth.auth_request') }}" method="post">
         <input type="email" name="email" placeholder="you@example.com"
                autocomplete="email" required>
@@ -527,10 +521,6 @@
         {% endif %}
         <button type="submit" class="btn-primary">Email me a sign-in link</button>
       </form>
-      <div class="panel-request">
-        New to GERP?
-        <a href="{{ url_for('auth.request_account') }}">Request an account</a>
-      </div>
     </div>
   </div>
   {% endif %}
@@ -556,25 +546,25 @@
         {% endfor %}
       </div>
 
-      <!-- Two-tier selector. Frontier is disabled until you have a GERP account. -->
+      {% if frontier_entitled %}
+      <!-- Two-tier selector — only for signed-in users (or the owner key);
+           anonymous visitors keep the uncluttered standard-only UI and the
+           server defaults a missing tier field to standard. -->
       <div class="tier-row">
         <input type="hidden" name="tier" id="tierInput" value="standard">
         <div class="tier-pills">
           <button type="button" class="tier-pill active" id="pillStandard"
                   onclick="setTier('standard')">Standard</button>
           <button type="button" class="tier-pill" id="pillFrontier"
-                  onclick="setTier('frontier')"
-                  {% if not frontier_entitled %}disabled title="Sign in to use frontier models"{% endif %}>
+                  onclick="setTier('frontier')">
             Frontier <span class="tier-star">&#10022;</span>
           </button>
         </div>
         <div class="tier-sub">
           GPT-5.5 Thinking &middot; Gemini 3.5 &middot; Opus 4.8
-          {% if not frontier_entitled %}
-          <br><a class="signin-hint" onclick="openSignin()">Sign in to use frontier models</a>
-          {% endif %}
         </div>
       </div>
+      {% endif %}
 
       {% if turnstile_site_key %}
       <div class="turnstile-row">
