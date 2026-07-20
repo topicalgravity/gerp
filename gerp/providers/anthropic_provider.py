@@ -28,9 +28,11 @@ class AnthropicProvider(BaseProvider):
     default_model = "claude-opus-4-6"
     env_key = "ANTHROPIC_API_KEY"
 
-    # Default web-search server-tool type. The frontier tier (Opus 4.8)
-    # overrides this with web_search_20260209 via the tier registry; older
-    # models keep the basic type. Settable on the constructor and per-call.
+    # Default web-search server-tool type. Every tier uses the basic variant
+    # on purpose — the newer web_search_20260209 (dynamic filtering) hides the
+    # server_tool_use / web_search_tool_result blocks _parse() reads, killing
+    # the fan-out and considered-set. Settable on the constructor and per-call
+    # for experiments, but transparency is the product here.
     default_tool_type = "web_search_20250305"
 
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None,

@@ -13,11 +13,14 @@ make a provider entry a list of models and shift the results key to
 
 from __future__ import annotations
 
-# Opus 4.8's web-search server tool supports dynamic filtering under a newer
-# tool-type id. The standard tier's Haiku keeps the older basic tool type via
-# the AnthropicProvider default, so only the frontier anthropic entry overrides
-# it (passed through to the provider's run() as a kwarg).
-_ANTHROPIC_FRONTIER_TOOL = "web_search_20260209"
+# Deliberately the BASIC web-search tool variant, on every tier including
+# Opus 4.8 (which also supports the newer web_search_20260209). The newer
+# variant's "dynamic filtering" runs searches inside an internal
+# code-execution wrapper and never emits the server_tool_use /
+# web_search_tool_result blocks our parser reads — so issued queries and the
+# considered-set pool vanish from the response. Observing exactly those is
+# GERP's entire product, so transparency beats the newer variant's filtering.
+_ANTHROPIC_WEB_SEARCH_TOOL = "web_search_20250305"
 
 TIERS: dict[str, dict[str, dict]] = {
     "standard": {
@@ -27,7 +30,7 @@ TIERS: dict[str, dict[str, dict]] = {
     },
     "frontier": {
         "anthropic": {"model": "claude-opus-4-8",
-                      "kwargs": {"tool_type": _ANTHROPIC_FRONTIER_TOOL}},
+                      "kwargs": {"tool_type": _ANTHROPIC_WEB_SEARCH_TOOL}},
         # gemini-3.5-flash is Google's current Gemini 3.5 model, documented as
         # its "most intelligent model for sustained frontier performance."
         # thinking_level defaults to "high" on the 3.x models, so no extra

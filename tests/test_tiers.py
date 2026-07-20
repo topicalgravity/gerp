@@ -33,7 +33,9 @@ class TestTierConfig(unittest.TestCase):
     def test_frontier_models_and_kwargs(self):
         anthropic = tier_config("frontier", "anthropic")
         self.assertEqual(anthropic["model"], "claude-opus-4-8")
-        self.assertEqual(anthropic["kwargs"]["tool_type"], "web_search_20260209")
+        # Deliberately the basic variant even on Opus 4.8: the _20260209
+        # dynamic-filtering variant hides the fan-out/pool blocks GERP reads.
+        self.assertEqual(anthropic["kwargs"]["tool_type"], "web_search_20250305")
         openai = tier_config("frontier", "openai")
         self.assertEqual(openai["model"], "gpt-5.5")
         self.assertEqual(openai["kwargs"]["reasoning"], {"effort": "high"})
