@@ -367,6 +367,19 @@
       padding: 16px 0;
       font-size: 14px;
     }
+
+    /* ── Tier downgrade notice ── */
+    .tier-notice {
+      margin: 10px 16px 0;
+      padding: 10px 14px;
+      background: #fef7e0;
+      border: 1px solid #f9e3a2;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #5f6368;
+    }
+    .tier-notice a { color: #1a73e8; text-decoration: none; }
+    .tier-notice a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -390,8 +403,15 @@
         <input type="hidden" name="providers" value="{{ p }}">
         {% endif %}
         {% endfor %}
+        <!-- Carry this run's tier into re-searches; without it every search
+             from this page silently posted as standard. -->
+        <input type="hidden" name="tier" value="{{ tier }}">
         <input type="text" name="prompt" value="{{ prompt }}" autocomplete="off">
         <button type="submit">&#128269;</button>
+        {% if turnstile_site_key %}
+        <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}"
+             data-size="compact"></div>
+        {% endif %}
       </form>
     </div>
     {% if user_email and frontier_remaining is not none %}
@@ -404,6 +424,16 @@
     </div>
     {% endif %}
   </div>
+
+  {% if downgraded %}
+  <!-- The request asked for frontier but wasn't entitled — say so instead of
+       silently handing back standard-model results. -->
+  <div class="tier-notice">
+    This search ran on <strong>Standard</strong> models &mdash; your sign-in
+    wasn&rsquo;t active when it was submitted. <a href="/">Sign in and try
+    again</a> to use the Frontier tier.
+  </div>
+  {% endif %}
 
   <!-- Provider tabs -->
   {% set provider_list = results.keys() | list %}
@@ -549,5 +579,8 @@
     }
   </script>
 
+  {% if turnstile_site_key %}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {% endif %}
 </body>
 </html>

@@ -328,10 +328,16 @@ def search():
 
     # Which model tier to run. A stale/hostile form value resolves to standard.
     # Frontier is entitled to the owner and any signed-in user; anyone else is
-    # silently downgraded so a stale form never errors.
-    tier = resolve_tier(request.form.get("tier"))
+    # downgraded — and told so on the results page (downgraded flag), because a
+    # silent downgrade reads as "frontier is broken" to a user who selected it.
+    requested_tier = request.form.get("tier")
+    tier = resolve_tier(requested_tier)
+    downgraded = False
     if tier == "frontier" and not _frontier_entitled():
         tier = "standard"
+        downgraded = True
+    print(f"[gerp-search] tier={tier} requested={requested_tier!r} "
+          f"signed_in={bool(_current_email())} owner={owner}", flush=True)
 
     # Quota check before any provider call, so an out-of-quota request never
     # spends credits. Frontier runs draw from the per-email frontier quota
@@ -425,8 +431,11 @@ def search():
     try:
         _save_run(run_id, prompt, results, tier=tier)
         # Redirect-after-POST: refreshing the results page never re-spends
-        # API credits, and the URL is shareable.
-        resp = redirect(url_for("show_run", run_id=run_id))
+        # API credits, and the URL is shareable. The downgraded flag rides the
+        # redirect (not the saved run) — it's about THIS request's entitlement,
+        # not a property of the results.
+        resp = redirect(url_for("show_run", run_id=run_id,
+                                downgraded=1 if downgraded else None))
     except OSError:
         # Disk unavailable: still show the results we paid for, just not
         # as a shareable saved run.
@@ -434,7 +443,8 @@ def search():
                    if p in results}
         resp = make_response(render_template(
             "results.html", prompt=prompt, results=ordered,
-            providers=sorted(g.PROVIDERS.keys()), tier=tier))
+            providers=sorted(g.PROVIDERS.keys()), tier=tier,
+            downgraded=downgraded))
 
     # Count this search against the right quota (after it succeeded, so failed
     # validations above never burn a search).
@@ -461,7 +471,8 @@ def show_run(run_id: str):
 
     return render_template("results.html", prompt=run["prompt"], results=ordered,
                            providers=sorted(g.PROVIDERS.keys()),
-                           tier=run.get("tier", "standard"))
+                           tier=run.get("tier", "standard"),
+                           downgraded=bool(request.args.get("downgraded")))
 
 
 # Register the GERP magic-link auth routes (POST /auth/request, /auth/verify,

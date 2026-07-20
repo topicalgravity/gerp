@@ -635,7 +635,18 @@
       document.getElementById('tierInput').value = t;
       document.getElementById('pillStandard').classList.toggle('active', t === 'standard');
       document.getElementById('pillFrontier').classList.toggle('active', t === 'frontier');
+      // Remember the choice so "switching to Frontier" sticks across visits
+      // instead of quietly resetting to Standard on every page load.
+      try { localStorage.setItem('gerp_tier', t); } catch (e) {}
     }
+    // Restore the remembered tier (only if the selector is rendered, i.e.
+    // the visitor is entitled to frontier).
+    try {
+      if (document.getElementById('pillFrontier') &&
+          localStorage.getItem('gerp_tier') === 'frontier') {
+        setTier('frontier');
+      }
+    } catch (e) {}
 
     document.querySelectorAll('form[action="/search"]').forEach(f =>
       f.addEventListener('submit', function(e) {
