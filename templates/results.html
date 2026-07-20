@@ -216,12 +216,50 @@
       color: #202124;
       font-size: 14px;
       line-height: 1.6;
-      white-space: pre-wrap;
       overflow: hidden;
       max-height: 190px;
       position: relative;
     }
     .answer-text.expanded { max-height: none; }
+    /* Rendered-markdown elements (answer_md filter). Compact, Google-y. */
+    .answer-text p, .answer-text ul, .answer-text ol, .answer-text table,
+    .answer-text blockquote, .answer-text pre { margin: 0 0 10px; }
+    .answer-text ul, .answer-text ol { padding-left: 22px; }
+    .answer-text li { margin-bottom: 4px; }
+    .answer-text h1, .answer-text h2, .answer-text h3, .answer-text h4 {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 14px 0 6px;
+    }
+    .answer-text h1 { font-size: 16px; }
+    .answer-text a { color: #1a73e8; text-decoration: none; }
+    .answer-text a:hover { text-decoration: underline; }
+    .answer-text code {
+      background: #f1f3f4;
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-size: 13px;
+    }
+    .answer-text pre {
+      background: #f1f3f4;
+      border-radius: 4px;
+      padding: 10px 12px;
+      overflow-x: auto;
+    }
+    .answer-text pre code { background: none; padding: 0; }
+    .answer-text table { border-collapse: collapse; }
+    .answer-text th, .answer-text td {
+      border: 1px solid #e0e0e0;
+      padding: 5px 9px;
+      font-size: 13px;
+      text-align: left;
+    }
+    .answer-text blockquote {
+      border-left: 3px solid #dadce0;
+      padding-left: 12px;
+      color: #5f6368;
+    }
+    .answer-text > :last-child { margin-bottom: 0; }
     .answer-toggle {
       display: block;
       margin-top: 8px;
@@ -469,7 +507,7 @@
           {% if data.answer_text %}
           <div class="answer-box">
             <div class="label">AI answer</div>
-            <div class="answer-text" id="answer-{{ p }}">{{ data.answer_text }}</div>
+            <div class="answer-text" id="answer-{{ p }}">{{ data.answer_text | answer_md }}</div>
             <button class="answer-toggle" onclick="toggleAnswer('{{ p }}', this)">Show more</button>
           </div>
           {% endif %}

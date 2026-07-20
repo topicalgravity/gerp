@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import html
 import json
 import os
+import re
 import secrets
 import urllib.parse
 import urllib.request
@@ -11,10 +13,12 @@ import datetime as _dt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+import markdown as _markdown
 from flask import (Flask, abort, make_response, redirect, render_template,
                    request, session, url_for)
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from markupsafe import Markup
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 import gerp as g
@@ -28,6 +32,22 @@ app = Flask(__name__)
 
 # Friendly model label ("Opus 4.8") for the results-page chip.
 app.jinja_env.filters["model_label"] = model_label
+
+
+def render_answer_md(text: str | None) -> Markup:
+    """Render a model's markdown answer as safe HTML. The text is untrusted
+    (it can echo prompt-injected web content), so any literal HTML is escaped
+    BEFORE the markdown pass — the only tags in the output are ones the
+    markdown renderer itself produces — and link hrefs are then restricted to
+    http(s)/relative so a markdown link can't smuggle a javascript: URL."""
+    if not text:
+        return Markup("")
+    rendered = _markdown.markdown(html.escape(text), extensions=["extra"])
+    rendered = re.sub(r'href="(?!https?://|#|/)[^"]*"', 'href="#"', rendered)
+    return Markup(rendered)
+
+
+app.jinja_env.filters["answer_md"] = render_answer_md
 
 # Render LB sits in front of gunicorn and sets X-Forwarded-For to the
 # connecting client IP (Cloudflare's edge IP when behind Cloudflare, or the

@@ -6,3 +6,4 @@ anthropic
 google-genai
 openai
 python-dotenv
+markdown
