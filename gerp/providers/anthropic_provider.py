@@ -25,7 +25,7 @@ from ..schema import GERP, Citation, ConsideredDoc, ConsideredMethod
 
 class AnthropicProvider(BaseProvider):
     name = "anthropic"
-    default_model = "claude-opus-4-6"
+    default_model = "claude-haiku-4-5"
     env_key = "ANTHROPIC_API_KEY"
 
     # Default web-search server-tool type. Every tier uses the basic variant

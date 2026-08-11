@@ -24,9 +24,12 @@ _ANTHROPIC_WEB_SEARCH_TOOL = "web_search_20250305"
 
 TIERS: dict[str, dict[str, dict]] = {
     "standard": {
-        "anthropic": {"model": "claude-haiku-4-5"},   # down from Opus to cap free cost
-        "gemini":    {"model": "gemini-2.5-flash"},
-        "openai":    {"model": "gpt-4.1"},
+        # Current (2026-08-10) cheap/entry model per provider — the free tier's
+        # job is to cap cost, so each is the provider's current-generation budget
+        # tier and stays a rung below the frontier flagship above.
+        "anthropic": {"model": "claude-haiku-4-5"},   # still Anthropic's fastest/cheapest
+        "gemini":    {"model": "gemini-3.5-flash-lite"},  # 3.x budget Flash-Lite; supports Search grounding
+        "openai":    {"model": "gpt-5.6-luna"},           # GPT-5.6 cost-sensitive variant; supports web_search
     },
     "frontier": {
         "anthropic": {"model": "claude-opus-4-8",
@@ -51,8 +54,10 @@ MODEL_LABELS = {
     "claude-opus-4-8": "Opus 4.8",
     "claude-haiku-4-5": "Haiku 4.5",
     "gemini-3.5-flash": "Gemini 3.5",
+    "gemini-3.5-flash-lite": "Gemini 3.5 Lite",
     "gemini-2.5-flash": "Gemini 2.5",
     "gpt-5.5": "GPT-5.5",
+    "gpt-5.6-luna": "GPT-5.6 Luna",
     "gpt-4.1": "GPT-4.1",
 }
 
@@ -71,3 +76,26 @@ def tier_config(tier: str, provider: str) -> dict:
 
 def model_label(model: str | None) -> str:
     return MODEL_LABELS.get(model or "", model or "")
+
+
+# Provider order for the tier model-summary line shown under the tier pills.
+_SUMMARY_ORDER = ("openai", "gemini", "anthropic")
+
+
+def tier_model_summary(tier: str) -> str:
+    """A human-readable 'GPT-5.6 Luna · Gemini 3.5 Lite · Haiku 4.5' line for a
+    tier, built from the registry so the UI can never drift from the models the
+    tier actually runs. A model configured with reasoning effort gets a
+    'Thinking' tag (e.g. the frontier OpenAI entry)."""
+    cfg = TIERS.get(tier) or {}
+    parts = []
+    for provider in _SUMMARY_ORDER:
+        entry = cfg.get(provider) or {}
+        model = entry.get("model")
+        if not model:
+            continue
+        label = model_label(model)
+        if ((entry.get("kwargs") or {}).get("reasoning") or {}).get("effort"):
+            label += " Thinking"
+        parts.append(label)
+    return " · ".join(parts)

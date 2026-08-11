@@ -26,9 +26,9 @@ class TestTierConfig(unittest.TestCase):
     def test_standard_models(self):
         self.assertEqual(tier_config("standard", "anthropic")["model"],
                          "claude-haiku-4-5")
-        self.assertEqual(tier_config("standard", "openai")["model"], "gpt-4.1")
+        self.assertEqual(tier_config("standard", "openai")["model"], "gpt-5.6-luna")
         self.assertEqual(tier_config("standard", "gemini")["model"],
-                         "gemini-2.5-flash")
+                         "gemini-3.5-flash-lite")
 
     def test_frontier_models_and_kwargs(self):
         anthropic = tier_config("frontier", "anthropic")

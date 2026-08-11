@@ -25,7 +25,7 @@ import gerp as g
 from gerp.considered import enrich, SerpAPIBackend
 from gerp.resolve import resolve_redirects
 from gerp.schema import GERP, ConsideredMethod
-from gerp.tiers import resolve_tier, tier_config, model_label
+from gerp.tiers import resolve_tier, tier_config, model_label, tier_model_summary
 from quota import Quota
 
 app = Flask(__name__)
@@ -223,7 +223,11 @@ def _inject_quota():
     ctx = {"is_owner": owner,
            "frontier_entitled": _frontier_entitled(),
            "frontier_unlimited": _frontier_unlimited(),
-           "frontier_limit": FRONTIER_LIMIT}
+           "frontier_limit": FRONTIER_LIMIT,
+           # Model-summary line per tier, so the tier-sub display (and any
+           # upsell copy) tracks the tier registry instead of hardcoded names.
+           "tier_model_labels": {"standard": tier_model_summary("standard"),
+                                 "frontier": tier_model_summary("frontier")}}
     if owner:
         ctx.update(free_used=0, free_remaining=None, free_limit=FREE_LIMIT)
     else:
@@ -373,8 +377,8 @@ def search():
                 return render_template(
                     "error.html",
                     title=f"You've used your {FRONTIER_LIMIT} frontier searches",
-                    detail="Frontier models (GPT-5.5 Thinking, Gemini 3.5, Opus "
-                           "4.8) are metered while GERP is free. More searches "
+                    detail=f"Frontier models ({tier_model_summary('frontier')}) "
+                           "are metered while GERP is free. More searches "
                            "are coming soon — in the meantime you can still run "
                            "the Standard tier, and your earlier results stay "
                            "reachable by their links.",

@@ -18,7 +18,7 @@ export ANTHROPIC_API_KEY=...   # or GEMINI_API_KEY / OPENAI_API_KEY
 
 ```bash
 python -m gerp.cli -p gemini --prompt "best personal injury firms in Dallas"
-python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-4-6 --raw
+python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-4-8 --raw
 echo "long prompt" | python -m gerp.cli -p openai --stdin
 ```
 
@@ -36,7 +36,7 @@ print(g.to_dict())
 {
   "schema_version": "1.0",
   "provider": "gemini",
-  "model": "gemini-2.5-flash",
+  "model": "gemini-3.5-flash-lite",
   "prompt": "...",
   "answer_text": "...",
   "citations": [
@@ -83,7 +83,7 @@ inferred.
 
 | Tier | Anthropic | Gemini | OpenAI | Access |
 |------|-----------|--------|--------|--------|
-| **Standard** (free) | `claude-haiku-4-5` | `gemini-2.5-flash` | `gpt-4.1` | Anonymous, 3 searches / 7 days (signed cookie + per-IP tally) |
+| **Standard** (free) | `claude-haiku-4-5` | `gemini-3.5-flash-lite` | `gpt-5.6-luna` | Anonymous, 3 searches / 7 days (signed cookie + per-IP tally) |
 | **Frontier** (login) | `claude-opus-4-8` | `gemini-3.5-flash` | `gpt-5.5` | Signed-in GERP account, 3 searches / 7 days (per-email); owner + allowlist unlimited |
 
 A tier is just a per-provider `{model, kwargs}` lookup that `gerp.run()` forwards

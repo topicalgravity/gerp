@@ -48,7 +48,7 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "3 free searches every 7 days on the Standard tier; request a GERP account (email sign-in link, no password) for access to Frontier models (GPT-5.5 Thinking, Gemini 3.5, Opus 4.8)"
+        "description": "3 free searches every 7 days on the Standard tier; request a GERP account (email sign-in link, no password) for access to Frontier models ({{ tier_model_labels.frontier }})"
       },
       "image": "{{ og_image }}",
       "publisher": { "@id": "https://topicalgravity.com/#organization" },
@@ -560,8 +560,10 @@
             Frontier <span class="tier-star">&#10022;</span>
           </button>
         </div>
-        <div class="tier-sub">
-          GPT-5.5 Thinking &middot; Gemini 3.5 &middot; Opus 4.8
+        <div class="tier-sub" id="tierSub"
+             data-standard="{{ tier_model_labels.standard }}"
+             data-frontier="{{ tier_model_labels.frontier }}">
+          {{ tier_model_labels.standard }}
         </div>
       </div>
       {% endif %}
@@ -635,6 +637,9 @@
       document.getElementById('tierInput').value = t;
       document.getElementById('pillStandard').classList.toggle('active', t === 'standard');
       document.getElementById('pillFrontier').classList.toggle('active', t === 'frontier');
+      // Keep the model-summary line in sync with the selected tier.
+      const sub = document.getElementById('tierSub');
+      if (sub) { const s = sub.getAttribute('data-' + t); if (s) sub.textContent = s; }
       // Remember the choice so "switching to Frontier" sticks across visits
       // instead of quietly resetting to Standard on every page load.
       try { localStorage.setItem('gerp_tier', t); } catch (e) {}

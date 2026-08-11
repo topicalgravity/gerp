@@ -25,7 +25,7 @@ def _clean_url(url: str) -> str:
 
 class OpenAIProvider(BaseProvider):
     name = "openai"
-    default_model = "gpt-4.1"
+    default_model = "gpt-5.6-luna"
     env_key = "OPENAI_API_KEY"
 
     def run(self, prompt: str, **kwargs) -> GERP:

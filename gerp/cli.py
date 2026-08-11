@@ -4,7 +4,7 @@ CLI: run a prompt through a provider, emit a GERP as JSON.
 
 Examples:
   python -m gerp.cli --provider gemini --prompt "best personal injury firms in Dallas"
-  python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-4-6 --raw
+  python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-4-8 --raw
   echo "long prompt" | python -m gerp.cli -p openai --stdin
 """
 
