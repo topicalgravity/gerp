@@ -28,11 +28,13 @@ class AnthropicProvider(BaseProvider):
     default_model = "claude-haiku-4-5"
     env_key = "ANTHROPIC_API_KEY"
 
-    # Default web-search server-tool type. Every tier uses the basic variant
-    # on purpose — the newer web_search_20260209 (dynamic filtering) hides the
-    # server_tool_use / web_search_tool_result blocks _parse() reads, killing
-    # the fan-out and considered-set. Settable on the constructor and per-call
-    # for experiments, but transparency is the product here.
+    # Default web-search server-tool type: the basic variant, which emits the
+    # top-level server_tool_use / web_search_tool_result blocks _parse() reads.
+    # As of 2026-09 the dynamic-filtering variants (web_search_20260209 /
+    # _20260318) no longer hide those blocks — they nest them under a `caller`
+    # field — so adopting dynamic filtering is possible once _parse() traverses
+    # the nested pairs. Until then the basic variant keeps the flat parse simple.
+    # Settable on the constructor and per-call for experiments.
     default_tool_type = "web_search_20250305"
 
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None,

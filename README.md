@@ -18,7 +18,7 @@ export ANTHROPIC_API_KEY=...   # or GEMINI_API_KEY / OPENAI_API_KEY
 
 ```bash
 python -m gerp.cli -p gemini --prompt "best personal injury firms in Dallas"
-python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-4-8 --raw
+python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-5 --raw
 echo "long prompt" | python -m gerp.cli -p openai --stdin
 ```
 
@@ -84,11 +84,12 @@ inferred.
 | Tier | Anthropic | Gemini | OpenAI | Access |
 |------|-----------|--------|--------|--------|
 | **Standard** (free) | `claude-haiku-4-5` | `gemini-3.5-flash-lite` | `gpt-5.6-luna` | Anonymous, 3 searches / 7 days (signed cookie + per-IP tally) |
-| **Frontier** (login) | `claude-opus-4-8` | `gemini-3.5-flash` | `gpt-5.5` | Signed-in GERP account, 3 searches / 7 days (per-email); owner + allowlist unlimited |
+| **Frontier** (login) | `claude-opus-5` | `gemini-3.8-flash` | `gpt-5.6-sol` | Signed-in GERP account, 3 searches / 7 days (per-email); owner + allowlist unlimited |
 
 A tier is just a per-provider `{model, kwargs}` lookup that `gerp.run()` forwards
-to the adapters. The frontier Anthropic entry sets `tool_type=web_search_20260209`
-(Opus 4.8's dynamic-filtering web search); the frontier OpenAI entry sets
+to the adapters. Every tier pins the **basic** `web_search_20250305` Anthropic
+tool so the flat parser sees the `server_tool_use`/`web_search_tool_result`
+fan-out blocks (still works on Opus 5); the frontier OpenAI entry sets
 `reasoning={"effort": "high"}`. Unknown/stale `tier` form values resolve to
 Standard, and a frontier request from a non-entitled visitor silently downgrades.
 

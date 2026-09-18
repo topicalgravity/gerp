@@ -30,7 +30,7 @@ from quota import Quota
 
 app = Flask(__name__)
 
-# Friendly model label ("Opus 4.8") for the results-page chip.
+# Friendly model label ("Opus 5") for the results-page chip.
 app.jinja_env.filters["model_label"] = model_label
 
 
