@@ -30,18 +30,20 @@ _ANTHROPIC_WEB_SEARCH_TOOL = "web_search_20250305"
 
 TIERS: dict[str, dict[str, dict]] = {
     "standard": {
-        # Current (2026-08-10) cheap/entry model per provider — the free tier's
+        # Current (2026-09-25) cheap/entry model per provider — the free tier's
         # job is to cap cost, so each is the provider's current-generation budget
         # tier and stays a rung below the frontier flagship above.
         "anthropic": {"model": "claude-haiku-4-5"},   # still Anthropic's fastest/cheapest
         "gemini":    {"model": "gemini-3.5-flash-lite"},  # 3.x budget Flash-Lite; supports Search grounding
-        "openai":    {"model": "gpt-5.6-luna"},           # GPT-5.6 cost-sensitive variant; supports web_search
+        "openai":    {"model": "gpt-6-luna"},              # GPT-6's cost-sensitive tier; supports web_search
     },
     "frontier": {
-        # Opus 5 is Anthropic's recommended flagship default ($5/$25); Fable 5.1
-        # is the true top but doubles the cost for a metered tier. Keep the basic
-        # web-search tool — it still works on Opus 5.
-        "anthropic": {"model": "claude-opus-5",
+        # Opus 5.5 (GA 2026-09-22) is cheaper than Opus 5 ($4/$20 vs $5/$25)
+        # while performing near Fable 5.1 level — a strict upgrade over Opus 5,
+        # so the "flagship doubles the cost" tradeoff that used to justify
+        # skipping Fable 5.1 no longer needs Opus 5 to make it. Keep the basic
+        # web-search tool — it still works on Opus 5.5.
+        "anthropic": {"model": "claude-opus-5-5",
                       "kwargs": {"tool_type": _ANTHROPIC_WEB_SEARCH_TOOL}},
         # gemini-3.8-flash is Google's newest "most intelligent Flash" (GA,
         # Search grounding confirmed). Google's Pro line is stuck on the
@@ -49,10 +51,13 @@ TIERS: dict[str, dict[str, dict]] = {
         # is the strongest production-safe frontier Gemini. thinking_level
         # defaults high on 3.x, so no extra kwargs; see GeminiProvider seam.
         "gemini":    {"model": "gemini-3.8-flash"},
-        # gpt-5.6-sol is OpenAI's flagship-class GPT-5.6 (cheaper than the newer
-        # gpt-6-astra, which is premium $10/$50). effort is set on the Responses
-        # API reasoning object (passed through OpenAIProvider.run()).
-        "openai":    {"model": "gpt-5.6-sol",
+        # gpt-6-sol (GA 2026-09-22, $2/$10) replaces gpt-5.6-sol now that the
+        # GPT-6 family has shipped — same "skip the priciest flagship" pattern
+        # as Opus 5.5 above: gpt-6-astra is the true GPT-6 flagship ($10/$50)
+        # but gpt-6-sol is newer-gen and cheaper than gpt-5.6-sol ever was.
+        # effort is set on the Responses API reasoning object (passed through
+        # OpenAIProvider.run()).
+        "openai":    {"model": "gpt-6-sol",
                       "kwargs": {"reasoning": {"effort": "high"}}},
     },
 }
@@ -62,6 +67,7 @@ DEFAULT_TIER = "standard"
 # Short display labels for the results-page model chip. Falls back to the raw
 # model id for anything unlisted.
 MODEL_LABELS = {
+    "claude-opus-5-5": "Opus 5.5",
     "claude-opus-5": "Opus 5",
     "claude-opus-4-8": "Opus 4.8",
     "claude-haiku-4-5": "Haiku 4.5",
@@ -69,6 +75,9 @@ MODEL_LABELS = {
     "gemini-3.5-flash": "Gemini 3.5",
     "gemini-3.5-flash-lite": "Gemini 3.5 Lite",
     "gemini-2.5-flash": "Gemini 2.5",
+    "gpt-6-astra": "GPT-6 Astra",
+    "gpt-6-sol": "GPT-6 Sol",
+    "gpt-6-luna": "GPT-6 Luna",
     "gpt-5.6-sol": "GPT-5.6 Sol",
     "gpt-5.6-luna": "GPT-5.6 Luna",
     "gpt-5.5": "GPT-5.5",

@@ -25,7 +25,7 @@ def _clean_url(url: str) -> str:
 
 class OpenAIProvider(BaseProvider):
     name = "openai"
-    default_model = "gpt-5.6-luna"
+    default_model = "gpt-6-luna"
     env_key = "OPENAI_API_KEY"
 
     def run(self, prompt: str, **kwargs) -> GERP:
@@ -35,7 +35,7 @@ class OpenAIProvider(BaseProvider):
             raise ProviderError("pip install openai") from e
 
         # Forward any tier-specific Responses API params (e.g. the frontier
-        # tier's reasoning={"effort": "high"} for gpt-5.5). Standard-tier
+        # tier's reasoning={"effort": "high"} for gpt-6-sol). Standard-tier
         # models pass nothing extra. Parsing (_parse) is unaffected.
         passthrough = {k: kwargs[k] for k in ("reasoning",) if k in kwargs}
 

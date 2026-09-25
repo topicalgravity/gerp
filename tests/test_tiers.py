@@ -26,19 +26,19 @@ class TestTierConfig(unittest.TestCase):
     def test_standard_models(self):
         self.assertEqual(tier_config("standard", "anthropic")["model"],
                          "claude-haiku-4-5")
-        self.assertEqual(tier_config("standard", "openai")["model"], "gpt-5.6-luna")
+        self.assertEqual(tier_config("standard", "openai")["model"], "gpt-6-luna")
         self.assertEqual(tier_config("standard", "gemini")["model"],
                          "gemini-3.5-flash-lite")
 
     def test_frontier_models_and_kwargs(self):
         anthropic = tier_config("frontier", "anthropic")
-        self.assertEqual(anthropic["model"], "claude-opus-5")
+        self.assertEqual(anthropic["model"], "claude-opus-5-5")
         # The basic variant, pinned so the flat parser sees the fan-out/pool
-        # blocks; it still works on Opus 5 (see tiers.py for the 2026-09 note
+        # blocks; it still works on Opus 5.5 (see tiers.py for the 2026-09 note
         # that dynamic filtering no longer hides those blocks).
         self.assertEqual(anthropic["kwargs"]["tool_type"], "web_search_20250305")
         openai = tier_config("frontier", "openai")
-        self.assertEqual(openai["model"], "gpt-5.6-sol")
+        self.assertEqual(openai["model"], "gpt-6-sol")
         self.assertEqual(openai["kwargs"]["reasoning"], {"effort": "high"})
         self.assertEqual(tier_config("frontier", "gemini")["model"],
                          "gemini-3.8-flash")
@@ -53,8 +53,8 @@ class TestTierConfig(unittest.TestCase):
 
 class TestModelLabel(unittest.TestCase):
     def test_known_and_unknown(self):
-        self.assertEqual(model_label("claude-opus-5"), "Opus 5")
-        self.assertEqual(model_label("gpt-5.6-sol"), "GPT-5.6 Sol")
+        self.assertEqual(model_label("claude-opus-5-5"), "Opus 5.5")
+        self.assertEqual(model_label("gpt-6-sol"), "GPT-6 Sol")
         self.assertEqual(model_label("some-future-model"), "some-future-model")
         self.assertEqual(model_label(None), "")
 
