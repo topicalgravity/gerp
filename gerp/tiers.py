@@ -16,8 +16,7 @@ from __future__ import annotations
 # The BASIC web-search tool variant, pinned on every tier. It emits the
 # server_tool_use (issued query) + web_search_tool_result (result pool) blocks
 # our flat parser reads, which is GERP's whole product. It still works on the
-# current models, including Opus 5 (Anthropic's own docs example pairs
-# claude-opus-5 with web_search_20250305).
+# current models, including Opus 5.5 and Haiku 5.5.
 #
 # Note (2026-09): the newer dynamic-filtering variants (web_search_20260209 and
 # web_search_20260318) NO LONGER hide the fan-out — they now return the same
@@ -30,18 +29,19 @@ _ANTHROPIC_WEB_SEARCH_TOOL = "web_search_20250305"
 
 TIERS: dict[str, dict[str, dict]] = {
     "standard": {
-        # Current (2026-08-10) cheap/entry model per provider — the free tier's
+        # Current (2026-10-12) cheap/entry model per provider — the free tier's
         # job is to cap cost, so each is the provider's current-generation budget
         # tier and stays a rung below the frontier flagship above.
-        "anthropic": {"model": "claude-haiku-4-5"},   # still Anthropic's fastest/cheapest
-        "gemini":    {"model": "gemini-3.5-flash-lite"},  # 3.x budget Flash-Lite; supports Search grounding
-        "openai":    {"model": "gpt-5.6-luna"},           # GPT-5.6 cost-sensitive variant; supports web_search
+        "anthropic": {"model": "claude-haiku-5-5"},       # $0.10/$0.50, 10x cheaper than Haiku 4.5; thinking on by default
+        "gemini":    {"model": "gemini-3.5-flash-lite"},  # still Google's newest Flash-Lite; supports Search grounding
+        "openai":    {"model": "gpt-6-luna"},             # $0.10/$0.50, half of gpt-5.6-luna; supports web_search
     },
     "frontier": {
-        # Opus 5 is Anthropic's recommended flagship default ($5/$25); Fable 5.1
-        # is the true top but doubles the cost for a metered tier. Keep the basic
-        # web-search tool — it still works on Opus 5.
-        "anthropic": {"model": "claude-opus-5",
+        # Opus 5.5 is Anthropic's recommended flagship default ($4/$20, cheaper
+        # than Opus 5); Fable 5.1 is the true top but 2.5x the cost for a metered
+        # tier. Keep the basic web-search tool — it still works on Opus 5.5.
+        # Effort is deliberately left at the model's default (medium).
+        "anthropic": {"model": "claude-opus-5-5",
                       "kwargs": {"tool_type": _ANTHROPIC_WEB_SEARCH_TOOL}},
         # gemini-3.8-flash is Google's newest "most intelligent Flash" (GA,
         # Search grounding confirmed). Google's Pro line is stuck on the
@@ -49,10 +49,11 @@ TIERS: dict[str, dict[str, dict]] = {
         # is the strongest production-safe frontier Gemini. thinking_level
         # defaults high on 3.x, so no extra kwargs; see GeminiProvider seam.
         "gemini":    {"model": "gemini-3.8-flash"},
-        # gpt-5.6-sol is OpenAI's flagship-class GPT-5.6 (cheaper than the newer
-        # gpt-6-astra, which is premium $10/$50). effort is set on the Responses
-        # API reasoning object (passed through OpenAIProvider.run()).
-        "openai":    {"model": "gpt-5.6-sol",
+        # gpt-6.1-sol is OpenAI's current flagship-class Sol ($2/$10, half of
+        # gpt-5.6-sol; gpt-6-astra is the premium top at $10/$50). effort is set
+        # on the Responses API reasoning object (passed through
+        # OpenAIProvider.run()).
+        "openai":    {"model": "gpt-6.1-sol",
                       "kwargs": {"reasoning": {"effort": "high"}}},
     },
 }
@@ -62,13 +63,17 @@ DEFAULT_TIER = "standard"
 # Short display labels for the results-page model chip. Falls back to the raw
 # model id for anything unlisted.
 MODEL_LABELS = {
+    "claude-opus-5-5": "Opus 5.5",
     "claude-opus-5": "Opus 5",
     "claude-opus-4-8": "Opus 4.8",
+    "claude-haiku-5-5": "Haiku 5.5",
     "claude-haiku-4-5": "Haiku 4.5",
     "gemini-3.8-flash": "Gemini 3.8",
     "gemini-3.5-flash": "Gemini 3.5",
     "gemini-3.5-flash-lite": "Gemini 3.5 Lite",
     "gemini-2.5-flash": "Gemini 2.5",
+    "gpt-6.1-sol": "GPT-6.1 Sol",
+    "gpt-6-luna": "GPT-6 Luna",
     "gpt-5.6-sol": "GPT-5.6 Sol",
     "gpt-5.6-luna": "GPT-5.6 Luna",
     "gpt-5.5": "GPT-5.5",
@@ -97,7 +102,7 @@ _SUMMARY_ORDER = ("openai", "gemini", "anthropic")
 
 
 def tier_model_summary(tier: str) -> str:
-    """A human-readable 'GPT-5.6 Luna · Gemini 3.5 Lite · Haiku 4.5' line for a
+    """A human-readable 'GPT-6 Luna · Gemini 3.5 Lite · Haiku 5.5' line for a
     tier, built from the registry so the UI can never drift from the models the
     tier actually runs. A model configured with reasoning effort gets a
     'Thinking' tag (e.g. the frontier OpenAI entry)."""

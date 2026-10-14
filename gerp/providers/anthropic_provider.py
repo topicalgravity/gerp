@@ -25,7 +25,6 @@ from ..schema import GERP, Citation, ConsideredDoc, ConsideredMethod
 
 class AnthropicProvider(BaseProvider):
     name = "anthropic"
-    default_model = "claude-haiku-4-5"
     env_key = "ANTHROPIC_API_KEY"
 
     # Default web-search server-tool type: the basic variant, which emits the
@@ -56,7 +55,9 @@ class AnthropicProvider(BaseProvider):
         client = anthropic.Anthropic(api_key=self.api_key)
         resp = client.messages.create(
             model=self.model,
-            max_tokens=kwargs.get("max_tokens", 2048),
+            # Thinking is on by default on the 5.5 models and counts toward
+            # max_tokens, so leave headroom beyond the visible answer.
+            max_tokens=kwargs.get("max_tokens", 8192),
             messages=[{"role": "user", "content": prompt}],
             tools=[{
                 "type": tool_type,

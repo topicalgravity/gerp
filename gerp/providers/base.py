@@ -18,6 +18,7 @@ from urllib.parse import urlparse
 from typing import Optional
 
 from ..schema import GERP, Citation, SCHEMA_VERSION, ConsideredMethod
+from ..tiers import DEFAULT_TIER, tier_config
 
 
 def domain_of(url: str) -> Optional[str]:
@@ -34,12 +35,13 @@ class ProviderError(RuntimeError):
 
 class BaseProvider(abc.ABC):
     name: str = "base"
-    default_model: str = ""
     env_key: str = ""
 
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         self.api_key = api_key or os.environ.get(self.env_key)
-        self.model = model or self.default_model
+        # No model given -> the default tier's model for this provider, so the
+        # tier registry is the only place a model id is written down.
+        self.model = model or tier_config(DEFAULT_TIER, self.name).get("model", "")
         if not self.api_key:
             raise ProviderError(
                 f"No API key for {self.name}. Set {self.env_key} or pass api_key."

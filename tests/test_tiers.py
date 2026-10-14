@@ -7,8 +7,9 @@ from __future__ import annotations
 
 import unittest
 
-from gerp.tiers import (TIERS, DEFAULT_TIER, resolve_tier, tier_config,
-                        model_label)
+from gerp.runner import PROVIDERS
+from gerp.tiers import (TIERS, DEFAULT_TIER, MODEL_LABELS, resolve_tier,
+                        tier_config, model_label)
 
 
 class TestResolveTier(unittest.TestCase):
@@ -23,25 +24,33 @@ class TestResolveTier(unittest.TestCase):
 
 
 class TestTierConfig(unittest.TestCase):
-    def test_standard_models(self):
-        self.assertEqual(tier_config("standard", "anthropic")["model"],
-                         "claude-haiku-4-5")
-        self.assertEqual(tier_config("standard", "openai")["model"], "gpt-5.6-luna")
-        self.assertEqual(tier_config("standard", "gemini")["model"],
-                         "gemini-3.5-flash-lite")
+    # These assert the registry's shape, not specific model ids, so a model
+    # bump in tiers.py needs no test edits.
+    def test_every_tier_has_a_labelled_model_per_provider(self):
+        for tier, providers in TIERS.items():
+            self.assertEqual(set(providers), set(PROVIDERS), tier)
+            for provider, entry in providers.items():
+                self.assertTrue(entry.get("model"), (tier, provider))
+                self.assertIn(entry["model"], MODEL_LABELS, (tier, provider))
 
-    def test_frontier_models_and_kwargs(self):
-        anthropic = tier_config("frontier", "anthropic")
-        self.assertEqual(anthropic["model"], "claude-opus-5")
+    def test_tiers_use_different_models(self):
+        for provider in PROVIDERS:
+            self.assertNotEqual(tier_config("standard", provider)["model"],
+                                tier_config("frontier", provider)["model"])
+
+    def test_frontier_kwargs(self):
         # The basic variant, pinned so the flat parser sees the fan-out/pool
-        # blocks; it still works on Opus 5 (see tiers.py for the 2026-09 note
-        # that dynamic filtering no longer hides those blocks).
+        # blocks (see tiers.py for the 2026-09 note that dynamic filtering no
+        # longer hides those blocks).
+        anthropic = tier_config("frontier", "anthropic")
         self.assertEqual(anthropic["kwargs"]["tool_type"], "web_search_20250305")
         openai = tier_config("frontier", "openai")
-        self.assertEqual(openai["model"], "gpt-5.6-sol")
         self.assertEqual(openai["kwargs"]["reasoning"], {"effort": "high"})
-        self.assertEqual(tier_config("frontier", "gemini")["model"],
-                         "gemini-3.8-flash")
+
+    def test_provider_default_is_the_default_tier_model(self):
+        for name, cls in PROVIDERS.items():
+            self.assertEqual(cls(api_key="test").model,
+                             tier_config(DEFAULT_TIER, name)["model"])
 
     def test_unknown_tier_falls_back_to_default_config(self):
         self.assertEqual(tier_config("bogus", "anthropic"),
@@ -53,8 +62,8 @@ class TestTierConfig(unittest.TestCase):
 
 class TestModelLabel(unittest.TestCase):
     def test_known_and_unknown(self):
-        self.assertEqual(model_label("claude-opus-5"), "Opus 5")
-        self.assertEqual(model_label("gpt-5.6-sol"), "GPT-5.6 Sol")
+        model, label = next(iter(MODEL_LABELS.items()))
+        self.assertEqual(model_label(model), label)
         self.assertEqual(model_label("some-future-model"), "some-future-model")
         self.assertEqual(model_label(None), "")
 

@@ -18,7 +18,7 @@ export ANTHROPIC_API_KEY=...   # or GEMINI_API_KEY / OPENAI_API_KEY
 
 ```bash
 python -m gerp.cli -p gemini --prompt "best personal injury firms in Dallas"
-python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-5 --raw
+python -m gerp.cli -p anthropic --prompt "..." --model <model-id> --raw
 echo "long prompt" | python -m gerp.cli -p openai --stdin
 ```
 
@@ -81,15 +81,19 @@ inferred.
 `app.py` serves the google.com-style front end. Two model tiers, defined in
 `gerp/tiers.py`:
 
-| Tier | Anthropic | Gemini | OpenAI | Access |
-|------|-----------|--------|--------|--------|
-| **Standard** (free) | `claude-haiku-4-5` | `gemini-3.5-flash-lite` | `gpt-5.6-luna` | Anonymous, 3 searches / 7 days (signed cookie + per-IP tally) |
-| **Frontier** (login) | `claude-opus-5` | `gemini-3.8-flash` | `gpt-5.6-sol` | Signed-in GERP account, 3 searches / 7 days (per-email); owner + allowlist unlimited |
+| Tier | Models | Access |
+|------|--------|--------|
+| **Standard** (free) | Each provider's current budget model | Anonymous, 3 searches / 7 days (signed cookie + per-IP tally) |
+| **Frontier** (login) | Each provider's current flagship-class model | Signed-in GERP account, 3 searches / 7 days (per-email); owner + allowlist unlimited |
+
+The model ids live only in the `TIERS` registry in `gerp/tiers.py`; the provider
+defaults, the UI labels and the CLI default are all derived from it, so a model
+bump is an edit to that one file.
 
 A tier is just a per-provider `{model, kwargs}` lookup that `gerp.run()` forwards
 to the adapters. Every tier pins the **basic** `web_search_20250305` Anthropic
 tool so the flat parser sees the `server_tool_use`/`web_search_tool_result`
-fan-out blocks (still works on Opus 5); the frontier OpenAI entry sets
+fan-out blocks; the frontier OpenAI entry sets
 `reasoning={"effort": "high"}`. Unknown/stale `tier` form values resolve to
 Standard, and a frontier request from a non-entitled visitor silently downgrades.
 

@@ -4,7 +4,7 @@ CLI: run a prompt through a provider, emit a GERP as JSON.
 
 Examples:
   python -m gerp.cli --provider gemini --prompt "best personal injury firms in Dallas"
-  python -m gerp.cli -p anthropic --prompt "..." --model claude-opus-5 --raw
+  python -m gerp.cli -p anthropic --prompt "..." --model <model-id> --raw
   echo "long prompt" | python -m gerp.cli -p openai --stdin
 """
 
@@ -23,7 +23,7 @@ def main(argv=None) -> int:
     ap.add_argument("-p", "--provider", required=True, choices=sorted(PROVIDERS))
     ap.add_argument("--prompt", help="Prompt text (or use --stdin)")
     ap.add_argument("--stdin", action="store_true", help="Read prompt from stdin")
-    ap.add_argument("--model", default=None, help="Override default model")
+    ap.add_argument("--model", default=None, help="Override the default (standard-tier) model")
     ap.add_argument("--api-key", default=None, help="Override env API key")
     ap.add_argument("--raw", action="store_true", help="Include raw_response")
     ap.add_argument("--considered", action="store_true",
